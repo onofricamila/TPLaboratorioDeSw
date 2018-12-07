@@ -1,0 +1,15 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="nivel_switch"
+        android:summary="@string/pref_description_nivel"
+        android:title="@string/pref_title_nivel" />
+
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="audio_switch"
+        android:summary="@string/pref_description_audio"
+        android:title="@string/pref_title_audio" />
+
+</PreferenceScreen>

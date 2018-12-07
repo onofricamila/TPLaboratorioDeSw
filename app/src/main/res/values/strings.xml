@@ -1,3 +1,70 @@
 <resources>
+    <!-- app name -->
     <string name="app_name">RazasYPelajesOnofri</string>
+
+    <!-- boton config en navbar -->
+    <string name="action_settings">Configuracion</string>
+    <string name="title_activity_settings">Configuracion</string>
+
+    <!-- Example Ajustes settings -->
+    <string name="pref_header_ajustes">Ajustes</string>
+
+    <string name="pref_title_nivel">Jugar en nivel 2</string>
+    <string name="pref_description_nivel">
+        Considera cambian la cantidad de opciones entre las cuales se debe elegir, de 2 a 4.
+    </string>
+
+    <string name="pref_title_audio">Reproducir audio en voz femenina</string>
+    <string name="pref_description_audio">
+        Por defecto escucharas una voz masculina
+    </string>
+
+
+    <!-- Example settings for Interaccion -->
+    <string name="pref_header_interaccion">Modo de Interaccion</string>
+
+    <string name="pref_title_interaccion">Interaccion?</string>
+    <string-array name="pref_interaccion_titles">
+        <item>Modo A</item>
+        <item>Modo B</item>
+        <item>Modo C</item>
+    </string-array>
+    <string-array name="pref_interaccion_values">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+    </string-array>
+
+    <!-- Example settings for Mini Juego -->
+    <string name="pref_header_minijuego">Mini Juego</string>
+
+    <string name="pref_title_minijuego">Juego?</string>
+    <string-array name="pref_minijuego_titles">
+        <item>Razas y Pelajes</item>
+        <item>Razas y Pelajes Juntos</item>
+        <item>Cruzas</item>
+    </string-array>
+    <string-array name="pref_minijuego_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <!-- Example settings for Reconocimiento -->
+    <string name="pref_header_reconocimiento">Modo de Reconocimiento</string>
+    <string name="pref_title_visualizacion">Opción de visualizacion</string>
+    <string-array name="pref_visualizacion_titles">
+        <item>Lista</item>
+        <item>Grillas</item>
+    </string-array>
+    <string-array name="pref_visualizacion_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+
+    <string name="pref_title_juego">Razas y Pelajes</string>
+    <string name="pref_title_juego2">Razas y Pelajes Juntos</string>
+    <string name="pref_title_juego3">Cruzas</string>
+
+
 </resources>
