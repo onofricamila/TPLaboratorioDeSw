@@ -58,11 +58,11 @@ o cruza.
 
 **Modo Juego**
 Consiste de 3 minijuegos
-1) minijuego: Razas y Pelajes
+1. minijuego: Razas y Pelajes
 Objetivo: identificar razas y pelajes de manera individual.
-2) minijuego: Razas y Pelajes juntas
+2. minijuego: Razas y Pelajes juntas
 Objetivo: identificar la raza y el pelaje de cada caballo en forma conjunta.
-3) minijuego: Cruza
+3. minijuego: Cruza
 Objetivo: identificar cruzas de razas entre varias opciones, esto es dados dos
 caballos, elegir la cruza correcta (en este caso, una única imagen contiene a los
 dos caballos).
@@ -71,11 +71,11 @@ dos caballos).
 
 A continuación se detallan las interacciones que deben implementar los minijuegos
 anteriores:
-**Interacción A:** dada una imagen, se la debe asociar a una palabra con su audio
+* **Interacción A:** dada una imagen, se la debe asociar a una palabra con su audio
 mediante la selección entre varias palabras (Minijuego 1 y 2)
-**Interacción B:** dada una palabra con su audio, se la debe asociar a una imagen
+* **Interacción B:** dada una palabra con su audio, se la debe asociar a una imagen
 mediante la selección entre varias imágenes (Minijuego 1 y 2)
-**Interacción C:** dada una imagen, se la debe asociar con otra imagen mediante la
+* **Interacción C:** dada una imagen, se la debe asociar con otra imagen mediante la
 selección entre varias imágenes (Minijuego 3)
 
 ### Niveles de dificultad
