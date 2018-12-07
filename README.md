@@ -81,8 +81,8 @@ selección entre varias imágenes (Minijuego 3)
 ### Niveles de dificultad
 
 Cada minijuego puede jugarse en los siguientes niveles:
-**Nivel 1** ​​: se elige una opción (imagen o palabra con audio) entre 2 disponibles.
-**Nivel 2** ​​: se elige una opción entre 4 (imagen o palabra con audio) disponibles.
+* **Nivel 1**: se elige una opción (imagen o palabra con audio) entre 2 disponibles.
+* **Nivel 2**: se elige una opción entre 4 (imagen o palabra con audio) disponibles.
 
 ### Configuración
 Debe incluir:
