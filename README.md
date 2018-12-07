@@ -7,8 +7,7 @@
 Tomando como punto de partida la vigencia y beneficios que provee la utilización
 de TIC (Tecnologías de la Información y la Comunicación) en los procesos
 terapéuticos y de enseñanza y aprendizaje, el objetivo de este proyecto es poner a
-disposición de las alumnas y alumnos que desarrollan TACAs en [CEDICA](http://www.cedica.org.ar/
-https://www.facebook.com/cedica.equitacionparatodos/), un recurso
+disposición de las alumnas y alumnos que desarrollan TACAs en [CEDICA](http://www.cedica.org.ar/), un recurso
 tecnológico novedoso que colabore y potencie su progreso terapéutico.
 En la cursada 2018 de Laboratorio de Software se desarrollarán como parte del
 trabajo final de la materia un juego didáctico en Android para tablets y celulares, que
@@ -24,7 +23,7 @@ arte del juego.
 El objetivo general de este juego es favorecer el reconocimiento e identificación de
 las razas y pelajes del caballo que se utiliza en la sesión o clase de CEDICA.
 
-# Metodología
+### Metodología
 
 ```
 El trabajo final se podrá desarrollar en forma individual o en grupo de 2
