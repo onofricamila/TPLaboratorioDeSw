@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -51,5 +52,11 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    /** Called when the user taps the Jugar button */
+    public void play(View view) {
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
     }
 }

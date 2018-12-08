@@ -6,6 +6,14 @@
     <string name="action_settings">Configuracion</string>
     <string name="title_activity_settings">Configuracion</string>
 
+    <!-- boton jugar en mainactivity -->
+    <string name="action_jugar">Jugar</string>
+    <string name="title_activity_jugar">Jugar</string>
+
+    <!-- boton reconocimiento en mainactivity -->
+    <string name="action_reconocimiento">Reconocimiento</string>
+    <string name="title_activity_reconocimiento">Reconocimiento</string>
+
     <!-- Example Ajustes settings -->
     <string name="pref_header_ajustes">Ajustes</string>
 
