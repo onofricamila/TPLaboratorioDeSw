@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryDark">#FF8100</color>
+    <color name="colorAccent">#16F5C4</color>
 </resources>
+
+<!-- naranja: FF8100, mas clarito: FF9800-->
+<!-- azul: 05668D, mas clarito: 028090, celeste: 028090, mas clarito: 02C39A, turquesa: 16F5C4-->
