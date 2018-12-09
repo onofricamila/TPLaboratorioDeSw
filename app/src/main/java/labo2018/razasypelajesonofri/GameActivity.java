@@ -114,7 +114,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < imgsViews.size(); i++) {
             String randomWord = this.randomWord();
             Log.d("!!!FILL-IMGS-VIEWS: ", randomWord);
-           // todo:
             while(isAlreadyInImgViews(randomWord)){
                 randomWord = this.randomWord();
             }
@@ -195,7 +194,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         wordSelected.setText("");
         // populate img views with imgs
         this.initImgViewsArray();
-        // todo: used
+        // wordTofind used?
         Log.d("!!!WORD-TO-FIND: ", wordToFind);
         this.isAlreadyInImgViews(wordToFind);
         // show a random img view with the answer img ONLY if it isn't shown yet
