@@ -15,7 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -32,6 +34,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button newGame;
     private MediaPlayer mp;
     private Random random = new Random();
+    private Map soundsMap;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -49,12 +52,27 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         sound.setOnClickListener(this);
         // init list of horse imgs
         this.initHorseImgsArray();
+        // init sounds map
+        this.initSoundsMap();
         // get imgviews from layout
         this.fillImgsViewsArray();
         // set imgviews sizes
         this.determineImgViewsSize();
         // let's play!
         newGame();
+    }
+
+    private void initSoundsMap() {
+        soundsMap = new HashMap();
+        soundsMap.put("tada", R.raw.tada);
+        soundsMap.put("error", R.raw.error);
+        soundsMap.put("a", R.raw.a);
+        soundsMap.put("b", R.raw.b);
+        soundsMap.put("c", R.raw.c);
+        soundsMap.put("f", R.raw.f);
+        soundsMap.put("m", R.raw.m);
+        soundsMap.put("n", R.raw.n);
+        soundsMap.put("p", R.raw.p);
     }
 
     private void makeToast(String msj){
@@ -75,12 +93,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         */
         if (horseToFindName.equals(selectedImageView.getTag())) {
             this.makeToast("¡Felicitaciones! Encontraste a: " + this.generateWordToShow());
-            this.playSound(R.raw.tada);
+            this.playSound((Integer) soundsMap.get("tada"));
             // play again
             newGame();
         } else {
             this.makeToast("Intenta nuevamente");
-            this.playSound(R.raw.error);
+            this.playSound((Integer) soundsMap.get("error"));
         }
     }
 
@@ -91,9 +109,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (view == newGame) {
             newGame();
         }else if(view == sound){
-            // TODO: replace w wordToFindSound, like: String name = "@raw/" + horseToFindId;
-            String name = "@raw/tada";
-            this.playSound( getResources().getIdentifier(name, null, this.getPackageName()) );
+            // obtener iniciales del caballo a reproducir
+            String[] wordArray = splitString("_", horseToFindName);
+            // sound chain w razaInit n pelajeInit
+            int[] sounds = {
+                    (int) soundsMap.get(getFirstStringChar(wordArray[0])),
+                    (int) soundsMap.get(getFirstStringChar(wordArray[1]))
+            };
+            playSoundChain(sounds);
         }else{
             // an image view was clicked
             selectedImageView = (ImageView) view;
@@ -101,6 +124,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             selectedHorseImgTag.setText((String)selectedImageView.getTag());
             this.validateImage();
         }
+    }
+    
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    private void playSoundChain(int[] sounds){
+        MediaPlayer[] mediaPlayers = new MediaPlayer[sounds.length];
+        // create MP array with respective sounds
+        for (int i = 0; i < mediaPlayers.length; i++) {
+            mediaPlayers[i] = MediaPlayer.create( this, sounds[i] );
+        }
+        // create sound chain
+        for (int i = 0; i < mediaPlayers.length-1; i++) {
+            mediaPlayers[i].setNextMediaPlayer( mediaPlayers[i+1] );
+        }
+        // start sound chain
+        mediaPlayers[0].start();
     }
 
     private void initHorseImgsArray() {
@@ -168,13 +206,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return resources.getResourceEntryName(id);
     }
 
+    private String[] splitString(String delimiter, String word){
+        return word.split(new StringBuilder().append("\\").append(delimiter).toString());
+    }
+
     private String generateWordToShow() {
-        String[] array = horseToFindName.split("\\_");
+        String[] array = splitString("_", horseToFindName);
         return capitalize(array[0]) + " " + capitalize(array[1]);
     }
 
+    private String getFirstStringChar(String word){
+        return word.substring(0, 1);
+    }
+
     private String capitalize(String word){
-        return word.substring(0, 1).toUpperCase() + word.substring(1);
+        return getFirstStringChar(word).toUpperCase() + word.substring(1);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
