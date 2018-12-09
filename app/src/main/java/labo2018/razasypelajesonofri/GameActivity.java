@@ -125,7 +125,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             imageView.setImageResource(getResources().getIdentifier(name, null, this.getPackageName()));
             imageView.setOnClickListener(this);
         }
-        // todo: a ver aca se ven las tags
+        // DEBUG aca se ven las 'current' tags
         for (int i = 0; i < imgsViews.size(); i++) {
             Log.d("!!!DEBUG-TAGS: ", imgsViews.get(i).getTag().toString());
         }
@@ -146,14 +146,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (view == newGame) {
             newGame();
         }else if(view == sound){
-           // String name = "@raw/" + wordToFind;
-            String name = "@raw/tada";
-            mp = MediaPlayer.create(this, getResources().getIdentifier(name, null, this.getPackageName()));
-            mp.start();
+           // TODO: replace w wordToFindSound, like: String name = "@raw/" + wordToFind;
+           String name = "@raw/tada";
+           this.playSound( getResources().getIdentifier(name, null, this.getPackageName()) );
         }else{
             // an image view was clicked
             selectedImageView = (ImageView) view;
-            // show the clicked letter associated with the image view
+            // show the horse associated with the clicked image view
             wordSelected.setText((String)selectedImageView.getTag());
             this.validateImage();
         }
@@ -162,16 +161,23 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void validateImage() {
         if (wordToFind.equals(selectedImageView.getTag())) {
-            Toast.makeText(this, "Felicidades! Encontraste " + generateWordToShow(), Toast.LENGTH_SHORT).show();
-            mp = MediaPlayer.create(this, R.raw.tada);
-            mp.start();
+            this.makeToast("¡Felicitaciones! Encontraste " + this.generateWordToShow());
+            this.playSound(R.raw.tada);
             // play again
             newGame();
         } else {
-            Toast.makeText(this, "Intenta nuevamente!", Toast.LENGTH_SHORT).show();
-            mp = MediaPlayer.create(this, R.raw.error);
-            mp.start();
+            this.makeToast("Intenta nuevamente");
+            this.playSound(R.raw.error);
         }
+    }
+
+    private void makeToast(String msj){
+        Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
+    }
+
+    private void playSound(int sound){
+        mp = MediaPlayer.create(this, sound);
+        mp.start();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -193,6 +199,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("!!!WORD-TO-FIND: ", wordToFind);
         this.isAlreadyInImgViews(wordToFind);
         // show a random img view with the answer img ONLY if it isn't shown yet
+        this.putAnswerInGame();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void putAnswerInGame() {
         if (!isAlreadyInImgViews(wordToFind)) {
             ImageView special = imgsViews.get(random.nextInt(imgsViews.size()));
             special.setTag(wordToFind);
