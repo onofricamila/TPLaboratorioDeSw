@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -34,7 +34,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private List<ImageView> imgsViews;
     private ImageView sound, selectedImageView;
     private Button newGame;
-    private MediaPlayer mp;
     private Random random = new Random();
     private Map soundsMap;
 
@@ -53,13 +52,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         sound = (ImageView) findViewById(R.id.sound);
         sound.setOnClickListener(this);
         // init list of horse imgs
-        this.initHorseImgsArray();
+        initHorseImgsArray();
         // init sounds map
-        this.initSoundsMap();
+        initSoundsMap();
         // get imgviews from layout
-        this.fillImgsViewsArray();
+        fillImgsViewsArray();
         // set imgviews sizes
-        this.determineImgViewsSize();
+        determineImgViewsSize();
         // let's play!
         newGame();
     }
@@ -81,11 +80,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
     }
 
-    private void playSound(int soundId){
-        mp = MediaPlayer.create(this, soundId);
-        mp.start();
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void validateImage() {
         /* TODO: para el razas y pelajes por separado aca en horsetofindname me viene la raza o
@@ -95,7 +89,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         */
         ArrayList<Integer> sounds = new ArrayList<>();
         if (horseToFindName.equals(selectedImageView.getTag())) {
-            this.makeToast("¡Felicitaciones! Encontraste a: " + this.generateWordToShow());
+            makeToast("¡Felicitaciones! Encontraste a: " + generateWordToShow());
             sounds.add((Integer) soundsMap.get("tada"));
             // play again
             newGame();
@@ -103,7 +97,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             this.makeToast("Intenta nuevamente");
             sounds.add((Integer) soundsMap.get("error"));
         }
-        this.wannaPlaySound(sounds);
+        wannaPlaySound(sounds);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -131,7 +125,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void wannaPlaySound(ArrayList<Integer> sounds){
-        Predicate<Integer> p1 = s -> s != null;
+        Predicate<Integer> p1 = Objects::nonNull;
         List list =  sounds.stream().filter(p1).collect(Collectors.toList());;
         if(list.size() > 0){playSoundChain(list);}
     }
@@ -149,7 +143,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 mediaPlayers[i].setNextMediaPlayer( mediaPlayers[i+1] );
             }
         }
-        // start sound chain
+        // start playing sound chain/single sound
         mediaPlayers[0].start();
     }
 
@@ -202,7 +196,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void setTagsToEmptyString(){
+    private void resetImgViewsTags(){
         for (int i = 0; i < imgsViews.size(); i++) {
             ImageView imageView = imgsViews.get(i);
             imageView.setTag("");
@@ -224,14 +218,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private String generateWordToShow() {
         String[] array = splitString("_", horseToFindName);
-        return capitalize(array[0]) + " " + capitalize(array[1]);
+        return capitalizeString(array[0]) + " " + capitalizeString(array[1]);
     }
 
     private String getFirstStringChar(String word){
         return word.substring(0, 1);
     }
 
-    private String capitalize(String word){
+    private String capitalizeString(String word){
         return getFirstStringChar(word).toUpperCase() + word.substring(1);
     }
 
@@ -273,7 +267,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void newGame() {
         // reset tags
-        this.setTagsToEmptyString();
+        resetImgViewsTags();
         // determine word to find
         horseToFindId = this.randomHorseImgId();
         while(horseToFindId == lastHorseId){
@@ -285,9 +279,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         horseToFindNameShown.setText(generateWordToShow());
         selectedHorseImgTag.setText("");
         // populate img views with imgs
-        this.initImgViewsArray();
+        initImgViewsArray();
         // put a random img view with the answer img ONLY if it isn't shown yet
-        this.putAnswerInGame();
+        putAnswerInGame();
     }
 
 
