@@ -115,7 +115,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             String randomWord = this.randomWord();
             Log.d("!!!FILL-IMGS-VIEWS: ", randomWord);
            // todo:
-            this.isAlreadyUsed(randomWord);
+            while(isAlreadyInImgViews(randomWord)){
+                randomWord = this.randomWord();
+            }
             String name = "@drawable/" + randomWord;
             ImageView imageView = imgsViews.get(i);
             imageView.setTag(randomWord);
@@ -130,7 +132,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
-    private boolean isAlreadyUsed(String randomWord) {
+    private boolean isAlreadyInImgViews(String randomWord) {
         Predicate<ImageView> p1 = iv -> iv.getTag().equals(randomWord);
         boolean cond = imgsViews.stream().anyMatch(p1);
         Log.d("!!!IS-USED: ", String.valueOf(cond));
@@ -189,12 +191,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         this.initImgViewsArray();
         // todo: used
         Log.d("!!!WORD-TO-FIND: ", wordToFind);
-        this.isAlreadyUsed(wordToFind);
+        this.isAlreadyInImgViews(wordToFind);
         // show a random img view with the answer img ONLY if it isn't shown yet
-            ImageView special = imgsViews.get( random.nextInt(imgsViews.size()) );
+        if (!isAlreadyInImgViews(wordToFind)) {
+            ImageView special = imgsViews.get(random.nextInt(imgsViews.size()));
             special.setTag(wordToFind);
             String name = "@drawable/" + wordToFind;
-            special.setImageResource( getResources().getIdentifier(name, null, this.getPackageName()));
+            special.setImageResource(getResources().getIdentifier(name, null, this.getPackageName()));
+        }
     }
 
     private String generateWordToShow() {
