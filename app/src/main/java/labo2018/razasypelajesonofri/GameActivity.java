@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -91,15 +93,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         y tipo para decir si está bien la eleccion tengo que fijarme si horsetofindname es substring
         del tag de la img seleccionada ... hay mas caballos que pueden coincidir en pelaje o raza!
         */
+        ArrayList<Integer> sounds = new ArrayList<>();
         if (horseToFindName.equals(selectedImageView.getTag())) {
             this.makeToast("¡Felicitaciones! Encontraste a: " + this.generateWordToShow());
-            this.playSound((Integer) soundsMap.get("tada"));
+            sounds.add((Integer) soundsMap.get("tada"));
             // play again
             newGame();
         } else {
             this.makeToast("Intenta nuevamente");
-            this.playSound((Integer) soundsMap.get("error"));
+            sounds.add((Integer) soundsMap.get("error"));
         }
+        this.wannaPlaySound(sounds);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -112,11 +116,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             // obtener iniciales del caballo a reproducir
             String[] wordArray = splitString("_", horseToFindName);
             // sound chain w razaInit n pelajeInit
-            int[] sounds = {
-                    (int) soundsMap.get(getFirstStringChar(wordArray[0])),
-                    (int) soundsMap.get(getFirstStringChar(wordArray[1]))
-            };
-            playSoundChain(sounds);
+            ArrayList<Integer> sounds = new ArrayList<>();
+            sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[0])) );
+            sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[1])) );
+            wannaPlaySound(sounds);
         }else{
             // an image view was clicked
             selectedImageView = (ImageView) view;
@@ -125,17 +128,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             this.validateImage();
         }
     }
-    
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void playSoundChain(int[] sounds){
-        MediaPlayer[] mediaPlayers = new MediaPlayer[sounds.length];
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void wannaPlaySound(ArrayList<Integer> sounds){
+        Predicate<Integer> p1 = s -> s != null;
+        List list =  sounds.stream().filter(p1).collect(Collectors.toList());;
+        if(list.size() > 0){playSoundChain(list);}
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void playSoundChain(List sounds){
+        MediaPlayer[] mediaPlayers = new MediaPlayer[(int) sounds.size()];
         // create MP array with respective sounds
         for (int i = 0; i < mediaPlayers.length; i++) {
-            mediaPlayers[i] = MediaPlayer.create( this, sounds[i] );
+            mediaPlayers[i] = MediaPlayer.create( this, (Integer) sounds.get(i));
         }
-        // create sound chain
-        for (int i = 0; i < mediaPlayers.length-1; i++) {
-            mediaPlayers[i].setNextMediaPlayer( mediaPlayers[i+1] );
+        // create sound chain only if there are more than one sound to play
+        if (mediaPlayers.length > 1) {
+            for (int i = 0; i < mediaPlayers.length-1; i++) {
+                mediaPlayers[i].setNextMediaPlayer( mediaPlayers[i+1] );
+            }
         }
         // start sound chain
         mediaPlayers[0].start();
