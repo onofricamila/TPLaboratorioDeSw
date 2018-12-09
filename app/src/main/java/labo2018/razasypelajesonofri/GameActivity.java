@@ -123,6 +123,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    // determines whether there are valid sounds to play
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void wannaPlaySound(ArrayList<Integer> sounds){
         Predicate<Integer> p1 = Objects::nonNull;
@@ -130,6 +131,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if(list.size() > 0){playSoundChain(list);}
     }
 
+    // works with a single item sound array and a multiple items one
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void playSoundChain(List sounds){
         MediaPlayer[] mediaPlayers = new MediaPlayer[(int) sounds.size()];
