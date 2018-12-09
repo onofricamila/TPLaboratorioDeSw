@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         // get the setting as a SharedPreferences object
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
-        String marketPref = sharedPref.getString("market", "-1");
+        String marketPref = sharedPref.getString("minijuego", "-1");
         Log.d("!!!!MARKET-PREF : ", marketPref);
     }
 
