@@ -81,6 +81,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private void setTagsToEmpty(){
+        for (int i = 0; i < imgsViews.size(); i++) {
+            ImageView imageView = imgsViews.get(i);
+            imageView.setTag("");
+        }
+    }
+
     private void initRnP() {
         razas = new ArrayList<String>();
         razas.add("falabella");
@@ -124,7 +131,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private boolean isAlreadyUsed(String randomWord) {
-        Predicate<ImageView> p1 = iv -> iv.getTag()==randomWord;
+        Predicate<ImageView> p1 = iv -> iv.getTag().equals(randomWord);
         boolean cond = imgsViews.stream().anyMatch(p1);
         Log.d("!!!IS-USED: ", String.valueOf(cond));
         return cond;
@@ -153,7 +160,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void validateImage() {
         if (wordToFind.equals(selectedImageView.getTag())) {
-            Toast.makeText(this, "Felicidades! Encontraste " + wordToFind, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Felicidades! Encontraste " + generateWordToShow(), Toast.LENGTH_SHORT).show();
             mp = MediaPlayer.create(this, R.raw.tada);
             mp.start();
             // play again
@@ -167,6 +174,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void newGame() {
+        // reset tags
+        this.setTagsToEmpty();
+        // determine word to find
         wordToFind = this.randomWord();
         while(wordToFind == lastWord){
             wordToFind = this.randomWord();
