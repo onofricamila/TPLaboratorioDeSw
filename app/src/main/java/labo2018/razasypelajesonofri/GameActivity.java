@@ -1,5 +1,6 @@
 package labo2018.razasypelajesonofri;
 
+import android.content.res.Resources;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -20,16 +21,17 @@ import java.util.function.Predicate;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private TextView wordShown;
-    private EditText wordSelected;
-    private Button newGame;
-    private String wordToFind;
-    private MediaPlayer mp;
+    private List horseImages;
+    private int horseToFindId;
+    private int lastHorseId;
+    private String horseToFindName;
+    private TextView horseToFindNameShown;
+    private EditText selectedHorseImgTag;
     private List<ImageView> imgsViews;
-    private List<String> razas, pelajes;
     private ImageView sound, selectedImageView;
+    private Button newGame;
+    private MediaPlayer mp;
     private Random random = new Random();
-    private String lastWord;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -37,22 +39,91 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         // get layout text views
-        wordShown = (TextView) findViewById(R.id.wordTv);
-        wordSelected = (EditText) findViewById(R.id.wordEnteredEt);
-        // get newgame button and set listener
+        horseToFindNameShown = (TextView) findViewById(R.id.wordTv);
+        selectedHorseImgTag = (EditText) findViewById(R.id.wordEnteredEt);
+        // get Siguiente button and set listener
         newGame = (Button) findViewById(R.id.newGame);
         newGame.setOnClickListener(this);
-        // get siguiente button and set listener
+        // get Sound ImgView and set listener
         sound = (ImageView) findViewById(R.id.sound);
         sound.setOnClickListener(this);
-        // init list of razas n pelajes
-        this.initRnP();
+        // init list of horse imgs
+        this.initHorseImgsArray();
         // get imgviews from layout
         this.fillImgsViewsArray();
         // set imgviews sizes
         this.determineImgViewsSize();
         // let's play!
         newGame();
+    }
+
+    private void makeToast(String msj){
+        Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
+    }
+
+    private void playSound(int soundId){
+        mp = MediaPlayer.create(this, soundId);
+        mp.start();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void validateImage() {
+        /* TODO: para el razas y pelajes por separado aca en horsetofindname me viene la raza o
+        el pelaje (haria un random entre las 2 partes del nombre de la foto agarrada como answer en newgame)
+        y tipo para decir si está bien la eleccion tengo que fijarme si horsetofindname es substring
+        del tag de la img seleccionada ... hay mas caballos que pueden coincidir en pelaje o raza!
+        */
+        if (horseToFindName.equals(selectedImageView.getTag())) {
+            this.makeToast("¡Felicitaciones! Encontraste a: " + this.generateWordToShow());
+            this.playSound(R.raw.tada);
+            // play again
+            newGame();
+        } else {
+            this.makeToast("Intenta nuevamente");
+            this.playSound(R.raw.error);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    @Override
+    public void onClick(View view) {
+        // newGame button was clicked
+        if (view == newGame) {
+            newGame();
+        }else if(view == sound){
+            // TODO: replace w wordToFindSound, like: String name = "@raw/" + horseToFindId;
+            String name = "@raw/tada";
+            this.playSound( getResources().getIdentifier(name, null, this.getPackageName()) );
+        }else{
+            // an image view was clicked
+            selectedImageView = (ImageView) view;
+            // show the horse associated with the clicked image view
+            selectedHorseImgTag.setText((String)selectedImageView.getTag());
+            this.validateImage();
+        }
+    }
+
+    private void initHorseImgsArray() {
+        horseImages = new ArrayList();
+        horseImages.add(R.drawable.azteca_blanco);
+        horseImages.add(R.drawable.azteca_marron);
+        horseImages.add(R.drawable.azteca_matizado);
+        horseImages.add(R.drawable.azteca_negro);
+
+        horseImages.add(R.drawable.criollo_blanco);
+        horseImages.add(R.drawable.criollo_marron);
+        horseImages.add(R.drawable.criollo_matizado);
+        horseImages.add(R.drawable.criollo_negro);
+
+        horseImages.add(R.drawable.falabella_blanco);
+        horseImages.add(R.drawable.falabella_marron);
+        horseImages.add(R.drawable.falabella_matizado);
+        horseImages.add(R.drawable.falabella_negro);
+
+        horseImages.add(R.drawable.percheron_blanco);
+        horseImages.add(R.drawable.percheron_marron);
+        horseImages.add(R.drawable.percheron_matizado);
+        horseImages.add(R.drawable.percheron_negro);
     }
 
     private void fillImgsViewsArray() {
@@ -71,8 +142,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         int screenHeight = displaymetrics.heightPixels;
         int screenWidth = displaymetrics.widthPixels;
         // calc img desidered size
-        int imgHeight = (int) (screenHeight* 0.22); // 12% of screen.
-        int imgWidth = (int) (screenWidth* 0.40); // 30% of screen.
+        int imgHeight = (int) (screenHeight* 0.22); // 22% of screen.
+        int imgWidth = (int) (screenWidth* 0.40); // 40% of screen.
         // set each img view size
         for (int i = 0; i < imgsViews.size(); i++) {
             ImageView imageView = imgsViews.get(i);
@@ -81,142 +152,85 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void setTagsToEmpty(){
+    private void setTagsToEmptyString(){
         for (int i = 0; i < imgsViews.size(); i++) {
             ImageView imageView = imgsViews.get(i);
             imageView.setTag("");
         }
     }
 
-    private void initRnP() {
-        razas = new ArrayList<String>();
-        razas.add("falabella");
-        razas.add("percheron");
-        razas.add("criollo");
-        razas.add("azteca");
-
-        pelajes = new ArrayList<String>();
-        pelajes.add("blanco");
-        pelajes.add("marron");
-        pelajes.add("negro");
-        pelajes.add("matizado");
+    private int randomHorseImgId(){
+        return (int) horseImages.get( random.nextInt(horseImages.size()) );
     }
 
-    private String randomWord(){
-        String randomRaza = razas.get( random.nextInt(razas.size()) );
-        String randomPelaje = pelajes.get( random.nextInt(pelajes.size()) );
-        return randomRaza + "_" + randomPelaje;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void initImgViewsArray() {
-        // fill each img view w a unique picture
-        for (int i = 0; i < imgsViews.size(); i++) {
-            String randomWord = this.randomWord();
-            Log.d("!!!FILL-IMGS-VIEWS: ", randomWord);
-            while(isAlreadyInImgViews(randomWord)){
-                randomWord = this.randomWord();
-            }
-            String name = "@drawable/" + randomWord;
-            ImageView imageView = imgsViews.get(i);
-            imageView.setTag(randomWord);
-            Log.d("!!!TAG: ", imageView.getTag().toString());
-            imageView.setImageResource(getResources().getIdentifier(name, null, this.getPackageName()));
-            imageView.setOnClickListener(this);
-        }
-        // DEBUG aca se ven las 'current' tags
-        for (int i = 0; i < imgsViews.size(); i++) {
-            Log.d("!!!DEBUG-TAGS: ", imgsViews.get(i).getTag().toString());
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private boolean isAlreadyInImgViews(String randomWord) {
-        Predicate<ImageView> p1 = iv -> iv.getTag().equals(randomWord);
-        boolean cond = imgsViews.stream().anyMatch(p1);
-        Log.d("!!!IS-USED: ", String.valueOf(cond));
-        return cond;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void onClick(View view) {
-        // newGame button was clicked
-        if (view == newGame) {
-            newGame();
-        }else if(view == sound){
-           // TODO: replace w wordToFindSound, like: String name = "@raw/" + wordToFind;
-           String name = "@raw/tada";
-           this.playSound( getResources().getIdentifier(name, null, this.getPackageName()) );
-        }else{
-            // an image view was clicked
-            selectedImageView = (ImageView) view;
-            // show the horse associated with the clicked image view
-            wordSelected.setText((String)selectedImageView.getTag());
-            this.validateImage();
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void validateImage() {
-        if (wordToFind.equals(selectedImageView.getTag())) {
-            this.makeToast("¡Felicitaciones! Encontraste " + this.generateWordToShow());
-            this.playSound(R.raw.tada);
-            // play again
-            newGame();
-        } else {
-            this.makeToast("Intenta nuevamente");
-            this.playSound(R.raw.error);
-        }
-    }
-
-    private void makeToast(String msj){
-        Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
-    }
-
-    private void playSound(int sound){
-        mp = MediaPlayer.create(this, sound);
-        mp.start();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void newGame() {
-        // reset tags
-        this.setTagsToEmpty();
-        // determine word to find
-        wordToFind = this.randomWord();
-        while(wordToFind == lastWord){
-            wordToFind = this.randomWord();
-        }
-        lastWord = wordToFind;
-        // show in ui
-        wordShown.setText(generateWordToShow());
-        wordSelected.setText("");
-        // populate img views with imgs
-        this.initImgViewsArray();
-        // wordTofind used?
-        Log.d("!!!WORD-TO-FIND: ", wordToFind);
-        this.isAlreadyInImgViews(wordToFind);
-        // show a random img view with the answer img ONLY if it isn't shown yet
-        this.putAnswerInGame();
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void putAnswerInGame() {
-        if (!isAlreadyInImgViews(wordToFind)) {
-            ImageView special = imgsViews.get(random.nextInt(imgsViews.size()));
-            special.setTag(wordToFind);
-            String name = "@drawable/" + wordToFind;
-            special.setImageResource(getResources().getIdentifier(name, null, this.getPackageName()));
-        }
+    private String getResourceNameById(int id){
+        Resources resources = this.getResources();
+        return resources.getResourceEntryName(id);
     }
 
     private String generateWordToShow() {
-        String[] array = wordToFind.split("\\_");
+        String[] array = horseToFindName.split("\\_");
         return capitalize(array[0]) + " " + capitalize(array[1]);
     }
 
     private String capitalize(String word){
         return word.substring(0, 1).toUpperCase() + word.substring(1);
     }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private boolean isAlreadyInImgViews(String word) {
+        Predicate<ImageView> p1 = iv -> iv.getTag().equals(word);
+        boolean cond = imgsViews.stream().anyMatch(p1);
+        return cond;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void initImgViewsArray() {
+        // fill each img view w a unique picture
+        for (int i = 0; i < imgsViews.size(); i++) {
+            int randomHorseImgId = this.randomHorseImgId();
+            while(isAlreadyInImgViews( getResourceNameById(randomHorseImgId)) ){
+                randomHorseImgId = this.randomHorseImgId();
+            }
+            ImageView imageView = imgsViews.get(i);
+            imageView.setTag( getResourceNameById(randomHorseImgId) );
+            imageView.setImageResource(randomHorseImgId);
+            imageView.setOnClickListener(this);
+        }
+        // DEBUG aca se ven las 'current' tags
+        for (int i = 0; i < imgsViews.size(); i++) {
+            Log.d("!!!DEBUG-CURRENT-TAGS: ", imgsViews.get(i).getTag().toString());
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void putAnswerInGame() {
+        if (!isAlreadyInImgViews(horseToFindName) ){
+            ImageView special = imgsViews.get( random.nextInt(imgsViews.size()) );
+            special.setTag(horseToFindName);
+            special.setImageResource(horseToFindId);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void newGame() {
+        // reset tags
+        this.setTagsToEmptyString();
+        // determine word to find
+        horseToFindId = this.randomHorseImgId();
+        while(horseToFindId == lastHorseId){
+            horseToFindId = this.randomHorseImgId();
+        }
+        lastHorseId = horseToFindId;
+        horseToFindName = getResourceNameById(horseToFindId);
+        // show in ui
+        horseToFindNameShown.setText(generateWordToShow());
+        selectedHorseImgTag.setText("");
+        // populate img views with imgs
+        this.initImgViewsArray();
+        // put a random img view with the answer img ONLY if it isn't shown yet
+        this.putAnswerInGame();
+    }
+
+
 }
