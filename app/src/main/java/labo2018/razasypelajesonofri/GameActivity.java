@@ -26,6 +26,7 @@ import java.util.stream.Collectors;
 
 import labo2018.razasypelajesonofri.utils.ResponsiveDesigner;
 import labo2018.razasypelajesonofri.utils.SoundsPlayer;
+import labo2018.razasypelajesonofri.utils.SoundsProvider;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -68,16 +69,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initSoundsMap() {
-        soundsMap = new HashMap();
-        soundsMap.put("tada", R.raw.tada);
-        soundsMap.put("error", R.raw.error);
-        soundsMap.put("a", R.raw.a);
-        soundsMap.put("b", R.raw.b);
-        soundsMap.put("c", R.raw.c);
-        soundsMap.put("f", R.raw.f);
-        soundsMap.put("m", R.raw.m);
-        soundsMap.put("n", R.raw.n);
-        soundsMap.put("p", R.raw.p);
+        soundsMap = SoundsProvider.INSTANCE.getSoundsMap();
     }
 
     private void makeToast(String msj){
@@ -159,23 +151,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         imgsViews.add((ImageView)findViewById(R.id.imageView4));
     }
 
-    private void determineImgViewsSize() {
-        DisplayMetrics displaymetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
-        // get screen size
-        int screenHeight = displaymetrics.heightPixels;
-        int screenWidth = displaymetrics.widthPixels;
-        // calc img desidered size
-        int imgHeight = (int) (screenHeight* 0.22); // 22% of screen.
-        int imgWidth = (int) (screenWidth* 0.40); // 40% of screen.
-        // set each img view size
-        for (int i = 0; i < imgsViews.size(); i++) {
-            ImageView imageView = imgsViews.get(i);
-            imageView.getLayoutParams().height = imgHeight;
-            imageView.getLayoutParams().width = imgWidth;
-        }
-    }
-
     private void resetImgViewsTags(){
         for (int i = 0; i < imgsViews.size(); i++) {
             ImageView imageView = imgsViews.get(i);
@@ -248,7 +223,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void newGame() {
         // reset tags
         resetImgViewsTags();
-        // determine word to find
+        // determine hose to find
         horseToFindId = this.randomHorseImgId();
         while(horseToFindId == lastHorseId){
             horseToFindId = this.randomHorseImgId();
@@ -258,7 +233,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // show in ui
         horseToFindNameShown.setText(generateWordToShow());
         selectedHorseImgTag.setText("");
-        // populate img views with imgs
+        // populate img views with random imgs
         initImgViewsArray();
         // put a random img view with the answer img ONLY if it isn't shown yet
         putAnswerInGame();
