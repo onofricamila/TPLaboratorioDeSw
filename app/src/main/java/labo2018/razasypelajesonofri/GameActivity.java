@@ -118,7 +118,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             // an image view was clicked
             selectedImageView = (ImageView) view;
-            // show the horse associated with the clicked image view
+            // DEBUG show the horse associated with the clicked image view
             selectedHorseImgTag.setText((String)selectedImageView.getTag());
             this.validateImage();
         }
@@ -202,17 +202,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void newGame() {
-        // reset tags
-        resetImgViewsTags();
-        // determine hose to find
+    private void determineHorseToFind(){
         horseToFindId = this.randomHorseImgId();
         while(horseToFindId == lastHorseId){
             horseToFindId = this.randomHorseImgId();
         }
         lastHorseId = horseToFindId;
         horseToFindName = getResourceNameById(horseToFindId);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void newGame() {
+        // reset tags
+        resetImgViewsTags();
+        // determine horse to find
+        determineHorseToFind();
         // show in ui
         horseToFindNameShown.setText(generateWordToShow());
         selectedHorseImgTag.setText("");
