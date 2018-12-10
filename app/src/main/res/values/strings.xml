@@ -1,16 +1,17 @@
 <resources>
+
     <!-- app name -->
     <string name="app_name">RazasYPelajesOnofri</string>
 
-    <!-- boton config en navbar -->
+    <!-- boton Config en navbar -->
     <string name="action_settings">Configuracion</string>
     <string name="title_activity_settings">Configuracion</string>
 
-    <!-- boton jugar en mainactivity -->
+    <!-- boton Jugar en mainactivity -->
     <string name="action_jugar">Jugar</string>
     <string name="title_activity_jugar">Jugar</string>
 
-    <!-- boton reconocimiento en mainactivity -->
+    <!-- boton Reconocimiento en mainactivity -->
     <string name="action_reconocimiento">Reconocimiento</string>
     <string name="title_activity_reconocimiento">Reconocimiento</string>
 
@@ -53,9 +54,9 @@
         <item>Cruzas</item>
     </string-array>
     <string-array name="pref_minijuego_values">
-        <item>1</item>
-        <item>2</item>
-        <item>3</item>
+        <item>RP</item>
+        <item>RPJ</item>
+        <item>C</item>
     </string-array>
 
     <!-- Example settings for Reconocimiento -->
@@ -66,13 +67,13 @@
         <item>Grillas</item>
     </string-array>
     <string-array name="pref_visualizacion_values">
-        <item>1</item>
-        <item>2</item>
+        <item>L</item>
+        <item>G</item>
     </string-array>
 
-    <string name="pref_title_juego">Razas y Pelajes</string>
-    <string name="pref_title_juego2">Razas y Pelajes Juntos</string>
-    <string name="pref_title_juego3">Cruzas</string>
+    <string name="pref_title_RP">Razas y Pelajes</string>
+    <string name="pref_title_RPJ">Razas y Pelajes Juntos</string>
+    <string name="pref_title_C">Cruzas</string>
 
 
 </resources>

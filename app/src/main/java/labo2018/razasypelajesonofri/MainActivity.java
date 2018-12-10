@@ -18,16 +18,42 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // set defaults values
+        // set defaults values -> false, tells the preferencemanager to only apply the default values
+        // the first time the method is called
         PreferenceManager.setDefaultValues(this, R.xml.pref_ajustes, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_reconocimiento, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_interaccion, false);
+        PreferenceManager.setDefaultValues(this, R.xml.pref_minijuego, false);
 
         // get the setting as a SharedPreferences object
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
-        String marketPref = sharedPref.getString("minijuego", "-1");
-        Log.d("!!!!MARKET-PREF : ", marketPref);
+
+        // testing catching a prefs values TODO: implement logic according to prefs values
+
+        String minijuegoPref = sharedPref.getString("minijuego", "RPJ");
+        Log.d("!!!!MINIJUEGO-PREF : ", minijuegoPref);
+
+        Boolean nivelSwitchPref = sharedPref.getBoolean("nivel_switch", true);
+        Log.d("!!!!NIVEL-PREF : ", String.valueOf(nivelSwitchPref));
+
+        Boolean audioSwitchPref = sharedPref.getBoolean("audio_switch", false);
+        Log.d("!!!!AUDIO-PREF : ", String.valueOf(audioSwitchPref));
+
+        String interaccionPref = sharedPref.getString("interaccion", "B");
+        Log.d("!!!!INTERACCION-PREF : ", interaccionPref);
+
+        String visualizacionPref = sharedPref.getString("visualizacion", "G");
+        Log.d("!!!!VISUALIZAC-PREF : ", visualizacionPref);
+
+        Boolean RPPref = sharedPref.getBoolean("RP", false);
+        Log.d("!!!!RP-PREF : ", String.valueOf(RPPref));
+
+        Boolean RPJPref = sharedPref.getBoolean("RPJ", true);
+        Log.d("!!!!RPJ-PREF : ", String.valueOf(RPJPref));
+
+        Boolean CPref = sharedPref.getBoolean("C", false);
+        Log.d("!!!!C-PREF : ", String.valueOf(CPref));
     }
 
     @Override
