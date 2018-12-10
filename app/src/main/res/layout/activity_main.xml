@@ -16,7 +16,7 @@
         android:layout_marginTop="116dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/cedica" />
+        app:srcCompat="@drawable/icon_cedica" />
 
     <Button
         android:id="@+id/button"

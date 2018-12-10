@@ -1,6 +1,7 @@
 package labo2018.razasypelajesonofri;
 
 import android.content.res.Resources;
+import android.content.res.TypedArray;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
@@ -109,7 +110,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }else if(view == sound){
             // obtener iniciales del caballo a reproducir
             String[] wordArray = splitString("_", horseToFindName);
-            // sound chain w razaInit n pelajeInit
+            // icon_sound chain w razaInit n pelajeInit
             ArrayList<Integer> sounds = new ArrayList<>();
             sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[0])) );
             sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[1])) );
@@ -131,7 +132,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if(list.size() > 0){playSoundChain(list);}
     }
 
-    // works with a single item sound array and a multiple items one
+    // works with a single item icon_sound array and a multiple items one
+    // HICE ESTO PARA QUE FUNCIONE TANTO CUANDO QUERES REPRODUCIR UNA RAZA O UN PELAJE
+    // COMO CUANDO NECESITAS REPRODUCIR AMBOS UNO DESPUES DEL OTRO EN EL JUEGO DE RyP JUNTOS!!
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void playSoundChain(List sounds){
         MediaPlayer[] mediaPlayers = new MediaPlayer[(int) sounds.size()];
@@ -139,13 +142,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < mediaPlayers.length; i++) {
             mediaPlayers[i] = MediaPlayer.create( this, (Integer) sounds.get(i));
         }
-        // create sound chain only if there are more than one sound to play
+        // create icon_sound chain only if there are more than one icon_sound to play
         if (mediaPlayers.length > 1) {
             for (int i = 0; i < mediaPlayers.length-1; i++) {
                 mediaPlayers[i].setNextMediaPlayer( mediaPlayers[i+1] );
             }
         }
-        // start playing sound chain/single sound
+        // start playing icon_sound chain/single icon_sound
         mediaPlayers[0].start();
     }
 

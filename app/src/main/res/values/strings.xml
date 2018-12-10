@@ -15,11 +15,11 @@
     <string name="action_reconocimiento">Reconocimiento</string>
     <string name="title_activity_reconocimiento">Reconocimiento</string>
 
-    <!-- strings in game activity layout -->
+    <!-- strings in icon_game activity layout -->
     <string name="siguiente_button">Siguiente</string>
     <string name="horse_to_find">Caballo a encontrar</string>
 
-    <!-- Example Ajustes settings -->
+    <!-- Example Ajustes icon_settings -->
     <string name="pref_header_ajustes">Ajustes</string>
     <string name="pref_title_nivel">Jugar en nivel 2</string>
     <string name="pref_description_nivel">
@@ -33,7 +33,7 @@
     <bool name="pref_default_audio">true</bool>
 
 
-    <!-- Example settings for Interaccion -->
+    <!-- Example icon_settings for Interaccion -->
     <string name="pref_header_interaccion">Modo de Interaccion</string>
     <string name="pref_title_interaccion">Interaccion?</string>
     <string-array name="pref_interaccion_titles">
@@ -48,7 +48,7 @@
     </string-array>
     <string name="pref_default_interaccion">B</string>
 
-    <!-- Example settings for Mini Juego -->
+    <!-- Example icon_settings for Mini Juego -->
     <string name="pref_header_minijuego">Mini Juego</string>
 
     <string name="pref_title_minijuego">Juego?</string>
@@ -64,7 +64,7 @@
     </string-array>
     <string name="pref_default_minijuego">RPJ</string>
 
-    <!-- Example settings for Reconocimiento -->
+    <!-- Example icon_settings for Reconocimiento -->
     <string name="pref_header_reconocimiento">Modo de Reconocimiento</string>
     <string name="pref_title_visualizacion">Opción de visualizacion</string>
     <string-array name="pref_visualizacion_titles">

@@ -1,25 +1,25 @@
 <preference-headers xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- These settings headers are only used on tablets. -->
+    <!-- These icon_settings headers are only used on tablets. -->
 
     <header
         android:fragment="labo2018.razasypelajesonofri.SettingsActivity$AjustesPreferenceFragment"
-        android:icon="@drawable/settings"
+        android:icon="@drawable/icon_settings"
         android:title="@string/pref_header_ajustes" />
 
     <header
         android:fragment="labo2018.razasypelajesonofri.SettingsActivity$ReconocimientoPreferenceFragment"
-        android:icon="@drawable/learn"
+        android:icon="@drawable/icon_learn"
         android:title="@string/pref_header_reconocimiento" />
 
     <header
         android:fragment="labo2018.razasypelajesonofri.SettingsActivity$InteraccionPreferenceFragment"
-        android:icon="@drawable/interactivity"
+        android:icon="@drawable/icon_interactivity"
         android:title="@string/pref_header_interaccion" />
 
     <header
         android:fragment="labo2018.razasypelajesonofri.SettingsActivity$MiniJuegoPreferenceFragment"
-        android:icon="@drawable/game"
+        android:icon="@drawable/icon_game"
         android:title="@string/pref_header_minijuego" />
 
 </preference-headers>
