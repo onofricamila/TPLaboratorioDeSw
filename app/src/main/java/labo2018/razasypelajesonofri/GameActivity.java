@@ -1,13 +1,10 @@
 package labo2018.razasypelajesonofri;
 
 import android.content.res.Resources;
-import android.content.res.TypedArray;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,13 +13,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Random;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import labo2018.razasypelajesonofri.utils.HorseImgsProvider;
 import labo2018.razasypelajesonofri.utils.ResponsiveDesigner;
