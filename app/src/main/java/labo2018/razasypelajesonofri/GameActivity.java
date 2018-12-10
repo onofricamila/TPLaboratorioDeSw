@@ -24,6 +24,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import labo2018.razasypelajesonofri.utils.ResponsiveDesigner;
 import labo2018.razasypelajesonofri.utils.SoundsPlayer;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
@@ -61,7 +62,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // get imgviews from layout
         fillImgsViewsArray();
         // set imgviews sizes
-        determineImgViewsSize();
+        ResponsiveDesigner.determineImgViewsSize(getWindowManager(), imgsViews);
         // let's play!
         newGame();
     }

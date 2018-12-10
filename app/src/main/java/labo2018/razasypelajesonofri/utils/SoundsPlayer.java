@@ -20,7 +20,7 @@ public class SoundsPlayer {
         if(list.size() > 0){playSoundChain(list, context);}
     }
 
-    // works with a single item icon_sound array and a multiple items one
+    // works with a single item sound array and a multiple items one
     // HICE ESTO PARA QUE FUNCIONE TANTO CUANDO QUERES REPRODUCIR UNA RAZA O UN PELAJE
     // COMO CUANDO NECESITAS REPRODUCIR AMBOS UNO DESPUES DEL OTRO EN EL JUEGO DE RyP JUNTOS!!
     @RequiresApi(api = Build.VERSION_CODES.N)
