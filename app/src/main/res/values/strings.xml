@@ -15,6 +15,10 @@
     <string name="action_reconocimiento">Reconocimiento</string>
     <string name="title_activity_reconocimiento">Reconocimiento</string>
 
+    <!-- strings in game activity layout -->
+    <string name="siguiente_button">Siguiente</string>
+    <string name="horse_to_find">Caballo a encontrar</string>
+
     <!-- Example Ajustes settings -->
     <string name="pref_header_ajustes">Ajustes</string>
     <string name="pref_title_nivel">Jugar en nivel 2</string>
@@ -74,10 +78,8 @@
     </string-array>
     <string name="pref_title_RP">Razas y Pelajes</string>
     <bool name="pref_default_RP">true</bool>
-
     <string name="pref_title_RPJ">Razas y Pelajes Juntos</string>
     <bool name="pref_default_RPJ">true</bool>
-
     <string name="pref_title_C">Cruzas</string>
     <bool name="pref_default_C">true</bool>
 
