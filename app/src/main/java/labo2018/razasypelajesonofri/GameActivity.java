@@ -108,20 +108,25 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if (view == newGame) {
             newGame();
         }else if(view == sound){
-            // obtener iniciales del caballo a reproducir
-            String[] wordArray = splitString("_", horseToFindName);
-            // icon_sound chain w razaInit n pelajeInit
-            ArrayList<Integer> sounds = new ArrayList<>();
-            sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[0])) );
-            sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[1])) );
-            SoundsPlayer.wannaPlaySound(sounds, this);
+            playHorseToFindSound();
         }else{
             // an image view was clicked
             selectedImageView = (ImageView) view;
             // DEBUG show the horse associated with the clicked image view
             selectedHorseImgTag.setText((String)selectedImageView.getTag());
-            this.validateImage();
+            validateImage();
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    private void playHorseToFindSound() {
+        // obtener iniciales del caballo a reproducir
+        String[] wordArray = splitString("_", horseToFindName);
+        // icon_sound chain w razaInit n pelajeInit
+        ArrayList<Integer> sounds = new ArrayList<>();
+        sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[0])) );
+        sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[1])) );
+        SoundsPlayer.wannaPlaySound(sounds, this);
     }
 
 
