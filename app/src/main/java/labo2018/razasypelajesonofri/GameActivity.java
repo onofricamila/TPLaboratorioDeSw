@@ -24,6 +24,7 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import labo2018.razasypelajesonofri.utils.HorseImgsProvider;
 import labo2018.razasypelajesonofri.utils.ResponsiveDesigner;
 import labo2018.razasypelajesonofri.utils.SoundsPlayer;
 import labo2018.razasypelajesonofri.utils.SoundsProvider;
@@ -66,6 +67,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         ResponsiveDesigner.determineImgViewsSize(getWindowManager(), imgsViews);
         // let's play!
         newGame();
+    }
+
+    private void initHorseImgsArray() {
+        horseImages = HorseImgsProvider.INSTANCE.getHorseImagesList();
     }
 
     private void initSoundsMap() {
@@ -119,28 +124,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void initHorseImgsArray() {
-        horseImages = new ArrayList();
-        horseImages.add(R.drawable.azteca_blanco);
-        horseImages.add(R.drawable.azteca_marron);
-        horseImages.add(R.drawable.azteca_matizado);
-        horseImages.add(R.drawable.azteca_negro);
-
-        horseImages.add(R.drawable.criollo_blanco);
-        horseImages.add(R.drawable.criollo_marron);
-        horseImages.add(R.drawable.criollo_matizado);
-        horseImages.add(R.drawable.criollo_negro);
-
-        horseImages.add(R.drawable.falabella_blanco);
-        horseImages.add(R.drawable.falabella_marron);
-        horseImages.add(R.drawable.falabella_matizado);
-        horseImages.add(R.drawable.falabella_negro);
-
-        horseImages.add(R.drawable.percheron_blanco);
-        horseImages.add(R.drawable.percheron_marron);
-        horseImages.add(R.drawable.percheron_matizado);
-        horseImages.add(R.drawable.percheron_negro);
-    }
 
     private void fillImgsViewsArray() {
         imgsViews = new ArrayList<>();
