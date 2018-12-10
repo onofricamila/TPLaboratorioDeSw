@@ -25,7 +25,6 @@ import labo2018.razasypelajesonofri.utils.SoundsProvider;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private List horseImages;
     private int horseToFindId;
     private int lastHorseId;
     private String horseToFindName;
@@ -51,8 +50,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // get Sound ImgView and set listener
         sound = (ImageView) findViewById(R.id.sound);
         sound.setOnClickListener(this);
-        // init list of horse imgs
-        initHorseImgsArray();
         // init sounds map
         initSoundsMap();
         // get imgviews from layout
@@ -61,10 +58,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         ResponsiveDesigner.determineImgViewsSize(getWindowManager(), imgsViews);
         // let's play!
         newGame();
-    }
-
-    private void initHorseImgsArray() {
-        horseImages = HorseImgsProvider.INSTANCE.getHorseImagesList();
     }
 
     private void initSoundsMap() {
@@ -140,10 +133,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private int randomHorseImgId(){
-        return (int) horseImages.get( random.nextInt(horseImages.size()) );
-    }
-
     private String getResourceNameById(int id){
         Resources resources = this.getResources();
         return resources.getResourceEntryName(id);
@@ -177,9 +166,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void initImgViewsArray() {
         // fill each img view w a unique picture
         for (int i = 0; i < imgsViews.size(); i++) {
-            int randomHorseImgId = this.randomHorseImgId();
+            int randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
             while(isAlreadyInImgViews( getResourceNameById(randomHorseImgId)) ){
-                randomHorseImgId = this.randomHorseImgId();
+                randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
             }
             ImageView imageView = imgsViews.get(i);
             imageView.setTag( getResourceNameById(randomHorseImgId) );
@@ -202,9 +191,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void determineHorseToFind(){
-        horseToFindId = this.randomHorseImgId();
+        horseToFindId = HorseImgsProvider.INSTANCE.randomHorseImgId();
         while(horseToFindId == lastHorseId){
-            horseToFindId = this.randomHorseImgId();
+            horseToFindId = HorseImgsProvider.INSTANCE.randomHorseImgId();
         }
         lastHorseId = horseToFindId;
         horseToFindName = getResourceNameById(horseToFindId);

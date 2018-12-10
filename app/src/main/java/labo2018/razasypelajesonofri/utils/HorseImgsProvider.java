@@ -1,6 +1,7 @@
 package labo2018.razasypelajesonofri.utils;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import labo2018.razasypelajesonofri.R;
@@ -33,7 +34,8 @@ public enum HorseImgsProvider {
         horseImages.add(R.drawable.percheron_negro);
     }
 
-    public List getHorseImagesList() {
-        return horseImages;
+    public int randomHorseImgId(){
+        Collections.shuffle(horseImages);
+        return (int) horseImages.get(0);
     }
 }
