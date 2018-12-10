@@ -24,6 +24,8 @@ import java.util.Random;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import labo2018.razasypelajesonofri.utils.SoundsPlayer;
+
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
     private List horseImages;
@@ -98,7 +100,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             this.makeToast("Intenta nuevamente");
             sounds.add((Integer) soundsMap.get("error"));
         }
-        wannaPlaySound(sounds);
+        SoundsPlayer.wannaPlaySound(sounds, this);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -114,7 +116,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             ArrayList<Integer> sounds = new ArrayList<>();
             sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[0])) );
             sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[1])) );
-            wannaPlaySound(sounds);
+            SoundsPlayer.wannaPlaySound(sounds, this);
         }else{
             // an image view was clicked
             selectedImageView = (ImageView) view;
@@ -122,34 +124,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             selectedHorseImgTag.setText((String)selectedImageView.getTag());
             this.validateImage();
         }
-    }
-
-    // determines whether there are valid sounds to play
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void wannaPlaySound(ArrayList<Integer> sounds){
-        Predicate<Integer> p1 = Objects::nonNull;
-        List list =  sounds.stream().filter(p1).collect(Collectors.toList());;
-        if(list.size() > 0){playSoundChain(list);}
-    }
-
-    // works with a single item icon_sound array and a multiple items one
-    // HICE ESTO PARA QUE FUNCIONE TANTO CUANDO QUERES REPRODUCIR UNA RAZA O UN PELAJE
-    // COMO CUANDO NECESITAS REPRODUCIR AMBOS UNO DESPUES DEL OTRO EN EL JUEGO DE RyP JUNTOS!!
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    private void playSoundChain(List sounds){
-        MediaPlayer[] mediaPlayers = new MediaPlayer[(int) sounds.size()];
-        // create MP array with respective sounds
-        for (int i = 0; i < mediaPlayers.length; i++) {
-            mediaPlayers[i] = MediaPlayer.create( this, (Integer) sounds.get(i));
-        }
-        // create icon_sound chain only if there are more than one icon_sound to play
-        if (mediaPlayers.length > 1) {
-            for (int i = 0; i < mediaPlayers.length-1; i++) {
-                mediaPlayers[i].setNextMediaPlayer( mediaPlayers[i+1] );
-            }
-        }
-        // start playing icon_sound chain/single icon_sound
-        mediaPlayers[0].start();
     }
 
     private void initHorseImgsArray() {
