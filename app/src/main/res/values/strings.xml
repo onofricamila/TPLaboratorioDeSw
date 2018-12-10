@@ -17,21 +17,20 @@
 
     <!-- Example Ajustes settings -->
     <string name="pref_header_ajustes">Ajustes</string>
-
     <string name="pref_title_nivel">Jugar en nivel 2</string>
     <string name="pref_description_nivel">
         Considera cambian la cantidad de opciones entre las cuales se debe elegir, de 2 a 4.
     </string>
-
+    <bool name="pref_default_nivel">true</bool>
     <string name="pref_title_audio">Reproducir audio en voz femenina</string>
     <string name="pref_description_audio">
         Por defecto escucharas una voz masculina
     </string>
+    <bool name="pref_default_audio">true</bool>
 
 
     <!-- Example settings for Interaccion -->
     <string name="pref_header_interaccion">Modo de Interaccion</string>
-
     <string name="pref_title_interaccion">Interaccion?</string>
     <string-array name="pref_interaccion_titles">
         <item>Modo A</item>
@@ -43,6 +42,7 @@
         <item>B</item>
         <item>C</item>
     </string-array>
+    <string name="pref_default_interaccion">B</string>
 
     <!-- Example settings for Mini Juego -->
     <string name="pref_header_minijuego">Mini Juego</string>
@@ -58,6 +58,7 @@
         <item>RPJ</item>
         <item>C</item>
     </string-array>
+    <string name="pref_default_minijuego">RPJ</string>
 
     <!-- Example settings for Reconocimiento -->
     <string name="pref_header_reconocimiento">Modo de Reconocimiento</string>
@@ -66,14 +67,18 @@
         <item>Lista</item>
         <item>Grillas</item>
     </string-array>
+    <string name="pref_default_visualizacion">G</string>
     <string-array name="pref_visualizacion_values">
         <item>L</item>
         <item>G</item>
     </string-array>
-
     <string name="pref_title_RP">Razas y Pelajes</string>
-    <string name="pref_title_RPJ">Razas y Pelajes Juntos</string>
-    <string name="pref_title_C">Cruzas</string>
+    <bool name="pref_default_RP">true</bool>
 
+    <string name="pref_title_RPJ">Razas y Pelajes Juntos</string>
+    <bool name="pref_default_RPJ">true</bool>
+
+    <string name="pref_title_C">Cruzas</string>
+    <bool name="pref_default_C">true</bool>
 
 </resources>

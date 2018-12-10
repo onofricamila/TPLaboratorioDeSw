@@ -2,7 +2,7 @@
 
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
     <ListPreference
-        android:defaultValue="L"
+        android:defaultValue="@string/pref_default_visualizacion"
         android:entries="@array/pref_visualizacion_titles"
         android:entryValues="@array/pref_visualizacion_values"
         android:key="visualizacion"
@@ -14,15 +14,15 @@
          design guidelines. -->
 
     <CheckBoxPreference
-        android:defaultValue="true"
+        android:defaultValue="@bool/pref_default_RP"
         android:key="RP"
         android:title="@string/pref_title_RP" />
     <CheckBoxPreference
-        android:defaultValue="false"
+        android:defaultValue="@bool/pref_default_RPJ"
         android:key="RPJ"
         android:title="@string/pref_title_RPJ" />
     <CheckBoxPreference
-        android:defaultValue="false"
+        android:defaultValue="@bool/pref_default_C"
         android:key="C"
         android:title="@string/pref_title_C" />
 

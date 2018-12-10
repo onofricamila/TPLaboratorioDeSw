@@ -4,7 +4,7 @@
          dismiss it. -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
     <ListPreference
-        android:defaultValue="RP"
+        android:defaultValue="@string/pref_default_minijuego"
         android:entries="@array/pref_minijuego_titles"
         android:entryValues="@array/pref_minijuego_values"
         android:key="minijuego"

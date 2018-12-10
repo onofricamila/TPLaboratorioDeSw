@@ -1,5 +1,6 @@
 package labo2018.razasypelajesonofri;
 
+import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -29,30 +30,31 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
 
-        // testing catching a prefs values TODO: implement logic according to prefs values
+        // testing retrieving prefs values TODO: implement logic according to prefs values
+        Resources res = getResources();
 
-        String minijuegoPref = sharedPref.getString("minijuego", "RPJ");
+        String minijuegoPref = sharedPref.getString("minijuego", res.getString(R.string.pref_default_minijuego));
         Log.d("!!!!MINIJUEGO-PREF : ", minijuegoPref);
 
-        Boolean nivelSwitchPref = sharedPref.getBoolean("nivel_switch", true);
+        Boolean nivelSwitchPref = sharedPref.getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
         Log.d("!!!!NIVEL-PREF : ", String.valueOf(nivelSwitchPref));
 
-        Boolean audioSwitchPref = sharedPref.getBoolean("audio_switch", false);
+        Boolean audioSwitchPref = sharedPref.getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
         Log.d("!!!!AUDIO-PREF : ", String.valueOf(audioSwitchPref));
 
-        String interaccionPref = sharedPref.getString("interaccion", "B");
+        String interaccionPref = sharedPref.getString("interaccion", res.getString(R.string.pref_default_interaccion));
         Log.d("!!!!INTERACCION-PREF : ", interaccionPref);
 
-        String visualizacionPref = sharedPref.getString("visualizacion", "G");
+        String visualizacionPref = sharedPref.getString("visualizacion", res.getString(R.string.pref_default_visualizacion));
         Log.d("!!!!VISUALIZAC-PREF : ", visualizacionPref);
 
-        Boolean RPPref = sharedPref.getBoolean("RP", false);
+        Boolean RPPref = sharedPref.getBoolean("RP", res.getBoolean(R.bool.pref_default_RP));
         Log.d("!!!!RP-PREF : ", String.valueOf(RPPref));
 
-        Boolean RPJPref = sharedPref.getBoolean("RPJ", true);
+        Boolean RPJPref = sharedPref.getBoolean("RPJ", res.getBoolean(R.bool.pref_default_RPJ));
         Log.d("!!!!RPJ-PREF : ", String.valueOf(RPJPref));
 
-        Boolean CPref = sharedPref.getBoolean("C", false);
+        Boolean CPref = sharedPref.getBoolean("C", res.getBoolean(R.bool.pref_default_C));
         Log.d("!!!!C-PREF : ", String.valueOf(CPref));
     }
 
