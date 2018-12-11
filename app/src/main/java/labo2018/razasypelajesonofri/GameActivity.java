@@ -21,6 +21,7 @@ import labo2018.razasypelajesonofri.utils.HorseImgsProvider;
 import labo2018.razasypelajesonofri.utils.ResponsiveDesigner;
 import labo2018.razasypelajesonofri.utils.SoundsPlayer;
 import labo2018.razasypelajesonofri.utils.SoundsProvider;
+import labo2018.razasypelajesonofri.utils.StringsManager;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -60,6 +61,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
     }
 
+    private void makeFeedback(String msj, String soundKey, ArrayList<Integer> sounds){
+        makeToast(msj);
+        sounds.add(SoundsProvider.INSTANCE.getSoundAt(soundKey));
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void validateImage() {
         /* TODO: para el razas y pelajes por separado aca en horsetofindname me viene la raza o
@@ -69,18 +75,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         */
         ArrayList<Integer> sounds = new ArrayList<>();
         if (horseToFindName.equals(selectedImageView.getTag())) {
-            makeFeedback("¡Felicitaciones! Encontraste a: " + generateWordToShow(), "tada", sounds);
+            makeFeedback("¡Felicitaciones!", "tada", sounds);
             // play again
             newGame();
         } else {
             makeFeedback("Intenta nuevamente", "error", sounds);
         }
         SoundsPlayer.wannaPlaySound(sounds, this);
-    }
-
-    private void makeFeedback(String msj, String soundKey, ArrayList<Integer> sounds){
-        makeToast(msj);
-        sounds.add(SoundsProvider.INSTANCE.getSoundAt(soundKey));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -103,11 +104,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void playHorseToFindSound() {
         // obtener iniciales del caballo a reproducir
-        String[] wordArray = splitString("_", horseToFindName);
+        String[] wordArray = StringsManager.splitString(horseToFindName,"_");
         // icon_sound chain w razaInit n pelajeInit
         ArrayList<Integer> sounds = new ArrayList<>();
-        sounds.add(SoundsProvider.INSTANCE.getSoundAt( getFirstStringChar(wordArray[0])) );
-        sounds.add(SoundsProvider.INSTANCE.getSoundAt( getFirstStringChar(wordArray[1])) );
+        sounds.add(SoundsProvider.INSTANCE.getSoundAt( StringsManager.getFirstStringChar(wordArray[0])) );
+        sounds.add(SoundsProvider.INSTANCE.getSoundAt( StringsManager.getFirstStringChar(wordArray[1])) );
         SoundsPlayer.wannaPlaySound(sounds, this);
     }
 
@@ -131,23 +132,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private String getResourceNameById(int id){
         Resources resources = this.getResources();
         return resources.getResourceEntryName(id);
-    }
-
-    private String[] splitString(String delimiter, String word){
-        return word.split(new StringBuilder().append("\\").append(delimiter).toString());
-    }
-
-    private String generateWordToShow() {
-        String[] array = splitString("_", horseToFindName);
-        return capitalizeString(array[0]) + " " + capitalizeString(array[1]);
-    }
-
-    private String getFirstStringChar(String word){
-        return word.substring(0, 1);
-    }
-
-    private String capitalizeString(String word){
-        return getFirstStringChar(word).toUpperCase() + word.substring(1);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -201,7 +185,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // determine horse to find
         determineHorseToFind();
         // show in ui
-        horseToFindNameShown.setText(generateWordToShow());
+        horseToFindNameShown.setText(StringsManager.generateWordToShow(horseToFindName, "_"));
         selectedHorseImgTag.setText("");
         // populate img views with random imgs
         initImgViewsArray();
