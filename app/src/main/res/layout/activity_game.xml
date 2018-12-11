@@ -20,19 +20,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/wordEnteredEt"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="32dp"
-        android:enabled="false"
-        android:inputType="textCapCharacters"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wordTv" />
-
     <Button
         android:id="@+id/newGame"
         android:layout_width="301dp"
@@ -55,23 +42,23 @@
         android:layout_height="200dp"
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="136dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.053"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wordEnteredEt" />
+        app:layout_constraintTop_toBottomOf="@+id/wordTv" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="300dp"
         android:layout_height="200dp"
-        android:layout_marginTop="60dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/wordEnteredEt" />
+        app:layout_constraintTop_toBottomOf="@+id/wordTv" />
 
     <ImageView
         android:id="@+id/imageView3"

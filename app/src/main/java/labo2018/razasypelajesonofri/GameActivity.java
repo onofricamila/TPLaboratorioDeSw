@@ -29,7 +29,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private int lastHorseId;
     private String horseToFindName;
     private TextView horseToFindNameShown;
-    private EditText selectedHorseImgTag;
     private List<ImageView> imgsViews;
     private ImageView sound, selectedImageView;
     private Button newGame;
@@ -42,7 +41,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
         // get layout text views
         horseToFindNameShown = findViewById(R.id.wordTv);
-        selectedHorseImgTag = findViewById(R.id.wordEnteredEt);
         // get Siguiente button and set listener
         newGame = findViewById(R.id.newGame);
         newGame.setOnClickListener(this);
@@ -95,8 +93,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             // an image view was clicked
             selectedImageView = (ImageView) view;
-            // DEBUG show the horse associated with the clicked image view
-            selectedHorseImgTag.setText((String)selectedImageView.getTag());
             validateImage();
         }
     }
@@ -186,7 +182,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         determineHorseToFind();
         // show in ui
         horseToFindNameShown.setText(StringsManager.generateWordToShow(horseToFindName, "_"));
-        selectedHorseImgTag.setText("");
         // populate img views with random imgs
         initImgViewsArray();
         // put a random img view with the answer img ONLY if it isn't shown yet
