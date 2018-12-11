@@ -2,7 +2,7 @@
 
 ## Proyecto: Juego CEDICA Razas y Pelajes
 
-### Introducción
+### :pushpin: Introducción
 
 Tomando como punto de partida la vigencia y beneficios que provee la utilización
 de TIC (Tecnologías de la Información y la Comunicación) en los procesos
@@ -17,7 +17,7 @@ de “Laboratorio de Software” y el equipo terapéutico de CEDICA a cargo del
 Psicomotricista Lucas Fernández, con la colaboración de Máximo (Pit) Bibiloni en el
 arte del juego.
 
-### JUEGO de Razas y Pelajes
+### :pushpin: JUEGO de Razas y Pelajes
 
 El objetivo general de este juego es favorecer el reconocimiento e identificación de
 las razas y pelajes del caballo que se utiliza en la sesión o clase de CEDICA.
@@ -38,12 +38,12 @@ Fechas de entrega: 12/12/2018 (tercera evaluación parcial) se entregará una
 primera versión del juego de acuerdo al alcance indicado por la cátedra y  20/2/2019 se
 entregará la versión final.
 ```
-### Dinámica del juego
+### :small_orange_diamond: Dinámica del juego
 
-### Es un juego de un único jugador y cuenta con 2 modos: Reconocimiento y  Juego.
+Es un juego de un único jugador y cuenta con 2 modos: Reconocimiento y  Juego.
 
 **Modo reconocimiento**
-El objetivo de este modo es que las amazonas^2 y jinetes^3 puedan distinguir su caballo
+El objetivo de este modo es que las amazonas y jinetes puedan distinguir su caballo
 y el de sus compañeras y compañeros.
 Se trata de una instancia de reconocimiento de razas, pelajes y cruzas.
 Las amazonas y jinetes pueden optar por saltear este modo.
@@ -67,7 +67,7 @@ Objetivo: identificar cruzas de razas entre varias opciones, esto es dados dos
 caballos, elegir la cruza correcta (en este caso, una única imagen contiene a los
 dos caballos).
 
-### Formas de interacción
+### :small_orange_diamond: Formas de interacción
 
 A continuación se detallan las interacciones que deben implementar los minijuegos
 anteriores:
@@ -78,13 +78,13 @@ mediante la selección entre varias imágenes (Minijuego 1 y 2)
 * **Interacción C:** dada una imagen, se la debe asociar con otra imagen mediante la
 selección entre varias imágenes (Minijuego 3)
 
-### Niveles de dificultad
+### :small_orange_diamond: Niveles de dificultad
 
 Cada minijuego puede jugarse en los siguientes niveles:
 * **Nivel 1**: se elige una opción (imagen o palabra con audio) entre 2 disponibles.
 * **Nivel 2**: se elige una opción entre 4 (imagen o palabra con audio) disponibles.
 
-### Configuración
+### :small_orange_diamond: Configuración
 Debe incluir:
 
 - Modo Reconocimiento
