@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,7 +17,6 @@ import java.util.Random;
 import java.util.function.Predicate;
 
 import labo2018.razasypelajesonofri.utils.HorseImgsProvider;
-import labo2018.razasypelajesonofri.utils.ResponsiveDesigner;
 import labo2018.razasypelajesonofri.utils.SoundsPlayer;
 import labo2018.razasypelajesonofri.utils.SoundsProvider;
 import labo2018.razasypelajesonofri.utils.StringsManager;
@@ -50,7 +48,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // get imgviews from layout
         fillImgsViewsArray();
         // set imgviews sizes
-//        ResponsiveDesigner.determineImgViewsSize(getWindowManager(), imgsViews);
         // let's play!
         newGame();
     }
