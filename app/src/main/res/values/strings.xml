@@ -4,8 +4,8 @@
     <string name="app_name">RazasYPelajesOnofri</string>
 
     <!-- boton Config en navbar -->
-    <string name="action_settings">Configuracion</string>
-    <string name="title_activity_settings">Configuracion</string>
+    <string name="action_settings">Configuración</string>
+    <string name="title_activity_settings">Configuración</string>
 
     <!-- boton Jugar en mainactivity -->
     <string name="action_jugar">Jugar</string>
@@ -34,8 +34,8 @@
 
 
     <!-- Example icon_settings for Interaccion -->
-    <string name="pref_header_interaccion">Modo de Interaccion</string>
-    <string name="pref_title_interaccion">Interaccion?</string>
+    <string name="pref_header_interaccion">Modo de Interacción</string>
+    <string name="pref_title_interaccion">Interacción?</string>
     <string-array name="pref_interaccion_titles">
         <item>Modo A</item>
         <item>Modo B</item>
@@ -66,7 +66,7 @@
 
     <!-- Example icon_settings for Reconocimiento -->
     <string name="pref_header_reconocimiento">Modo de Reconocimiento</string>
-    <string name="pref_title_visualizacion">Opción de visualizacion</string>
+    <string name="pref_title_visualizacion">Opción de visualización</string>
     <string-array name="pref_visualizacion_titles">
         <item>Lista</item>
         <item>Grillas</item>
