@@ -40,13 +40,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         // get layout text views
-        horseToFindNameShown = (TextView) findViewById(R.id.wordTv);
-        selectedHorseImgTag = (EditText) findViewById(R.id.wordEnteredEt);
+        horseToFindNameShown = findViewById(R.id.wordTv);
+        selectedHorseImgTag = findViewById(R.id.wordEnteredEt);
         // get Siguiente button and set listener
-        newGame = (Button) findViewById(R.id.newGame);
+        newGame = findViewById(R.id.newGame);
         newGame.setOnClickListener(this);
         // get Sound ImgView and set listener
-        sound = (ImageView) findViewById(R.id.sound);
+        sound = findViewById(R.id.sound);
         sound.setOnClickListener(this);
         // get imgviews from layout
         fillImgsViewsArray();
@@ -115,10 +115,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void fillImgsViewsArray() {
         imgsViews = new ArrayList<>();
         // add each img view to an imgViews array
-        imgsViews.add((ImageView)findViewById(R.id.imageView1));
-        imgsViews.add((ImageView)findViewById(R.id.imageView2));
-        imgsViews.add((ImageView)findViewById(R.id.imageView3));
-        imgsViews.add((ImageView)findViewById(R.id.imageView4));
+        imgsViews.add(findViewById(R.id.imageView1));
+        imgsViews.add(findViewById(R.id.imageView2));
+        imgsViews.add(findViewById(R.id.imageView3));
+        imgsViews.add(findViewById(R.id.imageView4));
     }
 
     private void resetImgViewsTags(){
