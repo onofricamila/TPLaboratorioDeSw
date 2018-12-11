@@ -26,4 +26,8 @@ public enum SoundsProvider {
     public Map getSoundsMap(){
         return soundsMap;
     }
+
+    public Integer getSoundAt(String key){
+        return (Integer) soundsMap.get(key);
+    }
 }

@@ -14,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.function.Predicate;
 
@@ -34,7 +33,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView sound, selectedImageView;
     private Button newGame;
     private Random random = new Random();
-    private Map soundsMap;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -50,18 +48,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // get Sound ImgView and set listener
         sound = (ImageView) findViewById(R.id.sound);
         sound.setOnClickListener(this);
-        // init sounds map
-        initSoundsMap();
         // get imgviews from layout
         fillImgsViewsArray();
         // set imgviews sizes
         ResponsiveDesigner.determineImgViewsSize(getWindowManager(), imgsViews);
         // let's play!
         newGame();
-    }
-
-    private void initSoundsMap() {
-        soundsMap = SoundsProvider.INSTANCE.getSoundsMap();
     }
 
     private void makeToast(String msj){
@@ -77,15 +69,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         */
         ArrayList<Integer> sounds = new ArrayList<>();
         if (horseToFindName.equals(selectedImageView.getTag())) {
-            makeToast("¡Felicitaciones! Encontraste a: " + generateWordToShow());
-            sounds.add((Integer) soundsMap.get("tada"));
+            makeFeedback("¡Felicitaciones! Encontraste a: " + generateWordToShow(), "tada", sounds);
             // play again
             newGame();
         } else {
-            this.makeToast("Intenta nuevamente");
-            sounds.add((Integer) soundsMap.get("error"));
+            makeFeedback("Intenta nuevamente", "error", sounds);
         }
         SoundsPlayer.wannaPlaySound(sounds, this);
+    }
+
+    private void makeFeedback(String msj, String soundKey, ArrayList<Integer> sounds){
+        makeToast(msj);
+        sounds.add(SoundsProvider.INSTANCE.getSoundAt(soundKey));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -111,8 +106,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         String[] wordArray = splitString("_", horseToFindName);
         // icon_sound chain w razaInit n pelajeInit
         ArrayList<Integer> sounds = new ArrayList<>();
-        sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[0])) );
-        sounds.add((Integer)soundsMap.get( getFirstStringChar(wordArray[1])) );
+        sounds.add(SoundsProvider.INSTANCE.getSoundAt( getFirstStringChar(wordArray[0])) );
+        sounds.add(SoundsProvider.INSTANCE.getSoundAt( getFirstStringChar(wordArray[1])) );
         SoundsPlayer.wannaPlaySound(sounds, this);
     }
 
