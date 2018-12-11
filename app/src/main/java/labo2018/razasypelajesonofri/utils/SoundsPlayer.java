@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 public class SoundsPlayer {
 
+    private static MediaPlayer[] mediaPlayers;
+
     // determines whether there are valid sounds to play
     @RequiresApi(api = Build.VERSION_CODES.N)
     public static void wannaPlaySound(ArrayList<Integer> sounds, Context context){
@@ -25,7 +27,7 @@ public class SoundsPlayer {
     // COMO CUANDO NECESITAS REPRODUCIR AMBOS UNO DESPUES DEL OTRO EN EL JUEGO DE RyP JUNTOS!!
     @RequiresApi(api = Build.VERSION_CODES.N)
     private static void playSoundChain(List sounds, Context context){
-        MediaPlayer[] mediaPlayers = new MediaPlayer[(int) sounds.size()];
+        mediaPlayers = new MediaPlayer[(int) sounds.size()];
         // create MP array with respective sounds
         for (int i = 0; i < mediaPlayers.length; i++) {
             mediaPlayers[i] = MediaPlayer.create( context, (Integer) sounds.get(i));

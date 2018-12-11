@@ -193,5 +193,4 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         putAnswerInGame();
     }
 
-
 }

@@ -23,10 +23,6 @@ public enum SoundsProvider {
         soundsMap.put("p", R.raw.p);
     }
 
-    public Map getSoundsMap(){
-        return soundsMap;
-    }
-
     public Integer getSoundAt(String key){
         return (Integer) soundsMap.get(key);
     }
