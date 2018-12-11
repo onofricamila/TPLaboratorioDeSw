@@ -50,7 +50,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // get imgviews from layout
         fillImgsViewsArray();
         // set imgviews sizes
-        ResponsiveDesigner.determineImgViewsSize(getWindowManager(), imgsViews);
+//        ResponsiveDesigner.determineImgViewsSize(getWindowManager(), imgsViews);
         // let's play!
         newGame();
     }
