@@ -9,7 +9,7 @@
 
     <header
         android:fragment="labo2018.razasypelajesonofri.SettingsActivity$ReconocimientoPreferenceFragment"
-        android:icon="@drawable/icon_learn"
+        android:icon="@drawable/icon_study"
         android:title="@string/pref_header_reconocimiento" />
 
     <header
