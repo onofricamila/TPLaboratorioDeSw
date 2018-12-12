@@ -8,14 +8,18 @@ public class StringsManager {
 
     public static String generateWordToShow(String string, String delimiter) {
         String[] array = splitString(string, delimiter);
-        return capitalizeString(array[0]) + " " + capitalizeString(array[1]);
+        String res = "";
+        for (int i = 0; i < array.length; i++) {
+            res += capitalizeString(array[i]) + " ";
+        }
+        return res;
     }
 
     public static String getFirstStringChar(String word){
         return word.substring(0, 1);
     }
 
-    private static String capitalizeString(String word){
+    public static String capitalizeString(String word){
         return getFirstStringChar(word).toUpperCase() + word.substring(1);
     }
 }

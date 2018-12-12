@@ -1,10 +1,12 @@
 package labo2018.razasypelajesonofri;
 
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +27,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private int horseToFindId;
     private int lastHorseId;
-    private String horseToFindName;
+    private String answerHorseImgName, whatToLookFor;
     private TextView horseToFindNameShown;
     private List<ImageView> imgsViews;
     private ImageView sound, selectedImageView;
@@ -69,7 +71,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         del tag de la img seleccionada ... hay mas caballos que pueden coincidir en pelaje o raza!
         */
         ArrayList<Integer> sounds = new ArrayList<>();
-        if (horseToFindName.equals(selectedImageView.getTag())) {
+        if ( ((String)selectedImageView.getTag()).contains(whatToLookFor) ){
             makeFeedback("¡Felicitaciones!", "tada", sounds);
             // play again
             newGame();
@@ -97,11 +99,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void playHorseToFindSound() {
         // obtener iniciales del caballo a reproducir
-        String[] wordArray = StringsManager.splitString(horseToFindName,"_");
+        String[] wordArray = StringsManager.splitString(whatToLookFor,"_");
         // icon_sound chain w razaInit n pelajeInit
         ArrayList<Integer> sounds = new ArrayList<>();
-        sounds.add(SoundsProvider.INSTANCE.getSoundAt( StringsManager.getFirstStringChar(wordArray[0])) );
-        sounds.add(SoundsProvider.INSTANCE.getSoundAt( StringsManager.getFirstStringChar(wordArray[1])) );
+        for (int i = 0; i < wordArray.length; i++) {
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt( StringsManager.getFirstStringChar(wordArray[i])) );
+        }
         SoundsPlayer.wannaPlaySound(sounds, this);
     }
 
@@ -155,11 +158,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void putAnswerInGame() {
-        if (!isAlreadyInImgViews(horseToFindName) ){
+        if (!isAlreadyInImgViews(answerHorseImgName) ){
             ImageView special = imgsViews.get( random.nextInt(imgsViews.size()) );
-            special.setTag(horseToFindName);
+            special.setTag(answerHorseImgName);
             special.setImageResource(horseToFindId);
         }
+    }
+
+    private Boolean playingRazasYPelajesJuntos(){
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        Resources res = getResources();
+        String minijuegoPref = sharedPref.getString("minijuego", res.getString(R.string.pref_default_minijuego));
+        return minijuegoPref.equals("RPJ");
     }
 
     private void determineHorseToFind(){
@@ -168,7 +178,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             horseToFindId = HorseImgsProvider.INSTANCE.randomHorseImgId();
         }
         lastHorseId = horseToFindId;
-        horseToFindName = getResourceNameById(horseToFindId);
+        answerHorseImgName = getResourceNameById(horseToFindId);
+
+        Log.d("!!!!!PLAYING-RPJ", String.valueOf(playingRazasYPelajesJuntos()));
+        if(playingRazasYPelajesJuntos()) {
+            whatToLookFor = answerHorseImgName;
+        }else{
+            whatToLookFor  = randomRazaOPelaje();
+        }
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -178,11 +196,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // determine horse to find
         determineHorseToFind();
         // show in ui
-        horseToFindNameShown.setText(StringsManager.generateWordToShow(horseToFindName, "_"));
+        horseToFindNameShown.setText(StringsManager.generateWordToShow(whatToLookFor, "_"));
         // populate img views with random imgs
         initImgViewsArray();
         // put a random img view with the answer img ONLY if it isn't shown yet
         putAnswerInGame();
+    }
+
+
+    private String randomRazaOPelaje() {
+       String[] temp = StringsManager.splitString(answerHorseImgName,"_");
+       return temp[random.nextInt(temp.length)];
     }
 
 }
