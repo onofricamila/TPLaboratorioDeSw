@@ -26,7 +26,7 @@ import labo2018.razasypelajesonofri.utils.StringsManager;
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
     private int horseToFindId;
-    private int lastHorseId;
+    private int lastHorseFound;
     private String answerHorseImgName, whatToLookFor;
     private TextView horseToFindNameShown;
     private List<ImageView> imgsViews;
@@ -174,10 +174,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private void determineHorseToFind(){
         horseToFindId = HorseImgsProvider.INSTANCE.randomHorseImgId();
-        while(horseToFindId == lastHorseId){
+        while(horseToFindId == lastHorseFound){
             horseToFindId = HorseImgsProvider.INSTANCE.randomHorseImgId();
         }
-        lastHorseId = horseToFindId;
+        lastHorseFound = horseToFindId;
         answerHorseImgName = getResourceNameById(horseToFindId);
 
         Log.d("!!!!!PLAYING-RPJ", String.valueOf(playingRazasYPelajesJuntos()));
