@@ -26,12 +26,11 @@ import labo2018.razasypelajesonofri.utils.StringsManager;
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
 
     private int horseToFindId;
-    private int lastHorseFound;
     private String answerHorseImgName, whatToLookFor;
-    private TextView horseToFindNameShown;
+    private TextView horseToFindShown;
     private List<ImageView> imgsViews;
-    private ImageView sound, selectedImageView;
-    private Button newGame;
+    private ImageView soundImgView, selectedImageView;
+    private Button newGameBtn;
     private Random random = new Random();
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -39,17 +38,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        // get layout text views
-        horseToFindNameShown = findViewById(R.id.wordTv);
-        // get Siguiente button and set listener
-        newGame = findViewById(R.id.newGame);
-        newGame.setOnClickListener(this);
+        // get layout text view
+        horseToFindShown = findViewById(R.id.wordShown);
+        // get New Game button and set listener
+        newGameBtn = findViewById(R.id.newGameBtn);
+        newGameBtn.setOnClickListener(this);
         // get Sound ImgView and set listener
-        sound = findViewById(R.id.sound);
-        sound.setOnClickListener(this);
-        // get imgviews from layout
+        soundImgView = findViewById(R.id.soundImgView);
+        soundImgView.setOnClickListener(this);
+        // get horses imgviews from layout
         fillImgsViewsArray();
-        // set imgviews sizes
         // let's play!
         newGame();
     }
@@ -65,11 +63,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void validateImage() {
-        /* TODO: para el razas y pelajes por separado aca en horsetofindname me viene la raza o
-        el pelaje (haria un random entre las 2 partes del nombre de la foto agarrada como answer en newgame)
-        y tipo para decir si está bien la eleccion tengo que fijarme si horsetofindname es substring
-        del tag de la img seleccionada ... hay mas caballos que pueden coincidir en pelaje o raza!
-        */
         ArrayList<Integer> sounds = new ArrayList<>();
         if ( ((String)selectedImageView.getTag()).contains(whatToLookFor) ){
             makeFeedback("¡Felicitaciones!", "tada", sounds);
@@ -84,10 +77,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onClick(View view) {
-        // newGame button was clicked
-        if (view == newGame) {
+        // newGameBtn button was clicked
+        if (view == newGameBtn) {
             newGame();
-        }else if(view == sound){
+        }else if(view == soundImgView){
             playHorseToFindSound();
         }else{
             // an image view was clicked
@@ -98,9 +91,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void playHorseToFindSound() {
-        // obtener iniciales del caballo a reproducir
+        // obtener array de strings a partir de lo que busco
         String[] wordArray = StringsManager.splitString(whatToLookFor,"_");
-        // icon_sound chain w razaInit n pelajeInit
+        // sound chain
         ArrayList<Integer> sounds = new ArrayList<>();
         for (int i = 0; i < wordArray.length; i++) {
             sounds.add(SoundsProvider.INSTANCE.getSoundAt( StringsManager.getFirstStringChar(wordArray[i])) );
@@ -112,10 +105,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private void fillImgsViewsArray() {
         imgsViews = new ArrayList<>();
         // add each img view to an imgViews array
-        imgsViews.add(findViewById(R.id.imageView1));
-        imgsViews.add(findViewById(R.id.imageView2));
-        imgsViews.add(findViewById(R.id.imageView3));
-        imgsViews.add(findViewById(R.id.imageView4));
+        imgsViews.add(findViewById(R.id.horseImageView1));
+        imgsViews.add(findViewById(R.id.horseImageView2));
+        imgsViews.add(findViewById(R.id.horseImageView3));
+        imgsViews.add(findViewById(R.id.horseImageView4));
     }
 
     private void resetImgViewsTags(){
@@ -132,7 +125,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private boolean isAlreadyInImgViews(String word) {
-        Predicate<ImageView> p1 = iv -> iv.getTag().equals(word);
+        Predicate<ImageView> p1 = iv -> ((String)iv.getTag()).contains(word);
         boolean cond = imgsViews.stream().anyMatch(p1);
         return cond;
     }
@@ -142,6 +135,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // fill each img view w a unique picture
         for (int i = 0; i < imgsViews.size(); i++) {
             int randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
+            // we dont wanna have the same horse image twice
             while(isAlreadyInImgViews( getResourceNameById(randomHorseImgId)) ){
                 randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
             }
@@ -158,10 +152,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void putAnswerInGame() {
-        if (!isAlreadyInImgViews(answerHorseImgName) ){
-            ImageView special = imgsViews.get( random.nextInt(imgsViews.size()) );
-            special.setTag(answerHorseImgName);
-            special.setImageResource(horseToFindId);
+        // si no hay nada que repreente a lo que estoy buscando, subo la foto elegida como respuesta
+        if ( !isAlreadyInImgViews(whatToLookFor) ){
+            ImageView randomImgView = imgsViews.get( random.nextInt(imgsViews.size()) );
+            randomImgView.setTag(answerHorseImgName);
+            randomImgView.setImageResource(horseToFindId);
         }
     }
 
@@ -172,15 +167,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return minijuegoPref.equals("RPJ");
     }
 
+    private String randomRazaOPelaje() {
+        String[] temp = StringsManager.splitString(answerHorseImgName,"_");
+        return temp[random.nextInt(temp.length)];
+    }
     private void determineHorseToFind(){
         horseToFindId = HorseImgsProvider.INSTANCE.randomHorseImgId();
-        while(horseToFindId == lastHorseFound){
-            horseToFindId = HorseImgsProvider.INSTANCE.randomHorseImgId();
-        }
-        lastHorseFound = horseToFindId;
         answerHorseImgName = getResourceNameById(horseToFindId);
-
-        Log.d("!!!!!PLAYING-RPJ", String.valueOf(playingRazasYPelajesJuntos()));
+        // si se trata del juego RPJ, pongo directamente como 'a buscar' al nombre de la foto del caballo
+        // random, sino, digo bueno, vamos a buscar o bien la raza o el pelaje asociado a la foto
         if(playingRazasYPelajesJuntos()) {
             whatToLookFor = answerHorseImgName;
         }else{
@@ -196,17 +191,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // determine horse to find
         determineHorseToFind();
         // show in ui
-        horseToFindNameShown.setText(StringsManager.generateWordToShow(whatToLookFor, "_"));
+        horseToFindShown.setText(StringsManager.generateWordToShow(whatToLookFor, "_"));
         // populate img views with random imgs
         initImgViewsArray();
         // put a random img view with the answer img ONLY if it isn't shown yet
         putAnswerInGame();
-    }
-
-
-    private String randomRazaOPelaje() {
-       String[] temp = StringsManager.splitString(answerHorseImgName,"_");
-       return temp[random.nextInt(temp.length)];
     }
 
 }

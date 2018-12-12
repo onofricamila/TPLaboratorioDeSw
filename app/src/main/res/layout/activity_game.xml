@@ -7,7 +7,7 @@
     tools:context=".GameActivity">
 
     <TextView
-        android:id="@+id/wordTv"
+        android:id="@+id/wordShown"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/newGame"
+        android:id="@+id/newGameBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -36,13 +36,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/sound"
+        android:id="@+id/soundImgView"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="40dp"
-        app:layout_constraintStart_toEndOf="@+id/wordTv"
+        app:layout_constraintStart_toEndOf="@+id/wordShown"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_sound" />
 
@@ -54,8 +54,8 @@
         android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@+id/newGame"
-        app:layout_constraintTop_toBottomOf="@+id/wordTv">
+        app:layout_constraintBottom_toTopOf="@+id/newGameBtn"
+        app:layout_constraintTop_toBottomOf="@+id/wordShown">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -76,7 +76,7 @@
 
                     <ImageView
 
-                        android:id="@+id/imageView1"
+                        android:id="@+id/horseImageView1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -107,7 +107,7 @@
 
                     <ImageView
 
-                        android:id="@+id/imageView2"
+                        android:id="@+id/horseImageView2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -139,7 +139,7 @@
 
                     <ImageView
 
-                        android:id="@+id/imageView3"
+                        android:id="@+id/horseImageView3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
@@ -170,7 +170,7 @@
 
                     <ImageView
 
-                        android:id="@+id/imageView4"
+                        android:id="@+id/horseImageView4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
