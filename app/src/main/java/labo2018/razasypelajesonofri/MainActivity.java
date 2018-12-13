@@ -3,7 +3,6 @@ package labo2018.razasypelajesonofri;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.preference.PreferenceManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -85,6 +84,12 @@ public class MainActivity extends AppCompatActivity {
     /** Called when the user taps the Jugar button */
     public void play(View view) {
         Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
+
+    public void toSettings(View view) {
+        findViewById(R.id.settingsButton).setBackgroundResource(R.drawable.ic_config_click);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 }

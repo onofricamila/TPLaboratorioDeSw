@@ -23,10 +23,10 @@ import android.support.v4.app.NavUtils;
 import java.util.List;
 
 /**
- * A {@link PreferenceActivity} that presents a set of application icon_settings. On
- * handset devices, icon_settings are presented as a single list. On tablets,
- * icon_settings are split by category, with category headers shown to the left of
- * the list of icon_settings.
+ * A {@link PreferenceActivity} that presents a set of application ic_settings. On
+ * handset devices, ic_settings are presented as a single list. On tablets,
+ * ic_settings are split by category, with category headers shown to the left of
+ * the list of ic_settings.
  * <p>
  * See <a href="http://developer.android.com/design/patterns/settings.html">
  * Android Design: Settings</a> for design guidelines and the <a
@@ -155,7 +155,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     /**
      * This fragment shows AJUSTES preferences only. It is used when the
-     * activity is showing a two-pane icon_settings UI.
+     * activity is showing a two-pane ic_settings UI.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class AjustesPreferenceFragment extends PreferenceFragment {
@@ -184,7 +184,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     /**
      * This fragment shows RECONOCIMIENTO preferences only. It is used when the
-     * activity is showing a two-pane icon_settings UI.
+     * activity is showing a two-pane ic_settings UI.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class ReconocimientoPreferenceFragment extends PreferenceFragment {
@@ -214,7 +214,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     /**
      * This fragment shows INTERACCION preferences only. It is used when the
-     * activity is showing a two-pane icon_settings UI.
+     * activity is showing a two-pane ic_settings UI.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class InteraccionPreferenceFragment extends PreferenceFragment {
@@ -245,7 +245,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
     /**
      * This fragment shows MINIJUEGO preferences only. It is used when the
-     * activity is showing a two-pane icon_settings UI.
+     * activity is showing a two-pane ic_settings UI.
      */
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public static class MiniJuegoPreferenceFragment extends PreferenceFragment {

@@ -44,7 +44,7 @@
         android:layout_marginTop="40dp"
         app:layout_constraintStart_toEndOf="@+id/wordShown"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_sound" />
+        app:srcCompat="@drawable/ic_sound" />
 
     <!-- AHORA EMPIEZA EL DISEÑO PARA LAS IMGS VIEWS DE LOS CABALLOS -->
 

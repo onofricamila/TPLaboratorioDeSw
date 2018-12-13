@@ -36,13 +36,13 @@ public class SoundsPlayer {
         for (int i = 0; i < mediaPlayers.length; i++) {
             mediaPlayers[i] = MediaPlayer.create( context, (Integer) sounds.get(i));
         }
-        // create icon_sound chain only if there are more than one icon_sound to play
+        // create ic_sound chain only if there are more than one ic_sound to play
         if (mediaPlayers.length > 1) {
             for (int i = 0; i < mediaPlayers.length-1; i++) {
                 mediaPlayers[i].setNextMediaPlayer( mediaPlayers[i+1] );
             }
         }
-        // start playing icon_sound chain/single icon_sound
+        // start playing ic_sound chain/single ic_sound
         mediaPlayers[0].start();
     }
 
