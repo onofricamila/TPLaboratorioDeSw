@@ -39,9 +39,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_game);
         // get layout text view
         horseToFindShown = findViewById(R.id.wordShown);
-        // get New Game button and set listener
-        newGameBtn = findViewById(R.id.newGameBtn);
-        newGameBtn.setOnClickListener(this);
         // get Sound ImgView and set listener
         soundImgView = findViewById(R.id.soundImgView);
         soundImgView.setOnClickListener(this);
@@ -77,10 +74,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onClick(View view) {
-        // newGameBtn button was clicked
-        if (view == newGameBtn) {
-            newGame();
-        }else if(view == soundImgView){
+        if (view == soundImgView){
+            findViewById(R.id.soundImgView).setBackgroundResource(R.drawable.ic_audio_click);
             playHorseToFindSound();
         }else{
             // an image view was clicked

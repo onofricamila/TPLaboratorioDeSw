@@ -10,16 +10,13 @@ public class StringsManager {
         String[] array = splitString(string, delimiter);
         String res = "";
         for (int i = 0; i < array.length; i++) {
-            res += capitalizeString(array[i]) + " ";
+            res += array[i] + " ";
         }
-        return res;
+        return res.toUpperCase();
     }
 
     public static String getFirstStringChar(String word){
         return word.substring(0, 1);
     }
 
-    public static String capitalizeString(String word){
-        return getFirstStringChar(word).toUpperCase() + word.substring(1);
-    }
 }
