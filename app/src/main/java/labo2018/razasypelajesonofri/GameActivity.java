@@ -29,8 +29,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private String answerHorseImgName, whatToLookFor;
     private TextView horseToFindShown;
     private List<ImageView> imgsViews;
-    private ImageView soundImgView, selectedImageView;
-    private Button newGameBtn;
+    private ImageView soundImgView, selectedImageView, homeImgView;
     private Random random = new Random();
 
     @Override
@@ -42,6 +41,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // get Sound ImgView and set listener
         soundImgView = findViewById(R.id.soundImgView);
         soundImgView.setOnClickListener(this);
+        // get Sound ImgView and set listener
+        homeImgView = findViewById(R.id.homeImgView);
+        homeImgView.setOnClickListener(this);
         // get horses imgviews from layout
         fillImgsViewsArray();
         // let's play!
@@ -68,7 +70,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onClick(View view) {
-        if (view == soundImgView){
+        if(view == homeImgView){
+            findViewById(R.id.homeImgView).setBackgroundResource(R.drawable.ic_home_click);
+            finish();
+        }
+        else if (view == soundImgView){
             findViewById(R.id.soundImgView).setBackgroundResource(R.drawable.ic_audio_click);
             playHorseToFindSound();
         }else{

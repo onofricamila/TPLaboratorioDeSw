@@ -23,6 +23,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ImageButton
+            android:id="@+id/homeImgView"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/ic_home_regular"
+            android:onClick="onClick"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/wordShown"
             android:layout_width="wrap_content"
@@ -59,7 +72,6 @@
             android:layout_marginBottom="50dp"
             android:layout_weight="4"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/newGameBtn"
             app:layout_constraintTop_toBottomOf="@+id/wordShown">
 
             <!-- IMG VIEWS 1 -->
