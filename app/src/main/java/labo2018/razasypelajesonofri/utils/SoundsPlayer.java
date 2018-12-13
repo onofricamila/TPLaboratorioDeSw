@@ -15,17 +15,21 @@ public class SoundsPlayer {
     private static MediaPlayer[] mediaPlayers;
 
     // determines whether there are valid sounds to play
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public static void wannaPlaySound(ArrayList<Integer> sounds, Context context){
-        Predicate<Integer> p1 = Objects::nonNull;
-        List list =  sounds.stream().filter(p1).collect(Collectors.toList());;
-        if(list.size() > 0){playSoundChain(list, context);}
+        List<Integer> result = new ArrayList<>();
+        for (Integer sound : sounds) {
+            if (sound != null) {
+                result.add(sound);
+            }
+        }
+        if(result.size() > 0){playSoundChain(result, context);}
     }
 
     // works with a single item sound array and a multiple items one
     // HICE ESTO PARA QUE FUNCIONE TANTO CUANDO QUERES REPRODUCIR UNA RAZA O UN PELAJE
     // COMO CUANDO NECESITAS REPRODUCIR AMBOS UNO DESPUES DEL OTRO EN EL JUEGO DE RyP JUNTOS!!
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private static void playSoundChain(List sounds, Context context){
         mediaPlayers = new MediaPlayer[(int) sounds.size()];
         // create MP array with respective sounds

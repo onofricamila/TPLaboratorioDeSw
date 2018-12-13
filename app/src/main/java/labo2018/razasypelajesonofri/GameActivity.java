@@ -33,7 +33,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private Button newGameBtn;
     private Random random = new Random();
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,7 +60,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         sounds.add(SoundsProvider.INSTANCE.getSoundAt(soundKey));
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void validateImage() {
         ArrayList<Integer> sounds = new ArrayList<>();
         if ( ((String)selectedImageView.getTag()).contains(whatToLookFor) ){
@@ -74,7 +74,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         SoundsPlayer.wannaPlaySound(sounds, this);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public void onClick(View view) {
         // newGameBtn button was clicked
@@ -89,7 +89,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void playHorseToFindSound() {
         // obtener array de strings a partir de lo que busco
         String[] wordArray = StringsManager.splitString(whatToLookFor,"_");
@@ -123,14 +123,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return resources.getResourceEntryName(id);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private boolean isAlreadyInImgViews(String word) {
-        Predicate<ImageView> p1 = iv -> ((String)iv.getTag()).contains(word);
-        boolean cond = imgsViews.stream().anyMatch(p1);
+        boolean cond = false;
+        for (ImageView imgsView : imgsViews) {
+            if ( ((String)imgsView.getTag()) .contains(word) ) {
+                cond = true;
+                break;
+            }
+        }
         return cond;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void initImgViewsArray() {
         // fill each img view w a unique picture
         for (int i = 0; i < imgsViews.size(); i++) {
@@ -150,7 +153,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void putAnswerInGame() {
         // si no hay nada que repreente a lo que estoy buscando, subo la foto elegida como respuesta
         if ( !isAlreadyInImgViews(whatToLookFor) ){
@@ -184,7 +186,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
     private void newGame() {
         // reset tags
         resetImgViewsTags();
