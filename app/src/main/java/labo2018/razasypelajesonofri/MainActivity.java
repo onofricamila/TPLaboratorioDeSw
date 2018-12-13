@@ -59,6 +59,13 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the Jugar button */
     public void play(View view) {
+        findViewById(R.id.playButton).setBackgroundResource(R.drawable.ic_jugar_click);
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
+
+    public void toReconocimiento(View view) {
+        findViewById(R.id.reconocimientoButton).setBackgroundResource(R.drawable.ic_reconocimiento_click);
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
