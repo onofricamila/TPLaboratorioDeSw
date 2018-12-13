@@ -52,21 +52,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
     }
 
-    private void makeFeedback(String msj, String soundKey, ArrayList<Integer> sounds){
-        makeToast(msj);
-        sounds.add(SoundsProvider.INSTANCE.getSoundAt(soundKey));
-    }
-
-
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void validateImage() {
         ArrayList<Integer> sounds = new ArrayList<>();
         if ( ((String)selectedImageView.getTag()).contains(whatToLookFor) ){
-            makeFeedback("¡Felicitaciones!", "tada", sounds);
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt("relincho"));
             // play again
             newGame();
         } else {
-            makeFeedback("Intenta nuevamente", "error", sounds);
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt("resoplido"));
         }
         SoundsPlayer.wannaPlaySound(sounds, this);
     }

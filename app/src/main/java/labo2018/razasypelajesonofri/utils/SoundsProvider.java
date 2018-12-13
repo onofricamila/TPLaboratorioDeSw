@@ -12,8 +12,8 @@ public enum SoundsProvider {
 
     SoundsProvider() {
         this.soundsMap = new HashMap();
-        soundsMap.put("tada", R.raw.tada);
-        soundsMap.put("error", R.raw.error);
+        soundsMap.put("relincho", R.raw.relincho);
+        soundsMap.put("resoplido", R.raw.resoplido);
         soundsMap.put("a", R.raw.a);
         soundsMap.put("b", R.raw.b);
         soundsMap.put("c", R.raw.c);
