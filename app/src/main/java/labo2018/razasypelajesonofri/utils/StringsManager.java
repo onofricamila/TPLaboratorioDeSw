@@ -10,13 +10,12 @@ public class StringsManager {
         String[] array = splitString(string, delimiter);
         String res = "";
         for (int i = 0; i < array.length; i++) {
-            res += array[i] + " ";
+            String[] arrayTmp = splitString(array[i], "d");
+            for (int j = 0; j < arrayTmp.length; j++) {
+                res += arrayTmp[j] + " ";
+            }
         }
         return res.toUpperCase();
-    }
-
-    public static String getFirstStringChar(String word){
-        return word.substring(0, 1);
     }
 
 }

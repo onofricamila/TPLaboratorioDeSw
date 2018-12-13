@@ -13,25 +13,13 @@ public enum HorseImgsProvider {
 
     HorseImgsProvider() {
         this.horseImages = new ArrayList();
-        horseImages.add(R.drawable.azteca_blanco);
-        horseImages.add(R.drawable.azteca_marron);
-        horseImages.add(R.drawable.azteca_matizado);
-        horseImages.add(R.drawable.azteca_negro);
-
-        horseImages.add(R.drawable.criollo_blanco);
-        horseImages.add(R.drawable.criollo_marron);
-        horseImages.add(R.drawable.criollo_matizado);
-        horseImages.add(R.drawable.criollo_negro);
-
-        horseImages.add(R.drawable.falabella_blanco);
-        horseImages.add(R.drawable.falabella_marron);
-        horseImages.add(R.drawable.falabella_matizado);
-        horseImages.add(R.drawable.falabella_negro);
-
-        horseImages.add(R.drawable.percheron_blanco);
-        horseImages.add(R.drawable.percheron_marron);
-        horseImages.add(R.drawable.percheron_matizado);
-        horseImages.add(R.drawable.percheron_negro);
+        horseImages.add(R.drawable.criollo_overo3azulejo);
+        horseImages.add(R.drawable.criollo_picaso);
+        horseImages.add(R.drawable.cuarto3de3milla_bayo);
+        horseImages.add(R.drawable.mestizo3arabe_alazan3ruano);
+        horseImages.add(R.drawable.mestizo_tobiano);
+        horseImages.add(R.drawable.mestizo_tordillo3canela);
+        horseImages.add(R.drawable.spc_zaino3colorado);
     }
 
     public int randomHorseImgId(){

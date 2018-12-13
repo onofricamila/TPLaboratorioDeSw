@@ -41,17 +41,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // get Sound ImgView and set listener
         soundImgView = findViewById(R.id.soundImgView);
         soundImgView.setOnClickListener(this);
-        // get Sound ImgView and set listener
+        // get home ImgView and set listener
         homeImgView = findViewById(R.id.homeImgView);
         homeImgView.setOnClickListener(this);
         // get horses imgviews from layout
         fillImgsViewsArray();
         // let's play!
         newGame();
-    }
-
-    private void makeToast(String msj){
-        Toast.makeText(this, msj, Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -91,7 +87,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // sound chain
         ArrayList<Integer> sounds = new ArrayList<>();
         for (int i = 0; i < wordArray.length; i++) {
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt( StringsManager.getFirstStringChar(wordArray[i])) );
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt( wordArray[i] ));
         }
         SoundsPlayer.wannaPlaySound(sounds, this);
     }
