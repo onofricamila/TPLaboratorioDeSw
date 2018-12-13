@@ -68,4 +68,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
+
+    public void toInfo(View view) {
+        findViewById(R.id.infoButton).setBackgroundResource(R.drawable.ic_info_click);
+//        TODO: info activity
+//        Intent intent = new Intent(this, InfoActivity.class);
+//        startActivity(intent);
+    }
 }
