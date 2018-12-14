@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity">
 
+    <!-- CONTAINER -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,10 +24,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <!-- UPPER SECTION -->
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- HOME BTN -->
             <ImageButton
                 android:id="@+id/homeImgView"
                 android:layout_width="50dp"
@@ -40,6 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- WORD SHOWN + SOUND IMG -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -78,9 +82,7 @@
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
 
-        <!-- AHORA EMPIEZA EL DISEÑO PARA LAS IMGS VIEWS DE LOS CABALLOS -->
-
-
+        <!-- LOWER SECTION -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -90,7 +92,7 @@
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/wordShown">
 
-            <!-- IMG VIEWS 1 -->
+            <!-- IMG VIEW 1 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -121,7 +123,7 @@
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
 
-            <!-- IMG VIEWS 2 -->
+            <!-- IMG VIEW 2 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -153,7 +155,7 @@
             </LinearLayout>
 
 
-            <!-- IMG VIEWS 3 -->
+            <!-- IMG VIEW 3 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
@@ -184,7 +186,7 @@
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
 
-            <!-- IMG VIEWS 4 -->
+            <!-- IMG VIEW 4 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

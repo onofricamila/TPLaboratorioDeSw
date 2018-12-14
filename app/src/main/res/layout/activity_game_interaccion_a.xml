@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <!-- HOME BTN -->
             <ImageButton
                 android:id="@+id/homeImgView"
                 android:layout_width="50dp"
@@ -42,6 +43,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <!-- HORSE TO FIND IMG -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
