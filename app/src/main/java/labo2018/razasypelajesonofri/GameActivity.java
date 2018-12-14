@@ -9,14 +9,12 @@ import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.function.Predicate;
 
 import labo2018.razasypelajesonofri.utils.HorseImgsProvider;
 import labo2018.razasypelajesonofri.utils.SoundsPlayer;
@@ -35,7 +33,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        setContentView(R.layout.activity_game_interaccion_b);
         // get layout text view
         horseToFindShown = findViewById(R.id.wordShown);
         // get Sound ImgView and set listener
