@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -26,45 +25,62 @@ public class AInteractionManager extends InteractionManager {
         // get layout text view
         horseToFindImgView = this.context.findViewById(R.id.horseImgShown);
         // get horses text views from layout
-        fillPossibleAnswersArray();
+        initPossibleAnswersContainersArray();
+    }
+
+
+    @Override
+    protected void initPossibleAnswersContainersArray() {
+        fillHorsesTextViewsArray();
+        setViewListItemsOnClickHandler(horsesTextViews);
+        fillSoundsImgViewsArray();
+        setViewListItemsOnClickHandler(soundsImageViews);
+    }
+
+    private void fillSoundsImgViewsArray() {
+        soundsImageViews = new ArrayList<>();
+        // add each txt view to an txtViews array
+        soundsImageViews.add(this.context.findViewById(R.id.soundImgView1));
+        soundsImageViews.add(this.context.findViewById(R.id.soundImgView2));
+        soundsImageViews.add(this.context.findViewById(R.id.soundImgView3));
+        soundsImageViews.add(this.context.findViewById(R.id.soundImgView4));
+    }
+
+    private void fillHorsesTextViewsArray() {
+        horsesTextViews = new ArrayList<>();
+        // add each txt view to an txtViews array
+        horsesTextViews.add(this.context.findViewById(R.id.horseTextView1));
+        horsesTextViews.add(this.context.findViewById(R.id.horseTextView2));
+        horsesTextViews.add(this.context.findViewById(R.id.horseTextView3));
+        horsesTextViews.add(this.context.findViewById(R.id.horseTextView4));
+        // DEBUG aca se ven las 'current' tags
+        for (int i = 0; i < horsesTextViews.size(); i++) {
+            Log.d("!!!DEBUG-CURRENT-TAGS: ", horsesTextViews.get(i).toString());
+        }
     }
 
     @Override
     public void resetViewsTags() {
-        for (int i = 0; i < soundsImageViews.size(); i++) {
-            ImageView imgView = soundsImageViews.get(i);
-            imgView.setTag("");
-        }
-        for (int i = 0; i < horsesTextViews.size(); i++) {
-            TextView textView = horsesTextViews.get(i);
-            textView.setTag("");
-        }
+        resetViewsTags(soundsImageViews);
+        resetViewsTags(horsesTextViews);
     }
 
     @Override
     public void showWhatToLookFor() {
-        Log.d("!!!!!!!!!", whatToLookFor);
+        super.showWhatToLookFor();
         horseToFindImgView.setImageResource(horseToFindId);
     }
 
     @Override
     public void showPossibleAnswers() {
-// fill each img view w a unique picture
-        for (int i = 0; i < horsesTextViews.size(); i++) {
-            int randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
-            // we dont wanna have the same horse image twice
-            while(this.isAlreadyInImgViews( this.getResourceNameById(randomHorseImgId), horsesTextViews) ){
-                randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
-            }
-            TextView textView = horsesTextViews.get(i);
-            setText(textView, getResourceNameById(randomHorseImgId));
-            textView.setOnClickListener(this.context);
-            soundsImageViews.get(i).setTag( textView.getTag() );
-        }
-        // DEBUG aca se ven las 'current' tags
-        for (int i = 0; i < horsesTextViews.size(); i++) {
-            Log.d("!!!DEBUG-CURRENT-TAGS: ", horsesTextViews.get(i).getTag().toString());
-        }
+       showPossibleAnswers(horsesTextViews);
+    }
+
+    @Override
+    protected void manageViewsListItem(View view, int randomHorseImgId, int i) {
+        TextView textView = (TextView) view;
+        setText(textView, getResourceNameById(randomHorseImgId));
+        soundsImageViews.get(i).setTag( textView.getTag() );
     }
 
     private void setText(TextView textView, String completeName) {
@@ -104,68 +120,19 @@ public class AInteractionManager extends InteractionManager {
         if(!wasASound){
             // an image view was clicked
             selectedTextView = (TextView) view;
-            validateTextView();
+            validateView();
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void playHorseSound(View view) {
-        // obtener array de strings a partir de lo que busco
-        String[] wordArray = StringsManager.splitString( (String)view.getTag(),"_" );
-        // sound chain
-        ArrayList<Integer> sounds = new ArrayList<>();
-        for (int i = 0; i < wordArray.length; i++) {
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt( wordArray[i] ));
-        }
-        SoundsPlayer.wannaPlaySound(sounds, this.context);
+        playHorseSound( (String)view.getTag() );
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void validateTextView() {
-        ArrayList<Integer> sounds = new ArrayList<>();
-        if ( ((String)selectedTextView.getTag()).contains(whatToLookFor) ){
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt("relincho"));
-            // play again
-            this.context.newGame();
-        } else {
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt("resoplido"));
-        }
-        SoundsPlayer.wannaPlaySound(sounds, this.context);
+    protected Boolean viewValidationCondition() {
+        return ((String)selectedTextView.getTag()).contains(whatToLookFor);
     }
 
 
-    @Override
-    protected void fillPossibleAnswersArray() {
-        fillHorsesTextViewsArray();
-        fillSoundsImgViewsArray();
-        setSoundsImgViewsOnClickHandler();
-    }
 
-    private void setSoundsImgViewsOnClickHandler() {
-        for (int i = 0; i < soundsImageViews.size(); i++) {
-            soundsImageViews.get(i).setOnClickListener(this.context);
-        }
-    }
-
-    private void fillSoundsImgViewsArray() {
-        soundsImageViews = new ArrayList<>();
-        // add each txt view to an txtViews array
-        soundsImageViews.add(this.context.findViewById(R.id.soundImgView1));
-        soundsImageViews.add(this.context.findViewById(R.id.soundImgView2));
-        soundsImageViews.add(this.context.findViewById(R.id.soundImgView3));
-        soundsImageViews.add(this.context.findViewById(R.id.soundImgView4));
-    }
-
-    private void fillHorsesTextViewsArray() {
-        horsesTextViews = new ArrayList<>();
-        // add each txt view to an txtViews array
-        horsesTextViews.add(this.context.findViewById(R.id.horseTextView1));
-        horsesTextViews.add(this.context.findViewById(R.id.horseTextView2));
-        horsesTextViews.add(this.context.findViewById(R.id.horseTextView3));
-        horsesTextViews.add(this.context.findViewById(R.id.horseTextView4));
-        // DEBUG aca se ven las 'current' tags
-        for (int i = 0; i < horsesTextViews.size(); i++) {
-            Log.d("!!!DEBUG-CURRENT-TAGS: ", horsesTextViews.get(i).toString());
-        }
-    }
 }

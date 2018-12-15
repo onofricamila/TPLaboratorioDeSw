@@ -1,11 +1,13 @@
 package labo2018.razasypelajesonofri.utils;
 
 
-import android.content.Context;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import labo2018.razasypelajesonofri.GameActivity;
@@ -22,11 +24,44 @@ public abstract class InteractionManager {
         this.horseToFindId = 0;
     }
 
-    public abstract void resetViewsTags();
-
-    public abstract void showWhatToLookFor();
+    public void resetViewsTags(List<? extends View> list){
+        for (int i = 0; i < list.size(); i++) {
+            View view = list.get(i);
+            view.setTag("");
+        }
+    }
 
     public abstract void showPossibleAnswers();
+
+    public void showPossibleAnswers(List<? extends View> list) {
+        // fill each img view w a unique picture
+        for (int i = 0; i < list.size(); i++) {
+            int randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
+            // we dont wanna have the same horse image twice
+            while(this.isAlreadyInImgViews( this.getResourceNameById(randomHorseImgId), list) ){
+                randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
+            }
+            manageViewsListItem(list.get(i), randomHorseImgId, i);
+        }
+        // DEBUG aca se ven las 'current' tags
+        for (int i = 0; i < list.size(); i++) {
+            Log.d("!!!DEBUG-CURRENT-TAGS: ", list.get(i).getTag().toString());
+        }
+    }
+
+    protected abstract void manageViewsListItem(View view, int horseImgId, int randomHorseImgId);
+
+    protected void setViewListItemsOnClickHandler(List<? extends View> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setOnClickListener(this.context);
+        }
+    }
+
+    public abstract void resetViewsTags();
+
+    public  void showWhatToLookFor(){
+        Log.d("!!!WHAT-TO-LOOK-FOR", whatToLookFor);
+    };
 
     protected String getResourceNameById(int id){
         Resources resources = this.context.getResources();
@@ -49,7 +84,7 @@ public abstract class InteractionManager {
     public abstract void manageOnClick(View view);
 
 
-    protected abstract void fillPossibleAnswersArray();
+    protected abstract void initPossibleAnswersContainersArray();
 
     public void informAboutAnswer(int horseToFindId, String answerHorseImgName, String whatToLookFor) {
         this.horseToFindId = horseToFindId;
@@ -57,4 +92,30 @@ public abstract class InteractionManager {
         this.whatToLookFor = whatToLookFor;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    protected void playHorseSound(String string) {
+        // obtener array de strings a partir de lo que busco
+        String[] wordArray = StringsManager.splitString(string,"_");
+        // sound chain
+        ArrayList<Integer> sounds = new ArrayList<>();
+        for (int i = 0; i < wordArray.length; i++) {
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt( wordArray[i] ));
+        }
+        SoundsPlayer.wannaPlaySound(sounds, this.context);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    protected void validateView(){
+        ArrayList<Integer> sounds = new ArrayList<>();
+        if ( viewValidationCondition()){
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt("relincho"));
+            // play again
+            this.context.newGame();
+        } else {
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt("resoplido"));
+        }
+        SoundsPlayer.wannaPlaySound(sounds, this.context);
+    }
+
+    protected abstract Boolean viewValidationCondition();
 }

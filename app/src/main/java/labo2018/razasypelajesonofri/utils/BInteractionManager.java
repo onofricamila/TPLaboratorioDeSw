@@ -27,12 +27,19 @@ public class BInteractionManager extends InteractionManager {
         soundImgView = this.context.findViewById(R.id.soundImgView);
         soundImgView.setOnClickListener(this.context);
         // get horses imgviews from layout
-        fillPossibleAnswersArray();
+        initPossibleAnswersContainersArray();
 
     }
 
     @Override
-    protected void fillPossibleAnswersArray() {
+    protected void initPossibleAnswersContainersArray() {
+        fillHorsesImageViewsArray();
+        // onclick listener
+        setViewListItemsOnClickHandler(imageViews);
+
+    }
+
+    private void fillHorsesImageViewsArray() {
         imageViews = new ArrayList<>();
         // add each img view to an imgViews array
         imageViews.add(this.context.findViewById(R.id.horseImageView1));
@@ -43,36 +50,27 @@ public class BInteractionManager extends InteractionManager {
 
     @Override
     public void resetViewsTags(){
-        for (int i = 0; i < imageViews.size(); i++) {
-            ImageView imageView = imageViews.get(i);
-            imageView.setTag("");
-        }
+        resetViewsTags(imageViews);
     }
+
 
     @Override
     public void showWhatToLookFor() {
+        super.showWhatToLookFor();
         horseToFindTextView.setText(StringsManager.generateWordToShow(whatToLookFor, "_"));
 
     }
 
     @Override
     public void showPossibleAnswers() {
-        // fill each img view w a unique picture
-        for (int i = 0; i < imageViews.size(); i++) {
-            int randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
-            // we dont wanna have the same horse image twice
-            while(this.isAlreadyInImgViews( this.getResourceNameById(randomHorseImgId), imageViews) ){
-                randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
-            }
-            ImageView imageView = imageViews.get(i);
-            imageView.setTag( getResourceNameById(randomHorseImgId) );
-            imageView.setImageResource(randomHorseImgId);
-            imageView.setOnClickListener(this.context);
-        }
-        // DEBUG aca se ven las 'current' tags
-        for (int i = 0; i < imageViews.size(); i++) {
-            Log.d("!!!DEBUG-CURRENT-TAGS: ", imageViews.get(i).getTag().toString());
-        }
+        showPossibleAnswers(imageViews);
+    }
+
+    @Override
+    protected void manageViewsListItem(View view, int randomHorseImgId, int i) {
+        ImageView imageView = (ImageView) view;
+        imageView.setTag( getResourceNameById(randomHorseImgId) );
+        imageView.setImageResource(randomHorseImgId);
     }
 
     @Override
@@ -88,27 +86,11 @@ public class BInteractionManager extends InteractionManager {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void playHorseToFindSound() {
-        // obtener array de strings a partir de lo que busco
-        String[] wordArray = StringsManager.splitString(whatToLookFor,"_");
-        // sound chain
-        ArrayList<Integer> sounds = new ArrayList<>();
-        for (int i = 0; i < wordArray.length; i++) {
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt( wordArray[i] ));
-        }
-        SoundsPlayer.wannaPlaySound(sounds, this.context);
+        playHorseSound(whatToLookFor);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void validateImage() {
-        ArrayList<Integer> sounds = new ArrayList<>();
-        if ( ((String)selectedImageView.getTag()).contains(whatToLookFor) ){
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt("relincho"));
-            // play again
-            this.context.newGame();
-        } else {
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt("resoplido"));
-        }
-        SoundsPlayer.wannaPlaySound(sounds, this.context);
+    protected Boolean viewValidationCondition() {
+        return ((String)selectedImageView.getTag()).contains(whatToLookFor);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -120,7 +102,7 @@ public class BInteractionManager extends InteractionManager {
         }else{
             // an image view was clicked
             selectedImageView = (ImageView) view;
-            validateImage();
+            validateView();
         }
     }
 
