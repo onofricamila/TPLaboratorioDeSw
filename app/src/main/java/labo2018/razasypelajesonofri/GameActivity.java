@@ -19,16 +19,11 @@ import labo2018.razasypelajesonofri.utils.InteractionManager;
 import labo2018.razasypelajesonofri.utils.StringsManager;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
-// used by both interaction modes
+    // used by both interaction modes
     private int horseToFindId;
     private String answerHorseImgName, whatToLookFor;
     private ImageView homeImgView;
     private InteractionManager interactionManager;
-// used only by interaction B
-    private TextView horseToFindTextView;
-    private List<ImageView> imgsViews;
-    private ImageView soundImgView, selectedImageView;
-    private Random random = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +53,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
     public String getResourceNameById(int id){
         Resources resources = this.getResources();
         return resources.getResourceEntryName(id);
@@ -79,6 +73,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private String randomRazaOPelaje() {
+        Random random = new Random();
         String[] temp = StringsManager.splitString(answerHorseImgName,"_");
         return temp[random.nextInt(temp.length)];
     }
