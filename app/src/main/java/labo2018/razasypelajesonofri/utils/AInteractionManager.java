@@ -88,10 +88,12 @@ public class AInteractionManager extends InteractionManager {
         if( HorseImgsProvider.INSTANCE.isAHorseType(this.context, whatToLookFor) ){
             textView.setTag(lala[0]);
             textView.setText(StringsManager.generateWordToShow(lala[0], "_"));
-        }else{
+        }else if( HorseImgsProvider.INSTANCE.isAHorseHairType(this.context, whatToLookFor) ){
             textView.setTag(lala[1]);
             textView.setText(StringsManager.generateWordToShow(lala[1], "_"));
-
+        }else{
+            textView.setTag(completeName);
+            textView.setText(StringsManager.generateWordToShow(completeName, "_"));
         }
     }
 
@@ -132,7 +134,7 @@ public class AInteractionManager extends InteractionManager {
     }
 
     protected Boolean viewValidationCondition() {
-        return ((String)selectedTextView.getTag()).contains(whatToLookFor);
+        return ( ((String)selectedTextView.getTag()).contains(whatToLookFor) );
     }
 
 
