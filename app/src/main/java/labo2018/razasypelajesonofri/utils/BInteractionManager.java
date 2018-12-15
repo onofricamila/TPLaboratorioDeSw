@@ -97,7 +97,8 @@ public class BInteractionManager extends InteractionManager {
     @Override
     public void manageOnClick(View view) {
         if (view == soundImgView){
-            this.context.findViewById(R.id.soundImgView).setBackgroundResource(R.drawable.ic_audio_click);
+            ((ImageView)this.context.findViewById(R.id.soundImgView))
+                    .setImageResource(R.drawable.ic_audio_click);
             playHorseToFindSound();
         }else{
             // an image view was clicked

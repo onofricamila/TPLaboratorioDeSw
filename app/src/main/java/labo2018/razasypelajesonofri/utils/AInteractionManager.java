@@ -114,6 +114,8 @@ public class AInteractionManager extends InteractionManager {
         for (ImageView soundImgView: soundsImageViews) {
             if (view == soundImgView) {
                 wasASound = true;
+                ( (ImageView)this.context.findViewById(view.getId()) )
+                        .setImageResource(R.drawable.ic_audio_click);
                 playHorseSound(view);
             }
         }
