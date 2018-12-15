@@ -49,4 +49,16 @@ public enum HorseImgsProvider {
             return true;
          }else return false;
     }
+
+    public Boolean isAHorseHairType(GameActivity context, String word) {
+        String result = "";
+        for (Object horseId : horseImagesIds) {
+            if ( context.getResourceNameById((int)horseId) .contains(word) ) {
+                result = context.getResourceNameById((int)horseId);
+            }
+        }
+        if ( StringsManager.splitString(result, "_")[1].equals(word) ){
+            return true;
+        }else return false;
+    }
 }
