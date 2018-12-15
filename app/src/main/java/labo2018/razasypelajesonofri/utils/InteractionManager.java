@@ -1,7 +1,6 @@
 package labo2018.razasypelajesonofri.utils;
 
 
-import android.content.res.Resources;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
@@ -14,43 +13,45 @@ import labo2018.razasypelajesonofri.GameActivity;
 
 public abstract class InteractionManager {
     protected GameActivity context;
-    protected String answerHorseImgName, whatToLookFor;
-    protected Integer horseToFindId;
+    protected String whatToLookFor;
+    protected Horse horseToFind;
+    protected Boolean searchingForType;
+    protected Boolean searchingForHairType;
+    protected Boolean searchingForFullName;
 
     public InteractionManager(GameActivity context) {
         this.context = context;
-        this.answerHorseImgName = "";
         this.whatToLookFor = "";
-        this.horseToFindId = 0;
     }
 
     public void resetViewsTags(List<? extends View> list){
         for (int i = 0; i < list.size(); i++) {
             View view = list.get(i);
-            view.setTag("");
+            view.setTag(new Horse());
         }
     }
 
     public abstract void showPossibleAnswers();
 
-    public void showPossibleAnswers(List<? extends View> list) {
+    public void showPossibleAnswers(List<? extends View> views) {
         // fill each img view w a unique picture
-        for (int i = 0; i < list.size(); i++) {
-            int randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
+        for (int i = 0; i < views.size(); i++) {
+            Horse randomHorse = HorsesProvider.INSTANCE.randomHorse();
             // we dont wanna have the same horse image twice
-            // TODO: PARA INTERAC A) SE REPITEN RAZAS O PELAJES .. PORQUE AGARRA DE DISTINTAS IMGS ..
-            while(this.isAlreadyInImgViews( this.getResourceNameById(randomHorseImgId), list) ){
-                randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
+            // TODO: PARA INTERAC AyB) SE REPITEN RAZAS O PELAJES .. PORQUE AGARRA DE DISTINTAS IMGS ..
+            while(this.isAlreadyInImgViews( randomHorse, views) ){
+                randomHorse = HorsesProvider.INSTANCE.randomHorse();
             }
-            manageViewsListItem(list.get(i), randomHorseImgId, i);
+            views.get(i).setTag(randomHorse);
+            manageViewsListItem(randomHorse, i);
         }
         // DEBUG aca se ven las 'current' tags
-        for (int i = 0; i < list.size(); i++) {
-            Log.d("!!!DEBUG-CURRENT-TAGS: ", list.get(i).getTag().toString());
+        for (int i = 0; i < views.size(); i++) {
+            Log.d("!!!DEBUG-CURRENT-TAGS: ", views.get(i).getTag().toString());
         }
     }
 
-    protected abstract void manageViewsListItem(View view, int horseImgId, int randomHorseImgId);
+    protected abstract void manageViewsListItem(Horse horseImgId, int randomHorseImgId);
 
     protected void setViewListItemsOnClickHandler(List<? extends View> list) {
         for (int i = 0; i < list.size(); i++) {
@@ -62,22 +63,26 @@ public abstract class InteractionManager {
 
     public  void showWhatToLookFor(){
         Log.d("!!!WHAT-TO-LOOK-FOR", whatToLookFor);
-    };
-
-    protected String getResourceNameById(int id){
-        Resources resources = this.context.getResources();
-        return resources.getResourceEntryName(id);
     }
 
-    protected boolean isAlreadyInImgViews(String word, List<? extends View> array) {
+    protected boolean isAlreadyInImgViews(Horse horse, List<? extends View> array) {
         boolean cond = false;
         for (View view : array) {
-            if ( ((String)view.getTag()) .contains(word) ) {
+            if ( isAlreadyInImgsViewsCondition(horse, view) ) {
                 cond = true;
                 break;
             }
         }
         return cond;
+    }
+
+    protected Boolean isAlreadyInImgsViewsCondition(Horse horse, View view){
+        if( searchingForType ){
+            return  (((Horse)view.getTag()).getType()) .equals(horse.getType());
+        }else if( searchingForHairType ){
+            return  (((Horse)view.getTag()).getHairType()) .equals(horse.getHairType());
+        }
+           return  (((Horse)view.getTag()).getFullName()) .equals(horse.getFullName());
     }
 
     public abstract void putAnswerInGame();
@@ -87,10 +92,20 @@ public abstract class InteractionManager {
 
     protected abstract void initPossibleAnswersContainersArray();
 
-    public void informAboutAnswer(int horseToFindId, String answerHorseImgName, String whatToLookFor) {
-        this.horseToFindId = horseToFindId;
-        this.answerHorseImgName = answerHorseImgName;
+    public void informAboutAnswer(Horse horseToFind, String whatToLookFor) {
+        this.horseToFind = horseToFind;
         this.whatToLookFor = whatToLookFor;
+        searchingForType = false;
+        searchingForHairType = false;
+        searchingForFullName = false;
+
+        if( HorsesProvider.INSTANCE.isAHorseType(whatToLookFor) ){
+            searchingForType = true;
+        }else if( HorsesProvider.INSTANCE.isAHorseHairType(whatToLookFor) ){
+            searchingForHairType = true;
+        }else{
+            searchingForFullName = true;
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

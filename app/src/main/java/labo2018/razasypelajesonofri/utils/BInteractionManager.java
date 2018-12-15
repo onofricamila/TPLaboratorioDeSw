@@ -2,7 +2,6 @@ package labo2018.razasypelajesonofri.utils;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -57,7 +56,7 @@ public class BInteractionManager extends InteractionManager {
     @Override
     public void showWhatToLookFor() {
         super.showWhatToLookFor();
-        horseToFindTextView.setText(StringsManager.generateWordToShow(whatToLookFor, "_"));
+        horseToFindTextView.setText(whatToLookFor.toUpperCase());
 
     }
 
@@ -67,30 +66,38 @@ public class BInteractionManager extends InteractionManager {
     }
 
     @Override
-    protected void manageViewsListItem(View view, int randomHorseImgId, int i) {
-        ImageView imageView = (ImageView) view;
-        imageView.setTag( getResourceNameById(randomHorseImgId) );
-        imageView.setImageResource(randomHorseImgId);
+    protected void manageViewsListItem(Horse randomHorse, int i) {
+        ImageView imageView = imageViews.get(i);
+        imageView.setImageResource(randomHorse.getImage());
     }
 
     @Override
     public void putAnswerInGame() {
         // si no hay nada que repreente a lo que estoy buscando, subo la foto elegida como respuesta
-        if ( !isAlreadyInImgViews(whatToLookFor, imageViews) ){
+        if ( !isAlreadyInImgViews(horseToFind, imageViews) ){
             Collections.shuffle(imageViews);
             ImageView randomImgView = imageViews.get(0);
-            randomImgView.setTag(answerHorseImgName);
-            randomImgView.setImageResource(horseToFindId);
+            randomImgView.setTag(horseToFind);
+            randomImgView.setImageResource(horseToFind.getImage());
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void playHorseToFindSound() {
-        playHorseSound(whatToLookFor);
+        ArrayList<Integer> sounds = new ArrayList<>();
+        if( searchingForType ){
+            sounds.add(horseToFind.getFemSpeciesSound());
+        }else if( searchingForHairType ){
+            sounds.add(horseToFind.getFemHairTypeSound());
+        }else if( searchingForFullName ){
+            sounds.add(horseToFind.getFemSpeciesSound());
+            sounds.add(horseToFind.getFemHairTypeSound());
+        }
+        SoundsPlayer.wannaPlaySound(sounds, this.context);
     }
 
     protected Boolean viewValidationCondition() {
-        return ((String)selectedImageView.getTag()).contains(whatToLookFor);
+        return ( ((Horse)selectedImageView.getTag()).getFullName() ) .contains(whatToLookFor);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

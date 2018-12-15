@@ -7,21 +7,19 @@ import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import java.util.List;
 import java.util.Random;
 
 import labo2018.razasypelajesonofri.utils.AInteractionManager;
 import labo2018.razasypelajesonofri.utils.BInteractionManager;
-import labo2018.razasypelajesonofri.utils.HorseImgsProvider;
+import labo2018.razasypelajesonofri.utils.Horse;
+import labo2018.razasypelajesonofri.utils.HorsesProvider;
 import labo2018.razasypelajesonofri.utils.InteractionManager;
-import labo2018.razasypelajesonofri.utils.StringsManager;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
     // used by both interaction modes
-    private int horseToFindId;
-    private String answerHorseImgName, whatToLookFor;
+    private Horse horseToFind;
+    private String whatToLookFor;
     private ImageView homeImgView;
     private InteractionManager interactionManager;
 
@@ -53,11 +51,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    public String getResourceNameById(int id){
-        Resources resources = this.getResources();
-        return resources.getResourceEntryName(id);
-    }
-
     private Boolean playingWithBInteraction(){
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         Resources res = getResources();
@@ -74,16 +67,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private String randomRazaOPelaje() {
         Random random = new Random();
-        String[] temp = StringsManager.splitString(answerHorseImgName,"_");
+        String[] temp = new String[]{horseToFind.getType(), horseToFind.getHairType()};
         return temp[random.nextInt(temp.length)];
     }
     private void determineHorseToFind(){
-        horseToFindId = HorseImgsProvider.INSTANCE.randomHorseImgId();
-        answerHorseImgName = getResourceNameById(horseToFindId);
+        horseToFind = HorsesProvider.INSTANCE.randomHorse();
         // si se trata del juego RPJ, pongo directamente como 'a buscar' al nombre de la foto del caballo
         // random, sino, digo bueno, vamos a buscar o bien la raza o el pelaje asociado a la foto
         if(playingRazasYPelajesJuntos()) {
-            whatToLookFor = answerHorseImgName;
+            whatToLookFor = horseToFind.getFullName();
         }else{
             whatToLookFor  = randomRazaOPelaje();
         }
@@ -96,7 +88,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // determine horse to find
         determineHorseToFind();
         // tell the interactionM the answer data
-        interactionManager.informAboutAnswer(horseToFindId, answerHorseImgName, whatToLookFor);
+        interactionManager.informAboutAnswer(horseToFind, whatToLookFor);
         // show in ui
         interactionManager.showWhatToLookFor();
         // populate img views with random imgs

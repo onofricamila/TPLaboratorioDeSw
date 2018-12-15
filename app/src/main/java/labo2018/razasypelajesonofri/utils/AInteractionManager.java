@@ -68,7 +68,7 @@ public class AInteractionManager extends InteractionManager {
     @Override
     public void showWhatToLookFor() {
         super.showWhatToLookFor();
-        horseToFindImgView.setImageResource(horseToFindId);
+        horseToFindImgView.setImageResource(horseToFind.getImage());
     }
 
     @Override
@@ -77,35 +77,32 @@ public class AInteractionManager extends InteractionManager {
     }
 
     @Override
-    protected void manageViewsListItem(View view, int randomHorseImgId, int i) {
-        TextView textView = (TextView) view;
-        setText(textView, getResourceNameById(randomHorseImgId));
+    protected void manageViewsListItem(Horse randomHorse, int i) {
+        TextView textView = horsesTextViews.get(i);
+        setText(textView, randomHorse);
         soundsImageViews.get(i).setTag( textView.getTag() );
     }
 
-    private void setText(TextView textView, String completeName) {
-        String[] lala = StringsManager.splitString(completeName, "_");
-        if( HorseImgsProvider.INSTANCE.isAHorseType(this.context, whatToLookFor) ){
-            textView.setTag(lala[0]);
-            textView.setText(StringsManager.generateWordToShow(lala[0], "_"));
-        }else if( HorseImgsProvider.INSTANCE.isAHorseHairType(this.context, whatToLookFor) ){
-            textView.setTag(lala[1]);
-            textView.setText(StringsManager.generateWordToShow(lala[1], "_"));
-        }else{
-            textView.setTag(completeName);
-            textView.setText(StringsManager.generateWordToShow(completeName, "_"));
+    private void setText(TextView textView, Horse horse) {
+        if( searchingForType ){
+            textView.setText(horse.getType().toUpperCase());
+        }else if( searchingForHairType ){
+            textView.setText(horse.getHairType().toUpperCase());
+        }else if( searchingForFullName ){
+            textView.setText(horse.getFullName().toUpperCase());
         }
     }
 
     @Override
     public void putAnswerInGame() {
         // si no hay nada que repreente a lo que estoy buscando, subo la respuesta
-        if ( !isAlreadyInImgViews(whatToLookFor, horsesTextViews) ){
+        if ( !isAlreadyInImgViews(horseToFind, horsesTextViews) ){
             Random random = new Random();
             Integer randIndex = random.nextInt(horsesTextViews.size());
             TextView randomTextView = horsesTextViews.get(randIndex);
-            setText(randomTextView, answerHorseImgName);
-            soundsImageViews.get(randIndex).setTag( randomTextView.getTag() );
+            randomTextView.setTag(horseToFind);
+            setText(randomTextView, horseToFind);
+            soundsImageViews.get(randIndex).setTag( horseToFind );
         }
     }
 
@@ -130,11 +127,27 @@ public class AInteractionManager extends InteractionManager {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void playHorseSound(View view) {
-        playHorseSound( (String)view.getTag() );
+        ArrayList<Integer> sounds = new ArrayList<>();
+        if( searchingForType ){
+            sounds.add( ((Horse)view.getTag()).getFemSpeciesSound()) ;
+        }else if( searchingForHairType ){
+            sounds.add( ((Horse)view.getTag()).getFemHairTypeSound() );
+        }else if( searchingForFullName ){
+            sounds.add( ((Horse)view.getTag()).getFemSpeciesSound()) ;
+            sounds.add( ((Horse)view.getTag()).getFemHairTypeSound() );
+        }
+        SoundsPlayer.wannaPlaySound(sounds, this.context);
     }
 
     protected Boolean viewValidationCondition() {
-        return ( ((String)selectedTextView.getTag()).contains(whatToLookFor) );
+        if( searchingForType ){
+            return ( ((Horse)selectedTextView.getTag()).getType().equals(whatToLookFor) );
+        }else if( searchingForHairType ){
+            return ( ((Horse)selectedTextView.getTag()).getHairType().equals(whatToLookFor) );
+        }else if( searchingForFullName ){
+            return ( ((Horse)selectedTextView.getTag()).getFullName().equals(whatToLookFor) );
+        }
+        return ( selectedTextView.getTag().equals(whatToLookFor) );
     }
 
 
