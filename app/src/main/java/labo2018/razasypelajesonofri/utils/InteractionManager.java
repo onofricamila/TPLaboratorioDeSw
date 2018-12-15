@@ -38,6 +38,7 @@ public abstract class InteractionManager {
         for (int i = 0; i < list.size(); i++) {
             int randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
             // we dont wanna have the same horse image twice
+            // TODO: PARA INTERAC A) SE REPITEN RAZAS O PELAJES .. PORQUE AGARRA DE DISTINTAS IMGS ..
             while(this.isAlreadyInImgViews( this.getResourceNameById(randomHorseImgId), list) ){
                 randomHorseImgId = HorseImgsProvider.INSTANCE.randomHorseImgId();
             }
