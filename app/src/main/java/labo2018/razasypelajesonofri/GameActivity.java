@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -19,7 +20,7 @@ import labo2018.razasypelajesonofri.utils.InteractionManager;
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
     // used by both interaction modes
     private Horse horseToFind;
-    private String whatToLookFor;
+    private String whatToLookFor, lastLookedFor;
     private ImageView homeImgView;
     private InteractionManager interactionManager;
 
@@ -52,17 +53,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private Boolean playingWithBInteraction(){
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         Resources res = getResources();
-        String minijuegoPref = sharedPref.getString("interaccion", res.getString(R.string.pref_default_interaccion));
+        String minijuegoPref = getSharedPrefs().getString("interaccion", res.getString(R.string.pref_default_interaccion));
         return minijuegoPref.equals("B");
     }
 
     private Boolean playingRazasYPelajesJuntos(){
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         Resources res = getResources();
-        String minijuegoPref = sharedPref.getString("minijuego", res.getString(R.string.pref_default_minijuego));
+        String minijuegoPref = getSharedPrefs().getString("minijuego", res.getString(R.string.pref_default_minijuego));
         return minijuegoPref.equals("RPJ");
+    }
+
+    private SharedPreferences getSharedPrefs(){
+        return PreferenceManager.getDefaultSharedPreferences(this);
     }
 
     private String randomRazaOPelaje() {
@@ -71,6 +74,14 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return temp[random.nextInt(temp.length)];
     }
     private void determineHorseToFind(){
+        horseToFind();
+        while( whatToLookFor.equals(lastLookedFor) ){
+            horseToFind();
+        }
+        lastLookedFor = whatToLookFor;
+    }
+
+    private void horseToFind(){
         horseToFind = HorsesProvider.INSTANCE.randomHorse();
         // si se trata del juego RPJ, pongo directamente como 'a buscar' al nombre de la foto del caballo
         // random, sino, digo bueno, vamos a buscar o bien la raza o el pelaje asociado a la foto
@@ -79,10 +90,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }else{
             whatToLookFor  = randomRazaOPelaje();
         }
-
     }
 
-    public void newGame() {
+
+        public void newGame() {
         // reset tags
         interactionManager.resetViewsTags();
         // determine horse to find
