@@ -5,7 +5,6 @@ import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -93,13 +92,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         lastLookedFor = whatToLookFor;
     }
 
+    private Boolean searchingForType(){
+        return HorsesProvider.INSTANCE.isAHorseType(whatToLookFor);
+    }
+
+    private Boolean searchingForHairType(){
+        return HorsesProvider.INSTANCE.isAHorseHairType(whatToLookFor);
+    }
+
+    private Boolean searchingForFullName(){
+        return (!searchingForType() && !searchingForHairType());
+    }
+
     public void newGame() {
         // reset tags
         interactionManager.resetViewsTags();
         // determine horse to find
         determineHorseToFind();
         // tell the interactionM the answer data
-        interactionManager.informAboutAnswer(horseToFind, whatToLookFor);
+        interactionManager.informAboutWhatToLookFor(horseToFind, whatToLookFor, searchingForType(),
+                searchingForHairType(), searchingForFullName());
         // show in ui
         interactionManager.showWhatToLookFor();
         // populate img views with random imgs
