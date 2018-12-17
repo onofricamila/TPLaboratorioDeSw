@@ -21,8 +21,8 @@ public enum HorsesProvider {
         String hairType = "overo azulejo";
         Map<String, Integer[]> map = new HashMap<>();
         map.put("f", new Integer[]{
-                R.raw.criollo,
-                R.raw.overo3azulejo
+                R.raw.horse_f_criollo,
+                R.raw.horse_f_overo_azulejo
         });
         horsesList.add(new Horse(type, hairType, R.drawable.criollo_overo3azulejo, map));
 
@@ -31,8 +31,8 @@ public enum HorsesProvider {
         hairType = "picaso";
         map = new HashMap<>();
         map.put("f", new Integer[]{
-                R.raw.criollo,
-                R.raw.picaso
+                R.raw.horse_f_criollo,
+                R.raw.horse_f_picaso
         });
         horsesList.add(new Horse(type, hairType, R.drawable.criollo_picaso, map));
 
@@ -41,8 +41,8 @@ public enum HorsesProvider {
         hairType = "bayo";
         map = new HashMap<>();
         map.put("f", new Integer[]{
-                R.raw.cuarto3de3milla,
-                R.raw.bayo
+                R.raw.horse_f_cuarto_de_milla,
+                R.raw.horse_f_bayo
         });
         horsesList.add(new Horse(type, hairType, R.drawable.cuarto3de3milla_bayo, map));
 
@@ -51,8 +51,8 @@ public enum HorsesProvider {
         hairType = "alazán ruano";
         map = new HashMap<>();
         map.put("f", new Integer[]{
-                R.raw.mestizo3arabe,
-                R.raw.alazan3ruano
+                R.raw.horse_f_mestizo_arabe,
+                R.raw.horse_f_alazan_ruano
         });
         horsesList.add(new Horse(type, hairType, R.drawable.mestizo3arabe_alazan3ruano, map));
 
@@ -61,8 +61,8 @@ public enum HorsesProvider {
         hairType = "tobiano";
         map = new HashMap<>();
         map.put("f", new Integer[]{
-                R.raw.mestizo,
-                R.raw.tobiano
+                R.raw.horse_f_mestizo,
+                R.raw.horse_f_tobiano
         });
         horsesList.add(new Horse(type, hairType, R.drawable.mestizo_tobiano, map));
 
@@ -71,8 +71,8 @@ public enum HorsesProvider {
         hairType = "tordillo canela";
         map = new HashMap<>();
         map.put("f", new Integer[]{
-                R.raw.mestizo,
-                R.raw.tordillo3canela
+                R.raw.horse_f_mestizo,
+                R.raw.horse_f_tordillo_canela
         });
         horsesList.add(new Horse(type, hairType, R.drawable.mestizo_tordillo3canela, map));
 
@@ -81,8 +81,8 @@ public enum HorsesProvider {
         hairType = "zaino colorado";
         map = new HashMap<>();
         map.put("f", new Integer[]{
-                R.raw.spc,
-                R.raw.zaino3colorado
+                R.raw.horse_f_spc,
+                R.raw.horse_f_zaino_colorado
         });
         horsesList.add(new Horse(type, hairType, R.drawable.spc_zaino3colorado, map));
 
