@@ -5,11 +5,13 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import labo2018.razasypelajesonofri.GameActivity;
+import labo2018.razasypelajesonofri.R;
 
 public abstract class InteractionManager {
     protected GameActivity context;
@@ -18,6 +20,7 @@ public abstract class InteractionManager {
     protected Boolean searchingForType;
     protected Boolean searchingForHairType;
     protected Boolean searchingForFullName;
+    protected HorsesProvider horsesProvider;
 
     public InteractionManager(GameActivity context) {
         this.context = context;
@@ -26,6 +29,7 @@ public abstract class InteractionManager {
         searchingForType = false;
         searchingForHairType = false;
         searchingForFullName = false;
+        this.horsesProvider = new HorsesProvider(this.context);
     }
 
 
@@ -57,10 +61,10 @@ public abstract class InteractionManager {
 
     public void showPossibleAnswers(List<? extends View> views) {
         for (int i = 0; i < views.size(); i++) {
-            Horse randomHorse = HorsesProvider.INSTANCE.randomHorse();
+            Horse randomHorse = horsesProvider.randomHorse();
             // we dont wanna have the same horse attribute twice
             while(this.isAlreadyInViews( randomHorse, views) ){
-                randomHorse = HorsesProvider.INSTANCE.randomHorse();
+                randomHorse = horsesProvider.randomHorse();
             }
             views.get(i).setTag(randomHorse);
             manageViewsListItem(randomHorse, i);
@@ -120,5 +124,14 @@ public abstract class InteractionManager {
     public abstract void manageOnClick(View view);
 
     protected abstract Boolean viewValidationCondition();
+
+    // test
+    protected void setImageResource(ImageView imageView, Integer img){
+        if(img != null){
+            imageView.setImageResource(img);
+        }else{
+            imageView.setImageResource(R.drawable.horse_no_image);
+        }
+    }
 
 }

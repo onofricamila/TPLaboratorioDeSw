@@ -22,6 +22,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private String whatToLookFor, lastLookedFor;
     private ImageView homeImgView;
     private InteractionManager interactionManager;
+    private HorsesProvider horsesProvider;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,8 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             setContentView(R.layout.activity_game_interaccion_a);
             interactionManager = new AInteractionManager(this);
         }
+        // horses provider
+        horsesProvider = new HorsesProvider(this);
         // home btn
         homeImgView = findViewById(R.id.homeImgView);
         homeImgView.setOnClickListener(this);
@@ -74,7 +77,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void horseToFind(){
-        horseToFind = HorsesProvider.INSTANCE.randomHorse();
+        horseToFind = horsesProvider.randomHorse();
         // si se trata del juego RPJ, pongo directamente como 'a buscar' al nombre de la foto del caballo
         // random, sino, digo bueno, vamos a buscar o bien la raza o el pelaje asociado a la foto
         if(playingRazasYPelajesJuntos()) {
@@ -93,11 +96,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private Boolean searchingForType(){
-        return HorsesProvider.INSTANCE.isAHorseType(whatToLookFor);
+        return horsesProvider.isAHorseType(whatToLookFor);
     }
 
     private Boolean searchingForHairType(){
-        return HorsesProvider.INSTANCE.isAHorseHairType(whatToLookFor);
+        return horsesProvider.isAHorseHairType(whatToLookFor);
     }
 
     private Boolean searchingForFullName(){

@@ -23,6 +23,13 @@ public class Horse {
         this.soundsMap = new HashMap<>();
     }
 
+    public Horse(String type, String hairType) {
+        this.type = type;
+        this.hairType = hairType;
+        this.image = 0;
+        this.soundsMap = new HashMap<>();
+    }
+
     public String getType() {
         return type;
     }
@@ -40,11 +47,11 @@ public class Horse {
     }
 
     public Integer getFemTypeSound(){
-        return soundsMap.get("f")[0];
+        return soundsMap.get("fem")[0];
     }
 
     public Integer getFemHairTypeSound(){
-        return soundsMap.get("f")[1];
+        return soundsMap.get("fem")[1];
     }
 
     public ArrayList<Integer> getFemSounds(){
@@ -55,11 +62,11 @@ public class Horse {
     }
 
     public Integer getMascTypeSound(){
-        return soundsMap.get("m")[0];
+        return soundsMap.get("masc")[0];
     }
 
     public Integer getMascHairTypeSound(){
-        return soundsMap.get("m")[1];
+        return soundsMap.get("masc")[1];
     }
 
     public ArrayList<Integer> getMascSounds(){
@@ -67,6 +74,14 @@ public class Horse {
         res.add(getMascTypeSound());
         res.add(getMascHairTypeSound());
         return res;
+    }
+
+    public void setImage(Integer image) {
+        this.image = image;
+    }
+
+    public void setSoundsMap(Map<String, Integer[]> soundsMap) {
+        this.soundsMap = soundsMap;
     }
 
     @Override

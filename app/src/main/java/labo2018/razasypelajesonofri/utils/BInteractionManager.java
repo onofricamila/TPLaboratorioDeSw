@@ -63,7 +63,7 @@ public class BInteractionManager extends InteractionManager {
     @Override
     protected void manageViewsListItem(Horse randomHorse, int i) {
         ImageView imageView = imageViews.get(i);
-        imageView.setImageResource(randomHorse.getImage());
+        setImageResource(imageView, randomHorse.getImage());
     }
 
     @Override
@@ -73,7 +73,7 @@ public class BInteractionManager extends InteractionManager {
             Collections.shuffle(imageViews);
             ImageView randomImgView = imageViews.get(0);
             randomImgView.setTag(horseToFind);
-            randomImgView.setImageResource(horseToFind.getImage());
+            setImageResource(randomImgView, horseToFind.getImage());
         }
     }
 
@@ -100,8 +100,8 @@ public class BInteractionManager extends InteractionManager {
     @Override
     public void manageOnClick(View view) {
         if (view == soundImgView){
-            ((ImageView)this.context.findViewById(R.id.soundImgView))
-                                    .setImageResource(R.drawable.ic_audio_click);
+            setImageResource( ((ImageView)this.context.findViewById(R.id.soundImgView))
+                                    , R.drawable.ic_audio_click);
             playHorseToFindSound();
         }else{
             // an image view was clicked

@@ -66,7 +66,7 @@ public class AInteractionManager extends InteractionManager {
     @Override
     public void showWhatToLookFor() {
         super.showWhatToLookFor();
-        horseToFindImgView.setImageResource(horseToFind.getImage());
+        setImageResource(horseToFindImgView, horseToFind.getImage());
     }
 
     @Override
