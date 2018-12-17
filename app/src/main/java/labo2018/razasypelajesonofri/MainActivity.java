@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref =
                 PreferenceManager.getDefaultSharedPreferences(this);
 
-        // testing retrieving prefs values TODO: implement logic according to prefs values
+        // testing retrieving prefs values
         Resources res = getResources();
 
         String minijuegoPref = sharedPref.getString("minijuego", res.getString(R.string.pref_default_minijuego));
@@ -57,25 +57,29 @@ public class MainActivity extends AppCompatActivity {
         Log.d("!!!!C-PREF : ", String.valueOf(CPref));
     }
 
-    /** Called when the user taps the Jugar button */
+    /** Called when the user taps Play Button */
     public void play(View view) {
         findViewById(R.id.playButton).setBackgroundResource(R.drawable.ic_jugar_click);
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
     }
 
+    /** Called when the user taps Recon Button */
     public void toReconocimiento(View view) {
         findViewById(R.id.reconocimientoButton).setBackgroundResource(R.drawable.ic_reconocimiento_click);
-        Intent intent = new Intent(this, GameActivity.class);
-        startActivity(intent);
+//        TODO: reconocimiento activity
+//        Intent intent = new Intent(this, InfoActivity.class);
+//        startActivity(intent);
     }
 
+    /** Called when the user taps Settings Button */
     public void toSettings(View view) {
         findViewById(R.id.settingsButton).setBackgroundResource(R.drawable.ic_config_click);
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
+    /** Called when the user taps Info Button */
     public void toInfo(View view) {
         findViewById(R.id.infoButton).setBackgroundResource(R.drawable.ic_info_click);
 //        TODO: info activity
