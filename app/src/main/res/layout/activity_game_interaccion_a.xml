@@ -63,7 +63,7 @@
                     android:layout_marginTop="40dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/criollo_overo3azulejo" />
+                    app:srcCompat="@drawable/horse_criollo__overo_azulejo" />
 
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
