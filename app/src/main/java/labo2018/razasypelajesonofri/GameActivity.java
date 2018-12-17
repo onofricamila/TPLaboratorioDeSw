@@ -73,13 +73,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         String[] temp = new String[]{horseToFind.getType(), horseToFind.getHairType()};
         return temp[random.nextInt(temp.length)];
     }
-    private void determineHorseToFind(){
-        horseToFind();
-        while( whatToLookFor.equals(lastLookedFor) ){
-            horseToFind();
-        }
-        lastLookedFor = whatToLookFor;
-    }
 
     private void horseToFind(){
         horseToFind = HorsesProvider.INSTANCE.randomHorse();
@@ -92,8 +85,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    private void determineHorseToFind(){
+        horseToFind();
+        while( whatToLookFor.equals(lastLookedFor) ){
+            horseToFind();
+        }
+        lastLookedFor = whatToLookFor;
+    }
 
-        public void newGame() {
+    public void newGame() {
         // reset tags
         interactionManager.resetViewsTags();
         // determine horse to find
