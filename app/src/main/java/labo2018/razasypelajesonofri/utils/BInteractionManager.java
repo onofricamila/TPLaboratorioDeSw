@@ -20,27 +20,23 @@ public class BInteractionManager extends InteractionManager {
 
     public BInteractionManager(GameActivity context) {
         super(context);
-        // get layout text view
         horseToFindTextView = this.context.findViewById(R.id.wordShown);
-        // get Sound ImgView and set listener
         soundImgView = this.context.findViewById(R.id.soundImgView);
         soundImgView.setOnClickListener(this.context);
-        // get horses imgviews from layout
         initPossibleAnswersContainersArray();
-
     }
 
     @Override
     protected void initPossibleAnswersContainersArray() {
         fillHorsesImageViewsArray();
-        // onclick listener
+        // set onclick listener
         setViewListItemsOnClickHandler(imageViews);
 
     }
 
     private void fillHorsesImageViewsArray() {
         imageViews = new ArrayList<>();
-        // add each img view to an imgViews array
+        // add each img view to imgViews array
         imageViews.add(this.context.findViewById(R.id.horseImageView1));
         imageViews.add(this.context.findViewById(R.id.horseImageView2));
         imageViews.add(this.context.findViewById(R.id.horseImageView3));
@@ -57,7 +53,6 @@ public class BInteractionManager extends InteractionManager {
     public void showWhatToLookFor() {
         super.showWhatToLookFor();
         horseToFindTextView.setText(whatToLookFor.toUpperCase());
-
     }
 
     @Override
@@ -73,8 +68,8 @@ public class BInteractionManager extends InteractionManager {
 
     @Override
     public void putAnswerInGame() {
-        // si no hay nada que repreente a lo que estoy buscando, subo la foto elegida como respuesta
-        if ( !isAlreadyInImgViews(horseToFind, imageViews) ){
+        // if there is nothing matching the answer, upload horseToFind
+        if ( !isAlreadyInViews(horseToFind, imageViews) ){
             Collections.shuffle(imageViews);
             ImageView randomImgView = imageViews.get(0);
             randomImgView.setTag(horseToFind);
@@ -86,18 +81,19 @@ public class BInteractionManager extends InteractionManager {
     private void playHorseToFindSound() {
         ArrayList<Integer> sounds = new ArrayList<>();
         if( searchingForType ){
-            sounds.add(horseToFind.getFemSpeciesSound());
+            sounds.add(horseToFind.getFemTypeSound());
         }else if( searchingForHairType ){
             sounds.add(horseToFind.getFemHairTypeSound());
         }else if( searchingForFullName ){
-            sounds.add(horseToFind.getFemSpeciesSound());
+            sounds.add(horseToFind.getFemTypeSound());
             sounds.add(horseToFind.getFemHairTypeSound());
         }
         SoundsPlayer.wannaPlaySound(sounds, this.context);
     }
 
     protected Boolean viewValidationCondition() {
-        return ( ((Horse)selectedImageView.getTag()).getFullName() ) .contains(whatToLookFor);
+        return ( ((Horse)selectedImageView.getTag()).getFullName() )
+                                                        .contains(whatToLookFor);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -105,7 +101,7 @@ public class BInteractionManager extends InteractionManager {
     public void manageOnClick(View view) {
         if (view == soundImgView){
             ((ImageView)this.context.findViewById(R.id.soundImgView))
-                    .setImageResource(R.drawable.ic_audio_click);
+                                    .setImageResource(R.drawable.ic_audio_click);
             playHorseToFindSound();
         }else{
             // an image view was clicked

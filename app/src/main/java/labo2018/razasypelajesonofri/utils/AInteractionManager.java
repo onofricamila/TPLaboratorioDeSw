@@ -22,9 +22,7 @@ public class AInteractionManager extends InteractionManager {
 
     public AInteractionManager(GameActivity context) {
         super(context);
-        // get layout text view
         horseToFindImgView = this.context.findViewById(R.id.horseImgShown);
-        // get horses text views from layout
         initPossibleAnswersContainersArray();
     }
 
@@ -39,7 +37,7 @@ public class AInteractionManager extends InteractionManager {
 
     private void fillSoundsImgViewsArray() {
         soundsImageViews = new ArrayList<>();
-        // add each txt view to an txtViews array
+        // add each img view to soundsImageViews
         soundsImageViews.add(this.context.findViewById(R.id.soundImgView1));
         soundsImageViews.add(this.context.findViewById(R.id.soundImgView2));
         soundsImageViews.add(this.context.findViewById(R.id.soundImgView3));
@@ -95,8 +93,8 @@ public class AInteractionManager extends InteractionManager {
 
     @Override
     public void putAnswerInGame() {
-        // si no hay nada que repreente a lo que estoy buscando, subo la respuesta
-        if ( !isAlreadyInImgViews(horseToFind, horsesTextViews) ){
+        // if there is nothing matching the answer, upload horseToFind
+        if ( !isAlreadyInViews(horseToFind, horsesTextViews) ){
             Random random = new Random();
             Integer randIndex = random.nextInt(horsesTextViews.size());
             TextView randomTextView = horsesTextViews.get(randIndex);
@@ -104,6 +102,30 @@ public class AInteractionManager extends InteractionManager {
             setText(randomTextView, horseToFind);
             soundsImageViews.get(randIndex).setTag( horseToFind );
         }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    private void playHorseSound(View view) {
+        ArrayList<Integer> sounds = new ArrayList<>();
+        if( searchingForType ){
+            sounds.add( ((Horse)view.getTag()).getFemTypeSound()) ;
+        }else if( searchingForHairType ){
+            sounds.add( ((Horse)view.getTag()).getFemHairTypeSound() );
+        }else if( searchingForFullName ){
+            sounds = ((Horse)view.getTag()).getFemSounds() ;
+        }
+        SoundsPlayer.wannaPlaySound(sounds, this.context);
+    }
+
+    protected Boolean viewValidationCondition() {
+        if( searchingForType ){
+            return ( ((Horse)selectedTextView.getTag()).getType().equals(whatToLookFor) );
+        }else if( searchingForHairType ){
+            return ( ((Horse)selectedTextView.getTag()).getHairType().equals(whatToLookFor) );
+        }else if( searchingForFullName ){
+            return ( ((Horse)selectedTextView.getTag()).getFullName().equals(whatToLookFor) );
+        }
+        return ( selectedTextView.getTag().equals(whatToLookFor) );
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -124,32 +146,5 @@ public class AInteractionManager extends InteractionManager {
             validateView();
         }
     }
-
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void playHorseSound(View view) {
-        ArrayList<Integer> sounds = new ArrayList<>();
-        if( searchingForType ){
-            sounds.add( ((Horse)view.getTag()).getFemSpeciesSound()) ;
-        }else if( searchingForHairType ){
-            sounds.add( ((Horse)view.getTag()).getFemHairTypeSound() );
-        }else if( searchingForFullName ){
-            sounds.add( ((Horse)view.getTag()).getFemSpeciesSound()) ;
-            sounds.add( ((Horse)view.getTag()).getFemHairTypeSound() );
-        }
-        SoundsPlayer.wannaPlaySound(sounds, this.context);
-    }
-
-    protected Boolean viewValidationCondition() {
-        if( searchingForType ){
-            return ( ((Horse)selectedTextView.getTag()).getType().equals(whatToLookFor) );
-        }else if( searchingForHairType ){
-            return ( ((Horse)selectedTextView.getTag()).getHairType().equals(whatToLookFor) );
-        }else if( searchingForFullName ){
-            return ( ((Horse)selectedTextView.getTag()).getFullName().equals(whatToLookFor) );
-        }
-        return ( selectedTextView.getTag().equals(whatToLookFor) );
-    }
-
-
 
 }

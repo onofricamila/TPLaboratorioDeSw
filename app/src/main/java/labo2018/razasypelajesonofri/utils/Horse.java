@@ -39,7 +39,7 @@ public class Horse {
         return image;
     }
 
-    public Integer getFemSpeciesSound(){
+    public Integer getFemTypeSound(){
         return soundsMap.get("f")[0];
     }
 
@@ -49,12 +49,12 @@ public class Horse {
 
     public ArrayList<Integer> getFemSounds(){
         ArrayList<Integer> res = new ArrayList<>();
-        res.add(getFemSpeciesSound());
+        res.add(getFemTypeSound());
         res.add(getFemHairTypeSound());
         return res;
     }
 
-    public Integer getMascSpeciesSound(){
+    public Integer getMascTypeSound(){
         return soundsMap.get("m")[0];
     }
 
@@ -64,7 +64,7 @@ public class Horse {
 
     public ArrayList<Integer> getMascSounds(){
         ArrayList<Integer> res = new ArrayList<>();
-        res.add(getMascSpeciesSound());
+        res.add(getMascTypeSound());
         res.add(getMascHairTypeSound());
         return res;
     }

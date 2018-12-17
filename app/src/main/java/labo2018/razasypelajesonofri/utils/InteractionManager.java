@@ -28,6 +28,13 @@ public abstract class InteractionManager {
         searchingForFullName = false;
     }
 
+
+    protected void setViewListItemsOnClickHandler(List<? extends View> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.get(i).setOnClickListener(this.context);
+        }
+    }
+
     public void resetViewsTags(List<? extends View> list){
         for (int i = 0; i < list.size(); i++) {
             View view = list.get(i);
@@ -35,14 +42,24 @@ public abstract class InteractionManager {
         }
     }
 
-    public abstract void showPossibleAnswers();
+    public void informAboutWhatToLookFor(Horse horseToFind, String whatToLookFor, Boolean searchingForType,
+                                         Boolean searchingForHairType, Boolean searchingForFullName){
+        this.horseToFind = horseToFind;
+        this.whatToLookFor = whatToLookFor;
+        this.searchingForType = searchingForType;
+        this.searchingForHairType = searchingForHairType;
+        this.searchingForFullName = searchingForFullName;
+    }
+
+    public  void showWhatToLookFor(){
+        Log.d("!!!WHAT-TO-LOOK-FOR", whatToLookFor);
+    }
 
     public void showPossibleAnswers(List<? extends View> views) {
-        // fill each img view w a unique picture
         for (int i = 0; i < views.size(); i++) {
             Horse randomHorse = HorsesProvider.INSTANCE.randomHorse();
-            // we dont wanna have the same horse image twice
-            while(this.isAlreadyInImgViews( randomHorse, views) ){
+            // we dont wanna have the same horse attribute twice
+            while(this.isAlreadyInViews( randomHorse, views) ){
                 randomHorse = HorsesProvider.INSTANCE.randomHorse();
             }
             views.get(i).setTag(randomHorse);
@@ -54,24 +71,10 @@ public abstract class InteractionManager {
         }
     }
 
-    protected abstract void manageViewsListItem(Horse horseImgId, int randomHorseImgId);
-
-    protected void setViewListItemsOnClickHandler(List<? extends View> list) {
-        for (int i = 0; i < list.size(); i++) {
-            list.get(i).setOnClickListener(this.context);
-        }
-    }
-
-    public abstract void resetViewsTags();
-
-    public  void showWhatToLookFor(){
-        Log.d("!!!WHAT-TO-LOOK-FOR", whatToLookFor);
-    }
-
-    protected boolean isAlreadyInImgViews(Horse horse, List<? extends View> array) {
+    protected boolean isAlreadyInViews(Horse horse, List<? extends View> views) {
         boolean cond = false;
-        for (View view : array) {
-            if ( isAlreadyInImgsViewsCondition(horse, view) ) {
+        for (View view : views) {
+            if ( isAlreadyInViewsCondition(horse, view) ) {
                 cond = true;
                 break;
             }
@@ -79,29 +82,16 @@ public abstract class InteractionManager {
         return cond;
     }
 
-    protected Boolean isAlreadyInImgsViewsCondition(Horse horse, View view){
+    protected Boolean isAlreadyInViewsCondition(Horse horse, View view){
         if( searchingForType ){
-            return  (((Horse)view.getTag()).getType()) .equals(horse.getType());
+            return (((Horse)view.getTag()).getType())
+                                        .equals(horse.getType());
         }else if( searchingForHairType ){
-            return  (((Horse)view.getTag()).getHairType()) .equals(horse.getHairType());
+            return (((Horse)view.getTag()).getHairType())
+                                        .equals(horse.getHairType());
         }
-           return  (((Horse)view.getTag()).getFullName()) .equals(horse.getFullName());
-    }
-
-    public abstract void putAnswerInGame();
-
-    public abstract void manageOnClick(View view);
-
-
-    protected abstract void initPossibleAnswersContainersArray();
-
-    public void informAboutWhatToLookFor(Horse horseToFind, String whatToLookFor, Boolean searchingForType,
-                                         Boolean searchingForHairType, Boolean searchingForFullName){
-        this.horseToFind = horseToFind;
-        this.whatToLookFor = whatToLookFor;
-        this.searchingForType = searchingForType;
-        this.searchingForHairType = searchingForHairType;
-        this.searchingForFullName = searchingForFullName;
+        return (((Horse)view.getTag()).getFullName())
+                                        .equals(horse.getFullName());
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -117,5 +107,18 @@ public abstract class InteractionManager {
         SoundsPlayer.wannaPlaySound(sounds, this.context);
     }
 
+    protected abstract void initPossibleAnswersContainersArray();
+
+    public abstract void resetViewsTags();
+
+    public abstract void showPossibleAnswers();
+
+    protected abstract void manageViewsListItem(Horse horseImgId, int randomHorseImgId);
+
+    public abstract void putAnswerInGame();
+
+    public abstract void manageOnClick(View view);
+
     protected abstract Boolean viewValidationCondition();
+
 }
