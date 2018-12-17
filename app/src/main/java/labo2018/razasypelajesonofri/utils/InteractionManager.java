@@ -98,11 +98,11 @@ public abstract class InteractionManager {
     protected void validateView(){
         ArrayList<Integer> sounds = new ArrayList<>();
         if ( viewValidationCondition()){
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt("relincho"));
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt("success"));
             // play again
             this.context.newGame();
         } else {
-            sounds.add(SoundsProvider.INSTANCE.getSoundAt("resoplido"));
+            sounds.add(SoundsProvider.INSTANCE.getSoundAt("error"));
         }
         SoundsPlayer.wannaPlaySound(sounds, this.context);
     }

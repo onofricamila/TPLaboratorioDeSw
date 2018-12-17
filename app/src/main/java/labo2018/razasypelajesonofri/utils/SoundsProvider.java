@@ -12,8 +12,8 @@ public enum SoundsProvider {
 
     SoundsProvider() {
         this.soundsMap = new HashMap();
-        soundsMap.put("relincho", R.raw.relincho);
-        soundsMap.put("resoplido", R.raw.resoplido);
+        soundsMap.put("success", R.raw.relincho);
+        soundsMap.put("error", R.raw.resoplido);
         // razas y pelajes por separado
         soundsMap.put("alazán ruano", R.raw.alazan3ruano);
         soundsMap.put("bayo", R.raw.bayo);
@@ -27,8 +27,6 @@ public enum SoundsProvider {
         soundsMap.put("tordillo canela", R.raw.tordillo3canela);
         soundsMap.put("zaino colorado", R.raw.zaino3colorado);
         soundsMap.put("overo azulejo", R.raw.overo3azulejo);
-        // razas y pelajes juntos
-
     }
 
     public Integer getSoundAt(String key){
