@@ -53,8 +53,6 @@ public class MainActivity extends AppCompatActivity {
         Boolean RPJPref = sharedPref.getBoolean("RPJ", res.getBoolean(R.bool.pref_default_RPJ));
         Log.d("!!!!RPJ-PREF : ", String.valueOf(RPJPref));
 
-        Boolean CPref = sharedPref.getBoolean("C", res.getBoolean(R.bool.pref_default_C));
-        Log.d("!!!!C-PREF : ", String.valueOf(CPref));
     }
 
     /** Called when the user taps Play Button */

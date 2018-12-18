@@ -21,9 +21,5 @@
         android:defaultValue="@bool/pref_default_RPJ"
         android:key="RPJ"
         android:title="@string/pref_title_RPJ" />
-    <CheckBoxPreference
-        android:defaultValue="@bool/pref_default_C"
-        android:key="C"
-        android:title="@string/pref_title_C" />
 
 </PreferenceScreen>

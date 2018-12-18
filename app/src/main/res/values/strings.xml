@@ -15,7 +15,7 @@
     <string name="action_reconocimiento">Reconocimiento</string>
     <string name="title_activity_reconocimiento">Reconocimiento</string>
 
-    <!-- strings in ic_game activity layout -->
+    <!-- strings in game activity layout -->
     <string name="siguiente_button">Siguiente</string>
     <string name="horse_to_find">Caballo a encontrar</string>
 
@@ -39,12 +39,10 @@
     <string-array name="pref_interaccion_titles">
         <item>Modo A</item>
         <item>Modo B</item>
-        <item>Modo C</item>
     </string-array>
     <string-array name="pref_interaccion_values">
         <item>A</item>
         <item>B</item>
-        <item>C</item>
     </string-array>
     <string name="pref_default_interaccion">B</string>
 
@@ -55,12 +53,10 @@
     <string-array name="pref_minijuego_titles">
         <item>Razas y Pelajes</item>
         <item>Razas y Pelajes Juntos</item>
-        <item>Cruzas</item>
     </string-array>
     <string-array name="pref_minijuego_values">
         <item>RP</item>
         <item>RPJ</item>
-        <item>C</item>
     </string-array>
     <string name="pref_default_minijuego">RPJ</string>
 
@@ -80,7 +76,5 @@
     <bool name="pref_default_RP">true</bool>
     <string name="pref_title_RPJ">Razas y Pelajes Juntos</string>
     <bool name="pref_default_RPJ">true</bool>
-    <string name="pref_title_C">Cruzas</string>
-    <bool name="pref_default_C">true</bool>
 
 </resources>
