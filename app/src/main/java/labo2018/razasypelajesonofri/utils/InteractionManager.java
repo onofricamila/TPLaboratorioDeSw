@@ -22,8 +22,9 @@ public abstract class InteractionManager {
     protected Boolean searchingForFullName;
     protected HorsesProvider horsesProvider;
     protected Boolean listeningToFemAudio;
+    protected Boolean playingLevel2;
 
-    public InteractionManager(GameActivity context) {
+    public InteractionManager(GameActivity context, Boolean playingLevel2) {
         this.context = context;
         this.horseToFind = new Horse();
         this.whatToLookFor = "";
@@ -31,6 +32,7 @@ public abstract class InteractionManager {
         this.searchingForHairType = false;
         this.searchingForFullName = false;
         this.listeningToFemAudio = false;
+        this.playingLevel2 = playingLevel2;
         this.horsesProvider = new HorsesProvider(this.context);
     }
 
@@ -49,7 +51,7 @@ public abstract class InteractionManager {
     }
 
     public void informAboutWhatToLookFor(Horse horseToFind, String whatToLookFor, Boolean searchingForType,
-                                         Boolean searchingForHairType, Boolean searchingForFullName, Boolean listeningToFemAudio){
+        Boolean searchingForHairType, Boolean searchingForFullName, Boolean listeningToFemAudio){
         this.horseToFind = horseToFind;
         this.whatToLookFor = whatToLookFor;
         this.searchingForType = searchingForType;
@@ -58,7 +60,7 @@ public abstract class InteractionManager {
         this.listeningToFemAudio = listeningToFemAudio;
     }
 
-    public  void showWhatToLookFor(){
+    public void showWhatToLookFor(){
         Log.d("!!!WHAT-TO-LOOK-FOR", whatToLookFor);
     }
 

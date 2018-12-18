@@ -63,7 +63,7 @@
                     android:layout_marginTop="40dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/horse_criollo__overo_azulejo" />
+                    />
 
             </LinearLayout>
         </android.support.constraint.ConstraintLayout>
@@ -118,7 +118,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/ic_audio_regular" />
+                        />
 
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
@@ -165,7 +165,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/ic_audio_regular" />
+                        />
 
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
@@ -193,7 +193,6 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:gravity="center"
-                        android:text="lulu"
                         android:textColor="@color/ic_launcher_background"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -214,7 +213,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/ic_audio_regular" />
+                        />
 
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
@@ -241,7 +240,6 @@
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
                         android:gravity="center"
-                        android:text="lele"
                         android:textColor="@color/ic_launcher_background"
                         android:textSize="20sp"
                         android:textStyle="bold"
@@ -262,7 +260,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:srcCompat="@drawable/ic_audio_regular" />
+                        />
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
 

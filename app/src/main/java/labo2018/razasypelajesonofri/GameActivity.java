@@ -6,6 +6,7 @@ import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -31,10 +32,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         if( playingWithBInteraction() ){
             setContentView(R.layout.activity_game_interaccion_b);
-            interactionManager = new BInteractionManager(this);
+            interactionManager = new BInteractionManager(this, playingLevel2());
         }else{
             setContentView(R.layout.activity_game_interaccion_a);
-            interactionManager = new AInteractionManager(this);
+            interactionManager = new AInteractionManager(this, playingLevel2());
         }
         // horses provider
         horsesProvider = new HorsesProvider(this);
@@ -81,6 +82,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Resources res = getResources();
         Boolean audioSwitchPref = getSharedPrefs().getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
         return  audioSwitchPref;
+    }
+
+    private Boolean playingLevel2(){
+        Resources res = getResources();
+        Boolean nivelSwitchPref = getSharedPrefs().getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
+        return  nivelSwitchPref;
     }
 
     private SharedPreferences getSharedPrefs(){

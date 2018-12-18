@@ -2,6 +2,7 @@ package labo2018.razasypelajesonofri.utils;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,8 +19,8 @@ public class BInteractionManager extends InteractionManager {
     private List<ImageView> imageViews;
     private ImageView soundImgView, selectedImageView;
 
-    public BInteractionManager(GameActivity context) {
-        super(context);
+    public BInteractionManager(GameActivity context, Boolean playingLevel2) {
+        super(context, playingLevel2);
         horseToFindTextView = this.context.findViewById(R.id.wordShown);
         soundImgView = this.context.findViewById(R.id.soundImgView);
         soundImgView.setOnClickListener(this.context);
@@ -35,12 +36,26 @@ public class BInteractionManager extends InteractionManager {
     }
 
     private void fillHorsesImageViewsArray() {
+        if (playingLevel2){
+            fillHorsesImgViewsArrayL2();
+        }
+        else{
+            fillHorsesImgViewsArrayL1();
+        }
+    }
+
+    private void fillHorsesImgViewsArrayL2() {
         imageViews = new ArrayList<>();
-        // add each img view to imgViews array
         imageViews.add(this.context.findViewById(R.id.horseImageView1));
         imageViews.add(this.context.findViewById(R.id.horseImageView2));
         imageViews.add(this.context.findViewById(R.id.horseImageView3));
         imageViews.add(this.context.findViewById(R.id.horseImageView4));
+    }
+
+    private void fillHorsesImgViewsArrayL1() {
+        imageViews = new ArrayList<>();
+        imageViews.add(this.context.findViewById(R.id.horseImageView2));
+        imageViews.add(this.context.findViewById(R.id.horseImageView3));
     }
 
     @Override

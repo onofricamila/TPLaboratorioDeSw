@@ -20,8 +20,8 @@ public class AInteractionManager extends InteractionManager {
     private List<TextView> horsesTextViews;
     private List<ImageView> soundsImageViews;
 
-    public AInteractionManager(GameActivity context) {
-        super(context);
+    public AInteractionManager(GameActivity context, Boolean playingLevel2) {
+        super(context, playingLevel2);
         horseToFindImgView = this.context.findViewById(R.id.horseImgShown);
         initPossibleAnswersContainersArray();
     }
@@ -32,29 +32,61 @@ public class AInteractionManager extends InteractionManager {
         fillHorsesTextViewsArray();
         setViewListItemsOnClickHandler(horsesTextViews);
         fillSoundsImgViewsArray();
+        setSoundsImgViewsBackgroundImage();
         setViewListItemsOnClickHandler(soundsImageViews);
     }
 
+
     private void fillSoundsImgViewsArray() {
+        if (playingLevel2){
+            fillSoundsImgViewsArrayL2();
+        }
+        else{
+            fillSoundsImgViewsArrayL1();
+        }
+    }
+
+   private void fillSoundsImgViewsArrayL2() {
         soundsImageViews = new ArrayList<>();
-        // add each img view to soundsImageViews
         soundsImageViews.add(this.context.findViewById(R.id.soundImgView1));
         soundsImageViews.add(this.context.findViewById(R.id.soundImgView2));
         soundsImageViews.add(this.context.findViewById(R.id.soundImgView3));
         soundsImageViews.add(this.context.findViewById(R.id.soundImgView4));
     }
 
+    private void fillSoundsImgViewsArrayL1() {
+        soundsImageViews = new ArrayList<>();
+        soundsImageViews.add(this.context.findViewById(R.id.soundImgView2));
+        soundsImageViews.add(this.context.findViewById(R.id.soundImgView3));
+    }
+
+    private void setSoundsImgViewsBackgroundImage() {
+        for (int i = 0; i < soundsImageViews.size(); i++) {
+            soundsImageViews.get(i).setImageResource(R.drawable.ic_audio_regular);
+        }
+    }
+
     private void fillHorsesTextViewsArray() {
+        if (playingLevel2){
+            fillHorsesTextViewsArrayL2();
+        }
+        else{
+            fillHorsesTextViewsArrayL1();
+        }
+    }
+
+    private void fillHorsesTextViewsArrayL2() {
         horsesTextViews = new ArrayList<>();
-        // add each txt view to an txtViews array
         horsesTextViews.add(this.context.findViewById(R.id.horseTextView1));
         horsesTextViews.add(this.context.findViewById(R.id.horseTextView2));
         horsesTextViews.add(this.context.findViewById(R.id.horseTextView3));
         horsesTextViews.add(this.context.findViewById(R.id.horseTextView4));
-        // DEBUG aca se ven las 'current' tags
-        for (int i = 0; i < horsesTextViews.size(); i++) {
-            Log.d("!!!DEBUG-CURRENT-TAGS: ", horsesTextViews.get(i).toString());
-        }
+    }
+
+    private void fillHorsesTextViewsArrayL1() {
+        horsesTextViews = new ArrayList<>();
+        horsesTextViews.add(this.context.findViewById(R.id.horseTextView2));
+        horsesTextViews.add(this.context.findViewById(R.id.horseTextView3));
     }
 
     @Override
