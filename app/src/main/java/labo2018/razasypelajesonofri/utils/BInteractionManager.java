@@ -79,16 +79,7 @@ public class BInteractionManager extends InteractionManager {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void playHorseToFindSound() {
-        ArrayList<Integer> sounds = new ArrayList<>();
-        if( searchingForType ){
-            sounds.add(horseToFind.getFemTypeSound());
-        }else if( searchingForHairType ){
-            sounds.add(horseToFind.getFemHairTypeSound());
-        }else if( searchingForFullName ){
-            sounds.add(horseToFind.getFemTypeSound());
-            sounds.add(horseToFind.getFemHairTypeSound());
-        }
-        SoundsPlayer.wannaPlaySound(sounds, this.context);
+        playHorseSound(horseToFind);
     }
 
     protected Boolean viewValidationCondition() {

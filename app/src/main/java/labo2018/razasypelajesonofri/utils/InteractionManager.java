@@ -21,14 +21,16 @@ public abstract class InteractionManager {
     protected Boolean searchingForHairType;
     protected Boolean searchingForFullName;
     protected HorsesProvider horsesProvider;
+    protected Boolean listeningToFemAudio;
 
     public InteractionManager(GameActivity context) {
         this.context = context;
         this.horseToFind = new Horse();
         this.whatToLookFor = "";
-        searchingForType = false;
-        searchingForHairType = false;
-        searchingForFullName = false;
+        this.searchingForType = false;
+        this.searchingForHairType = false;
+        this.searchingForFullName = false;
+        this.listeningToFemAudio = false;
         this.horsesProvider = new HorsesProvider(this.context);
     }
 
@@ -47,12 +49,13 @@ public abstract class InteractionManager {
     }
 
     public void informAboutWhatToLookFor(Horse horseToFind, String whatToLookFor, Boolean searchingForType,
-                                         Boolean searchingForHairType, Boolean searchingForFullName){
+                                         Boolean searchingForHairType, Boolean searchingForFullName, Boolean listeningToFemAudio){
         this.horseToFind = horseToFind;
         this.whatToLookFor = whatToLookFor;
         this.searchingForType = searchingForType;
         this.searchingForHairType = searchingForHairType;
         this.searchingForFullName = searchingForFullName;
+        this.listeningToFemAudio = listeningToFemAudio;
     }
 
     public  void showWhatToLookFor(){
@@ -110,6 +113,33 @@ public abstract class InteractionManager {
         }
         SoundsPlayer.wannaPlaySound(sounds, this.context);
     }
+
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    protected void playHorseSound(Horse horse) {
+        ArrayList<Integer> sounds = new ArrayList<>();
+
+        if(listeningToFemAudio){
+            if( searchingForType ){
+                sounds.add( horse.getFemTypeSound()) ;
+            }else if( searchingForHairType ){
+                sounds.add( horse.getFemHairTypeSound() );
+            }else if( searchingForFullName ){
+                sounds = horse.getFemSounds() ;
+            }
+        }else{
+            if( searchingForType ){
+                sounds.add( horse.getMaleTypeSound()) ;
+            }else if( searchingForHairType ){
+                sounds.add( horse.getMaleHairTypeSound() );
+            }else if( searchingForFullName ){
+                sounds = horse.getMaleSounds() ;
+            }
+        }
+
+        SoundsPlayer.wannaPlaySound(sounds, this.context);
+    }
+
 
     protected abstract void initPossibleAnswersContainersArray();
 

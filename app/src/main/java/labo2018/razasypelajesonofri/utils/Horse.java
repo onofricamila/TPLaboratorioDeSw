@@ -47,11 +47,11 @@ public class Horse {
     }
 
     public Integer getFemTypeSound(){
-        return soundsMap.get("fem")[0];
+        return soundsMap.get("f")[0];
     }
 
     public Integer getFemHairTypeSound(){
-        return soundsMap.get("fem")[1];
+        return soundsMap.get("f")[1];
     }
 
     public ArrayList<Integer> getFemSounds(){
@@ -61,18 +61,18 @@ public class Horse {
         return res;
     }
 
-    public Integer getMascTypeSound(){
-        return soundsMap.get("masc")[0];
+    public Integer getMaleTypeSound(){
+        return soundsMap.get("m")[0];
     }
 
-    public Integer getMascHairTypeSound(){
-        return soundsMap.get("masc")[1];
+    public Integer getMaleHairTypeSound(){
+        return soundsMap.get("m")[1];
     }
 
-    public ArrayList<Integer> getMascSounds(){
+    public ArrayList<Integer> getMaleSounds(){
         ArrayList<Integer> res = new ArrayList<>();
-        res.add(getMascTypeSound());
-        res.add(getMascHairTypeSound());
+        res.add(getMaleTypeSound());
+        res.add(getMaleHairTypeSound());
         return res;
     }
 

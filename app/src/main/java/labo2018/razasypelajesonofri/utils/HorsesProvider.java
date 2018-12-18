@@ -31,9 +31,13 @@ public class HorsesProvider{
                 horse = new Horse(type, hairType);
                 Integer image = HorseImgsProvider.INSTANCE.getImgAt(horse.getFullName());
                 Map soundsMap = new HashMap();
-                soundsMap.put("fem", new Integer[]{
+                soundsMap.put("f", new Integer[]{
                         SoundsProvider.INSTANCE.getFemSoundAt(type),
                         SoundsProvider.INSTANCE.getFemSoundAt(hairType)
+                });
+                soundsMap.put("m", new Integer[]{
+                        SoundsProvider.INSTANCE.getMaleSoundAt(type),
+                        SoundsProvider.INSTANCE.getMaleSoundAt(hairType)
                 });
                 horse.setImage(image);
                 horse.setSoundsMap(soundsMap);

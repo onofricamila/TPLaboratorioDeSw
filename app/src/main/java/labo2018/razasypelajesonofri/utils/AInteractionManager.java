@@ -105,16 +105,8 @@ public class AInteractionManager extends InteractionManager {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
-    private void playHorseSound(View view) {
-        ArrayList<Integer> sounds = new ArrayList<>();
-        if( searchingForType ){
-            sounds.add( ((Horse)view.getTag()).getFemTypeSound()) ;
-        }else if( searchingForHairType ){
-            sounds.add( ((Horse)view.getTag()).getFemHairTypeSound() );
-        }else if( searchingForFullName ){
-            sounds = ((Horse)view.getTag()).getFemSounds() ;
-        }
-        SoundsPlayer.wannaPlaySound(sounds, this.context);
+    private void playSelectedHorseSound(View view) {
+       playHorseSound( (Horse)view.getTag() );
     }
 
     protected Boolean viewValidationCondition() {
@@ -137,7 +129,7 @@ public class AInteractionManager extends InteractionManager {
                 wasASound = true;
                 ( (ImageView)this.context.findViewById(view.getId()) )
                         .setImageResource(R.drawable.ic_audio_click);
-                playHorseSound(view);
+                playSelectedHorseSound(view);
             }
         }
         if(!wasASound){

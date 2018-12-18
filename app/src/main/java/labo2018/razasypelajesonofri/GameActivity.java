@@ -66,6 +66,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return minijuegoPref.equals("RPJ");
     }
 
+    private Boolean listeningToFemAudio(){
+        Resources res = getResources();
+        Boolean audioSwitchPref = getSharedPrefs().getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
+        return  audioSwitchPref;
+    }
+
     private SharedPreferences getSharedPrefs(){
         return PreferenceManager.getDefaultSharedPreferences(this);
     }
@@ -114,7 +120,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         determineHorseToFind();
         // tell the interactionM the answer data
         interactionManager.informAboutWhatToLookFor(horseToFind, whatToLookFor, searchingForType(),
-                searchingForHairType(), searchingForFullName());
+                searchingForHairType(), searchingForFullName(), listeningToFemAudio());
         // show in ui
         interactionManager.showWhatToLookFor();
         // populate img views with random imgs
