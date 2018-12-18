@@ -116,6 +116,10 @@ public abstract class InteractionManager {
         SoundsPlayer.wannaPlaySound(sounds, this.context);
     }
 
+    protected  Boolean viewValidationCondition( View view){
+        return ( ((Horse)view.getTag()).getFullName() )
+                .contains(whatToLookFor);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     protected void playHorseSound(Horse horse) {

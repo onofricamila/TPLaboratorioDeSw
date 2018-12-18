@@ -110,14 +110,7 @@ public class AInteractionManager extends InteractionManager {
     }
 
     protected Boolean viewValidationCondition() {
-        if( searchingForType ){
-            return ( ((Horse)selectedTextView.getTag()).getType().equals(whatToLookFor) );
-        }else if( searchingForHairType ){
-            return ( ((Horse)selectedTextView.getTag()).getHairType().equals(whatToLookFor) );
-        }else if( searchingForFullName ){
-            return ( ((Horse)selectedTextView.getTag()).getFullName().equals(whatToLookFor) );
-        }
-        return ( selectedTextView.getTag().equals(whatToLookFor) );
+        return viewValidationCondition(selectedTextView);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)

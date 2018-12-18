@@ -83,8 +83,7 @@ public class BInteractionManager extends InteractionManager {
     }
 
     protected Boolean viewValidationCondition() {
-        return ( ((Horse)selectedImageView.getTag()).getFullName() )
-                                                        .contains(whatToLookFor);
+        return viewValidationCondition(selectedImageView);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
