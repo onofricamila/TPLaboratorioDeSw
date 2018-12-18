@@ -2,6 +2,7 @@ package labo2018.razasypelajesonofri;
 
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
@@ -23,6 +24,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView homeImgView;
     private InteractionManager interactionManager;
     private HorsesProvider horsesProvider;
+    private AnimationDrawable confettiAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +41,17 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // home btn
         homeImgView = findViewById(R.id.homeImgView);
         homeImgView.setOnClickListener(this);
+        // confetti
+        ImageView confettiImgView = (ImageView) findViewById(R.id.confettiImageView);
+        confettiImgView.setBackgroundResource(R.drawable.animation);
+        confettiAnimation = (AnimationDrawable) confettiImgView.getBackground();
+        confettiAnimation.setOneShot(true);
         // let's play!
         newGame();
+    }
+
+    public void startAnimation(){
+        confettiAnimation.start();
     }
 
     @Override

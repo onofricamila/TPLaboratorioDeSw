@@ -106,6 +106,8 @@ public abstract class InteractionManager {
         ArrayList<Integer> sounds = new ArrayList<>();
         if ( viewValidationCondition()){
             sounds.add(SoundsProvider.INSTANCE.getSoundAt("success"));
+            // confetti
+            this.context.startAnimation();
             // play again
             this.context.newGame();
         } else {
