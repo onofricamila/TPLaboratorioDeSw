@@ -65,6 +65,7 @@ public abstract class InteractionManager {
     }
 
     public void showPossibleAnswers(List<? extends View> views) {
+        resetSoundImageToRegular();
         for (int i = 0; i < views.size(); i++) {
             Horse randomHorse = horsesProvider.randomHorse();
             // we dont wanna have the same horse attribute twice
@@ -154,6 +155,8 @@ public abstract class InteractionManager {
     public abstract void resetViewsTags();
 
     public abstract void showPossibleAnswers();
+
+    protected abstract void resetSoundImageToRegular();
 
     protected abstract void manageViewsListItem(Horse horseImgId, int randomHorseImgId);
 

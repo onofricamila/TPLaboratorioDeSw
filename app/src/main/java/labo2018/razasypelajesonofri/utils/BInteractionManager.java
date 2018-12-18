@@ -76,6 +76,11 @@ public class BInteractionManager extends InteractionManager {
     }
 
     @Override
+    protected void resetSoundImageToRegular() {
+        soundImgView.setImageResource(R.drawable.ic_audio_regular);
+    }
+
+    @Override
     protected void manageViewsListItem(Horse randomHorse, int i) {
         ImageView imageView = imageViews.get(i);
         setImageResource(imageView, randomHorse.getImage());

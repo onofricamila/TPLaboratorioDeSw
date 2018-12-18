@@ -107,6 +107,11 @@ public class AInteractionManager extends InteractionManager {
     }
 
     @Override
+    protected void resetSoundImageToRegular() {
+        setSoundsImgViewsBackgroundImage();
+    }
+
+    @Override
     protected void manageViewsListItem(Horse randomHorse, int i) {
         TextView textView = horsesTextViews.get(i);
         setText(textView, randomHorse);
