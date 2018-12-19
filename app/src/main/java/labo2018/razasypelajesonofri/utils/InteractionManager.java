@@ -61,7 +61,7 @@ public abstract class InteractionManager {
     }
 
     public void showWhatToLookFor(){
-        Log.d("!!!WHAT-TO-LOOK-FOR", whatToLookFor);
+        //Log.d("!!!WHAT-TO-LOOK-FOR", whatToLookFor);
     }
 
     public void showPossibleAnswers(List<? extends View> views) {
@@ -74,10 +74,6 @@ public abstract class InteractionManager {
             }
             views.get(i).setTag(randomHorse);
             manageViewsListItem(randomHorse, i);
-        }
-        // DEBUG aca se ven las 'current' tags
-        for (int i = 0; i < views.size(); i++) {
-            Log.d("!!!DEBUG-CURRENT-TAGS: ", views.get(i).getTag().toString());
         }
     }
 
@@ -109,14 +105,42 @@ public abstract class InteractionManager {
         ArrayList<Integer> sounds = new ArrayList<>();
         if ( viewValidationCondition()){
             sounds.add(SoundsProvider.INSTANCE.getSoundAt("success"));
-            // confetti
-            this.context.startAnimation();
-            // play again
-            this.context.newGame();
+            // assertions ++
+            this.context.incrementAssertions();
         } else {
             sounds.add(SoundsProvider.INSTANCE.getSoundAt("error"));
         }
         SoundsPlayer.wannaPlaySound(sounds, this.context);
+        this.context.logdGameFlow();
+        // determine what to do
+        determineWhatToDo();
+
+
+    }
+
+    protected void determineWhatToDo() {
+        if (this.context.gameWon()){
+            // reset
+            this.context.resetRoundsAndAssertions();
+            if(!this.context.playingRazasYPelajesJuntos()){
+                // TODO pasar a RPJ
+                this.context.playRazasYPelajesJuntos();
+                // confetti
+                this.context.startAnimation();
+            }else{
+                // TODO copa + btn play again que te pasa a RP?
+                this.context.playRazasYPelajes();
+                Log.d("!!!!!!GAME-FLOW", "copa + volver a RP");
+            }
+        }else if (this.context.isImpossibleToWin()){
+            Log.d("!!!!!!GAME-FLOW", "reset curent game");
+            this.context.makeToast("Reintenta el minijuego");
+            this.context.resetRoundsAndAssertions();
+        }else if (!this.context.roundsLimitAchieved()){
+            // TODO ver si hace falta algo
+        }
+        // play again
+        this.context.newGame();
     }
 
     protected  Boolean viewValidationCondition( View view){

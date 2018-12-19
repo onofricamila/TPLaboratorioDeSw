@@ -7,8 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -26,6 +28,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private InteractionManager interactionManager;
     private HorsesProvider horsesProvider;
     private AnimationDrawable confettiAnimation;
+    private int rounds, assertions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +50,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         confettiImgView.setBackgroundResource(R.drawable.animation);
         confettiAnimation = (AnimationDrawable) confettiImgView.getBackground();
         confettiAnimation.setOneShot(true);
+        // reset
+        resetRoundsAndAssertions();
         // let's play!
         newGame();
+    }
+
+    public void resetRoundsAndAssertions() {
+        rounds = 0;
+        assertions = 0;
     }
 
     public void startAnimation(){
@@ -72,7 +82,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return minijuegoPref.equals("B");
     }
 
-    private Boolean playingRazasYPelajesJuntos(){
+    public Boolean playingRazasYPelajesJuntos(){
         Resources res = getResources();
         String minijuegoPref = getSharedPrefs().getString("minijuego", res.getString(R.string.pref_default_minijuego));
         return minijuegoPref.equals("RPJ");
@@ -88,6 +98,20 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Resources res = getResources();
         Boolean nivelSwitchPref = getSharedPrefs().getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
         return  nivelSwitchPref;
+    }
+
+    private void playGame(String gameString){
+        SharedPreferences.Editor editor = getSharedPrefs().edit();
+        editor.putString("minijuego", gameString);
+        editor.commit();
+    }
+
+    public void playRazasYPelajes(){
+        playGame("RP");
+    }
+
+    public void playRazasYPelajesJuntos(){
+        playGame("RPJ");
     }
 
     private SharedPreferences getSharedPrefs(){
@@ -131,7 +155,36 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         return (!searchingForType() && !searchingForHairType());
     }
 
+    public void incrementAssertions(){
+        assertions++;
+    }
+
+    public Boolean roundsLimitAchieved(){
+        return rounds==5;
+    }
+
+    public Boolean gameWon(){
+        return assertions>=3;
+    }
+
+    public Boolean isImpossibleToWin(){
+        return (rounds - assertions)>=3;
+    }
+
+    public void logdGameFlow(){
+        Log.d("!!!!GAME-FOW", "ROUNDS:"+rounds+" ASSERTIONS:"+assertions);
+
+    }
+
+    public void makeToast(String string){
+        Toast toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 12);
+        toast.show();
+    }
+
     public void newGame() {
+        // new round
+        rounds++;
         // reset tags
         interactionManager.resetViewsTags();
         // determine horse to find

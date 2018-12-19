@@ -58,7 +58,7 @@
         <item>RP</item>
         <item>RPJ</item>
     </string-array>
-    <string name="pref_default_minijuego">RPJ</string>
+    <string name="pref_default_minijuego">RP</string>
 
     <!-- Example ic_settings for Reconocimiento -->
     <string name="pref_header_reconocimiento">Modo de Reconocimiento</string>
