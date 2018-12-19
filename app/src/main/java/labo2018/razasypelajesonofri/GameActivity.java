@@ -182,6 +182,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         toast.show();
     }
 
+    public void showTrophy() {
+
+    }
+
     public void newGame() {
         // new round
         rounds++;

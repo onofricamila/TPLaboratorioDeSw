@@ -107,7 +107,7 @@ public abstract class InteractionManager {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     protected void validateView(){
         ArrayList<Integer> sounds = new ArrayList<>();
-        if ( viewValidationCondition()){
+        if ( viewValidationCondition() ){
             sounds.add(SoundsProvider.INSTANCE.getSoundAt("success"));
             // assertions ++
             this.context.incrementAssertions();
@@ -118,33 +118,36 @@ public abstract class InteractionManager {
         this.context.logdGameFlow();
         // determine what to do
         determineWhatToDo();
-
-
     }
 
     protected void determineWhatToDo() {
         if (this.context.gameWon()){
             // reset
             this.context.resetRoundsAndAssertions();
+            // if RP
             if(!this.context.playingRazasYPelajesJuntos()){
-                // TODO pasar a RPJ
+                // start playing RPJ
                 this.context.playRazasYPelajesJuntos();
                 // confetti
                 this.context.startAnimation();
+                // play again
+                this.context.newGame();
             }else{
-                // TODO copa + btn play again que te pasa a RP?
-                this.context.playRazasYPelajes();
-                Log.d("!!!!!!GAME-FLOW", "copa + volver a RP");
+                // was playing RPJ -> TODO copa
+                Log.d("!!!!!!GAME-FLOW", "copa ");
+                this.context.showTrophy();
             }
         }else if (this.context.isImpossibleToWin()){
-            Log.d("!!!!!!GAME-FLOW", "reset curent game");
+            // inform user
             this.context.makeToast("Reintenta el minijuego");
+            // reset
             this.context.resetRoundsAndAssertions();
-        }else if (!this.context.roundsLimitAchieved()){
-            // TODO ver si hace falta algo
+            // play again
+            this.context.newGame();
+        }else {
+            // play again
+            this.context.newGame();
         }
-        // play again
-        this.context.newGame();
     }
 
     protected  Boolean viewValidationCondition( View view){
