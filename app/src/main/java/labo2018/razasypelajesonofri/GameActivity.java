@@ -183,7 +183,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void showTrophy() {
-
+        setContentView(R.layout.activity_game_trophy);
+        // home btn
+        homeImgView = findViewById(R.id.homeImgView);
+        homeImgView.setOnClickListener(this);
     }
 
     public void newGame() {
