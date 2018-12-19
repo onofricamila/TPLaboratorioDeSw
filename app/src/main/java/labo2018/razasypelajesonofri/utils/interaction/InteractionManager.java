@@ -1,4 +1,4 @@
-package labo2018.razasypelajesonofri.utils;
+package labo2018.razasypelajesonofri.utils.interaction;
 
 
 import android.os.Build;
@@ -12,6 +12,10 @@ import java.util.List;
 
 import labo2018.razasypelajesonofri.GameActivity;
 import labo2018.razasypelajesonofri.R;
+import labo2018.razasypelajesonofri.utils.horses.Horse;
+import labo2018.razasypelajesonofri.utils.horses.HorsesProvider;
+import labo2018.razasypelajesonofri.utils.sounds.SoundsPlayer;
+import labo2018.razasypelajesonofri.utils.sounds.SoundsProvider;
 
 public abstract class InteractionManager {
     protected GameActivity context;

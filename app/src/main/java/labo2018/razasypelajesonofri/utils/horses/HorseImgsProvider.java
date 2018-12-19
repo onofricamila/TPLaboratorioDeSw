@@ -1,4 +1,4 @@
-package labo2018.razasypelajesonofri.utils;
+package labo2018.razasypelajesonofri.utils.horses;
 
 import java.util.HashMap;
 import java.util.Map;

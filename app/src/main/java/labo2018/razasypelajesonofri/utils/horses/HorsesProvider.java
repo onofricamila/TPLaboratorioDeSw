@@ -1,4 +1,4 @@
-package labo2018.razasypelajesonofri.utils;
+package labo2018.razasypelajesonofri.utils.horses;
 
 import android.support.v7.app.AppCompatActivity;
 import org.json.JSONArray;
@@ -11,6 +11,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import labo2018.razasypelajesonofri.R;
+import labo2018.razasypelajesonofri.utils.JsonManager;
+import labo2018.razasypelajesonofri.utils.sounds.SoundsProvider;
 
 public class HorsesProvider{
 

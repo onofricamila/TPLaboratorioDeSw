@@ -14,11 +14,11 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-import labo2018.razasypelajesonofri.utils.AInteractionManager;
-import labo2018.razasypelajesonofri.utils.BInteractionManager;
-import labo2018.razasypelajesonofri.utils.Horse;
-import labo2018.razasypelajesonofri.utils.HorsesProvider;
-import labo2018.razasypelajesonofri.utils.InteractionManager;
+import labo2018.razasypelajesonofri.utils.interaction.AInteractionManager;
+import labo2018.razasypelajesonofri.utils.interaction.BInteractionManager;
+import labo2018.razasypelajesonofri.utils.horses.Horse;
+import labo2018.razasypelajesonofri.utils.horses.HorsesProvider;
+import labo2018.razasypelajesonofri.utils.interaction.InteractionManager;
 
 public class GameActivity extends AppCompatActivity implements View.OnClickListener{
     // used by both interaction modes

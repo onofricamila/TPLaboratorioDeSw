@@ -1,8 +1,7 @@
-package labo2018.razasypelajesonofri.utils;
+package labo2018.razasypelajesonofri.utils.interaction;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +12,7 @@ import java.util.List;
 
 import labo2018.razasypelajesonofri.GameActivity;
 import labo2018.razasypelajesonofri.R;
+import labo2018.razasypelajesonofri.utils.horses.Horse;
 
 public class BInteractionManager extends InteractionManager {
     private TextView horseToFindTextView;
