@@ -79,30 +79,30 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     private Boolean playingWithBInteraction(){
         Resources res = getResources();
-        String minijuegoPref = getSharedPrefs().getString("interaccion", res.getString(R.string.pref_default_interaccion));
+        String minijuegoPref = getDefaultSharedPrefs().getString("interaccion", res.getString(R.string.pref_default_interaccion));
         return minijuegoPref.equals("B");
     }
 
     public Boolean playingRazasYPelajesJuntos(){
         Resources res = getResources();
-        String minijuegoPref = getSharedPrefs().getString("minijuego", res.getString(R.string.pref_default_minijuego));
+        String minijuegoPref = getDefaultSharedPrefs().getString("minijuego", res.getString(R.string.pref_default_minijuego));
         return minijuegoPref.equals("RPJ");
     }
 
     private Boolean listeningToFemAudio(){
         Resources res = getResources();
-        Boolean audioSwitchPref = getSharedPrefs().getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
+        Boolean audioSwitchPref = getDefaultSharedPrefs().getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
         return  audioSwitchPref;
     }
 
     private Boolean playingLevel2(){
         Resources res = getResources();
-        Boolean nivelSwitchPref = getSharedPrefs().getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
+        Boolean nivelSwitchPref = getDefaultSharedPrefs().getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
         return  nivelSwitchPref;
     }
 
     private void playGame(String gameString){
-        SharedPreferences.Editor editor = getSharedPrefs().edit();
+        SharedPreferences.Editor editor = getDefaultSharedPrefs().edit();
         editor.putString("minijuego", gameString);
         editor.commit();
     }
@@ -115,7 +115,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         playGame("RPJ");
     }
 
-    private SharedPreferences getSharedPrefs(){
+    private SharedPreferences getDefaultSharedPrefs(){
         return PreferenceManager.getDefaultSharedPreferences(this);
     }
 
@@ -158,10 +158,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void incrementAssertions(){
         assertions++;
-    }
-
-    public Boolean roundsLimitAchieved(){
-        return rounds==5;
     }
 
     public Boolean gameWon(){
@@ -208,26 +204,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         interactionManager.putAnswerInGame();
     }
 
-    private SharedPreferences getSharedPrefs2(){
-        return getSharedPreferences("A",Context.MODE_PRIVATE);
+    private SharedPreferences getEnablingGamesSharedPrefs(){
+        return getSharedPreferences("EnablingGames", Context.MODE_PRIVATE);
     }
 
     public void enableRPJ() {
         Log.d("!!!!!!", "enableRPJ");
-        SharedPreferences.Editor editor =  getSharedPrefs2().edit();
-        editor.putBoolean("RPJenabled", true);
-        editor.commit();
+        enableGame("RPJenabled");
     }
 
     public void enableRP() {
         Log.d("!!!!!!", "enableRP");
-        SharedPreferences.Editor editor =  getSharedPrefs2().edit();
-        editor.putBoolean("RPenabled", true);
-        editor.commit();
+        enableGame("RPenabled");
     }
 
     private void enableGame(String key){
-        SharedPreferences.Editor editor =  getSharedPrefs2().edit();
+        SharedPreferences.Editor editor =  getEnablingGamesSharedPrefs().edit();
         editor.putBoolean(key, true);
         editor.commit();
     }

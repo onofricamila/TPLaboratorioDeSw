@@ -126,18 +126,19 @@ public abstract class InteractionManager {
             this.context.resetRoundsAndAssertions();
             // if RP
             if(!this.context.playingRazasYPelajesJuntos()){
-                this.context.enableRP();
-                // start playing RPJ
+                // enable RPJ in settings
+                this.context.enableRPJ();
+                // -> select 'playing RPJ'
                 this.context.playRazasYPelajesJuntos();
                 // confetti
                 this.context.startAnimation();
                 // play again
                 this.context.newGame();
             }else{
-                // was playing RPJ -> TODO copa
+                // was playing RPJ -> cup
                 Log.d("!!!!!!GAME-FLOW", "copa ");
                 this.context.showTrophy();
-                this.context.enableRPJ();
+
             }
         }else if (this.context.isImpossibleToWin()){
             // inform user
@@ -147,7 +148,7 @@ public abstract class InteractionManager {
             // play again
             this.context.newGame();
         }else {
-            // play again
+            // player has chances to win -> play again
             this.context.newGame();
         }
     }

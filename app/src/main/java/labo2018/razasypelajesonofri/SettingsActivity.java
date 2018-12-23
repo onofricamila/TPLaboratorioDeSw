@@ -268,21 +268,20 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private void setListPreferenceData() {
             ListPreference lp = (ListPreference) findPreference("minijuego");
 
-            SharedPreferences sharedPref = getActivity().getSharedPreferences("A",Context.MODE_PRIVATE);
+            SharedPreferences sharedPref = getActivity().getSharedPreferences("EnablingGames",Context.MODE_PRIVATE);
 
-            Boolean RPenabled = sharedPref.getBoolean("RPenabled", false);
             Boolean RPJenabled = sharedPref.getBoolean("RPJenabled", false);
 
             CharSequence[] entries;
             CharSequence[] entryValues;
-            if (RPenabled && !RPJenabled){
+            if (!RPJenabled){
                 entries = new CharSequence[1];
                 entries[0] =  "1) Razas y Pelajes";
 
                 entryValues = new CharSequence[1];
                 entryValues[0] = "RP";
             }
-            else if (RPenabled && RPJenabled){
+            else{
                 entries = new CharSequence[2];
                 entries[0] =  "1) Razas y Pelajes";
                 entries[1] =  "2) Razas y Pelajes Juntos";
@@ -290,9 +289,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
                 entryValues = new CharSequence[2];
                 entryValues[0] = "RP";
                 entryValues[1] = "RPJ";
-            }else{
-                entries = new CharSequence[]{};
-                entryValues = new CharSequence[]{};
             }
 
             lp.setEntries(entries);
