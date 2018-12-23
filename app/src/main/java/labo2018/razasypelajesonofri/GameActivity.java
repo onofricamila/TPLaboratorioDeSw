@@ -1,5 +1,6 @@
 package labo2018.razasypelajesonofri;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
@@ -207,4 +208,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         interactionManager.putAnswerInGame();
     }
 
+    private SharedPreferences getSharedPrefs2(){
+        return getSharedPreferences("A",Context.MODE_PRIVATE);
+    }
+
+    public void enableRPJ() {
+        Log.d("!!!!!!", "enableRPJ: ");
+        SharedPreferences.Editor editor =  getSharedPrefs2().edit();
+        editor.putBoolean("RPJenabled", true);
+        editor.commit();
+    }
+
+    public void enableRP() {
+        Log.d("!!!!!!", "enableRP: ");
+        SharedPreferences.Editor editor =  getSharedPrefs2().edit();
+        editor.putBoolean("RPenabled", true);
+        editor.commit();
+    }
 }

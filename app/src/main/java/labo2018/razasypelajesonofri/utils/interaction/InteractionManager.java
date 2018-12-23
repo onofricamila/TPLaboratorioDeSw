@@ -126,6 +126,7 @@ public abstract class InteractionManager {
             this.context.resetRoundsAndAssertions();
             // if RP
             if(!this.context.playingRazasYPelajesJuntos()){
+                this.context.enableRP();
                 // start playing RPJ
                 this.context.playRazasYPelajesJuntos();
                 // confetti
@@ -136,6 +137,7 @@ public abstract class InteractionManager {
                 // was playing RPJ -> TODO copa
                 Log.d("!!!!!!GAME-FLOW", "copa ");
                 this.context.showTrophy();
+                this.context.enableRPJ();
             }
         }else if (this.context.isImpossibleToWin()){
             // inform user
