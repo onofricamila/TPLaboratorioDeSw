@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity
-            android:screenOrientation="landscape"
-            android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,24 +19,25 @@
             </intent-filter>
         </activity>
         <activity
-            android:screenOrientation="landscape"
             android:name=".SettingsActivity"
             android:label="@string/title_activity_settings"
-            android:theme="@style/AppTheme"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="landscape"
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="labo2018.razasypelajesonofri.MainActivity" />
         </activity>
         <activity
-            android:screenOrientation="landscape"
             android:name=".GameActivity"
             android:label="@string/title_activity_jugar"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="landscape">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="labo2018.razasypelajesonofri.MainActivity" />
         </activity>
+        <activity android:name=".InfoActivity"></activity>
     </application>
 
 </manifest>

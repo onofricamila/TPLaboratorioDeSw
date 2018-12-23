@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d("!!!!MINIJUEGO-PREF : ", minijuegoPref);
 
         Boolean nivelSwitchPref = sharedPref.getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
-        Log.d("!!!!NIVEL-PREF : ", String.valueOf(nivelSwitchPref));
+        Log.d("!!!!NIVEL2-PREF : ", String.valueOf(nivelSwitchPref));
 
         Boolean audioSwitchPref = sharedPref.getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
         Log.d("!!!!AUDIO-PREF : ", String.valueOf(audioSwitchPref));
@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity {
         Log.d("!!!!VISUALIZAC-PREF : ", visualizacionPref);
 
         Boolean RPPref = sharedPref.getBoolean("RP", res.getBoolean(R.bool.pref_default_RP));
-        Log.d("!!!!RP-PREF : ", String.valueOf(RPPref));
+        Log.d("!!!!RECO-RP-PREF : ", String.valueOf(RPPref));
 
         Boolean RPJPref = sharedPref.getBoolean("RPJ", res.getBoolean(R.bool.pref_default_RPJ));
-        Log.d("!!!!RPJ-PREF : ", String.valueOf(RPJPref));
+        Log.d("!!!!RECO-RPJ-PREF : ", String.valueOf(RPJPref));
 
     }
 
@@ -80,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
     /** Called when the user taps Info Button */
     public void toInfo(View view) {
         findViewById(R.id.infoButton).setBackgroundResource(R.drawable.ic_info_click);
-//        TODO: info activity
-//        Intent intent = new Intent(this, InfoActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, InfoActivity.class);
+        startActivity(intent);
     }
 }
