@@ -263,16 +263,6 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             // guidelines.
             setListPreferenceData();
             bindPreferenceSummaryToValue(findPreference("minijuego"));
-            showPref();
-        }
-
-        private void showPref() {
-            SharedPreferences sharedPref = getActivity().getSharedPreferences("A",Context.MODE_PRIVATE);
-            Boolean RPJenabled = sharedPref.getBoolean("RPJenabled", false);
-            Log.d("!!!RPJenabled", String.valueOf(RPJenabled));
-
-            Boolean RPenabled = sharedPref.getBoolean("RPenabled", false);
-            Log.d("!!!RPenabled", String.valueOf(RPenabled));
         }
 
         private void setListPreferenceData() {
@@ -280,23 +270,29 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
 
             SharedPreferences sharedPref = getActivity().getSharedPreferences("A",Context.MODE_PRIVATE);
 
+            Boolean RPenabled = sharedPref.getBoolean("RPenabled", false);
             Boolean RPJenabled = sharedPref.getBoolean("RPJenabled", false);
+
             CharSequence[] entries;
             CharSequence[] entryValues;
-            if (RPJenabled){
+            if (RPenabled && !RPJenabled){
+                entries = new CharSequence[1];
+                entries[0] =  "1) Razas y Pelajes";
+
+                entryValues = new CharSequence[1];
+                entryValues[0] = "RP";
+            }
+            else if (RPenabled && RPJenabled){
                 entries = new CharSequence[2];
-                entries[0] =  "Razas y Pelajes";
-                entries[1] =  "Razas y Pelajes Juntos";
+                entries[0] =  "1) Razas y Pelajes";
+                entries[1] =  "2) Razas y Pelajes Juntos";
 
                 entryValues = new CharSequence[2];
                 entryValues[0] = "RP";
                 entryValues[1] = "RPJ";
             }else{
-                entries = new CharSequence[1];
-                entries[0] =  "Razas y Pelajes";
-
-                entryValues = new CharSequence[1];
-                entryValues[0] = "RP";
+                entries = new CharSequence[]{};
+                entryValues = new CharSequence[]{};
             }
 
             lp.setEntries(entries);

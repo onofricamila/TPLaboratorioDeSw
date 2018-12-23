@@ -37,8 +37,8 @@
     <string name="pref_header_interaccion">Modo de Interacción</string>
     <string name="pref_title_interaccion">Interacción?</string>
     <string-array name="pref_interaccion_titles">
-        <item>Modo A</item>
-        <item>Modo B</item>
+        <item>Modo A: Imagen-Palabra</item>
+        <item>Modo B: Palabra-Imagen</item>
     </string-array>
     <string-array name="pref_interaccion_values">
         <item>A</item>
@@ -48,16 +48,7 @@
 
     <!-- Example ic_settings for Mini Juego -->
     <string name="pref_header_minijuego">Mini Juego</string>
-
     <string name="pref_title_minijuego">Juego?</string>
-    <string-array name="pref_minijuego_titles">
-        <item>Razas y Pelajes</item>
-        <item>Razas y Pelajes Juntos</item>
-    </string-array>
-    <string-array name="pref_minijuego_values">
-        <item>RP</item>
-        <item>RPJ</item>
-    </string-array>
     <string name="pref_default_minijuego">RP</string>
 
     <!-- Example ic_settings for Reconocimiento -->

@@ -213,16 +213,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void enableRPJ() {
-        Log.d("!!!!!!", "enableRPJ: ");
+        Log.d("!!!!!!", "enableRPJ");
         SharedPreferences.Editor editor =  getSharedPrefs2().edit();
         editor.putBoolean("RPJenabled", true);
         editor.commit();
     }
 
     public void enableRP() {
-        Log.d("!!!!!!", "enableRP: ");
+        Log.d("!!!!!!", "enableRP");
         SharedPreferences.Editor editor =  getSharedPrefs2().edit();
         editor.putBoolean("RPenabled", true);
+        editor.commit();
+    }
+
+    private void enableGame(String key){
+        SharedPreferences.Editor editor =  getSharedPrefs2().edit();
+        editor.putBoolean(key, true);
         editor.commit();
     }
 }
