@@ -6,13 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import labo2018.razasypelajesonofri.utils.CustomListAdapter;
-import labo2018.razasypelajesonofri.utils.ListItem;
+import labo2018.razasypelajesonofri.utils.recoListView.CustomListAdapter;
+import labo2018.razasypelajesonofri.utils.recoListView.ListItem;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -37,7 +36,7 @@ public class RecoActivity extends AppCompatActivity {
         listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Bayo" ));
 
         ListView listView = findViewById(R.id.listView);
-        CustomListAdapter customListAdapter = new CustomListAdapter(this, R.layout.list_view_row, listItems);
+        CustomListAdapter customListAdapter = new CustomListAdapter(this, R.layout.activity_reco_list_view_row, listItems);
         listView.setAdapter(customListAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

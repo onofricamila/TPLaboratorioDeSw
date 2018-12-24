@@ -1,4 +1,4 @@
-package labo2018.razasypelajesonofri.utils;
+package labo2018.razasypelajesonofri.utils.recoListView;
 
 import android.app.Activity;
 import android.content.Context;
