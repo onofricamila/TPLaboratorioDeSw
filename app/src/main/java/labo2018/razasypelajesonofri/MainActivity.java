@@ -65,9 +65,8 @@ public class MainActivity extends AppCompatActivity {
     /** Called when the user taps Recon Button */
     public void toReconocimiento(View view) {
         findViewById(R.id.reconocimientoButton).setBackgroundResource(R.drawable.ic_reconocimiento_click);
-//        TODO: reconocimiento activity
-//        Intent intent = new Intent(this, InfoActivity.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, RecoActivity.class);
+        startActivity(intent);
     }
 
     /** Called when the user taps Settings Button */

@@ -37,7 +37,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="labo2018.razasypelajesonofri.MainActivity" />
         </activity>
-        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".InfoActivity" />
+        <activity android:name=".RecoActivity"></activity>
     </application>
 
 </manifest>
