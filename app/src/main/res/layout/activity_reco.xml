@@ -9,7 +9,7 @@
 
     <!-- CONTAINER -->
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/fab_margin"
@@ -75,7 +75,18 @@
 
         </android.support.constraint.ConstraintLayout>
 
+
+
     </LinearLayout>
 
+    <ImageView
+        android:id="@+id/expandedImageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="visible"/>
 
 </android.support.constraint.ConstraintLayout>
