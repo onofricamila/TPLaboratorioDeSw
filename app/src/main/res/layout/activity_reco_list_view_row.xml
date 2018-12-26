@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/horseImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="75dp"
         app:srcCompat="@drawable/horse_criollo__picaso"
         android:layout_gravity="center"
         android:layout_margin="20dp"/>
