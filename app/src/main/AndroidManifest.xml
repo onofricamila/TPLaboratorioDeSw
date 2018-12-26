@@ -37,8 +37,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="labo2018.razasypelajesonofri.MainActivity" />
         </activity>
-        <activity android:name=".InfoActivity" />
-        <activity android:name=".RecoActivity"></activity>
+        <activity
+            android:name=".InfoActivity"
+            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".RecoActivity"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
