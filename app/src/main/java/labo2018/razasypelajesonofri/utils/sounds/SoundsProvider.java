@@ -2,7 +2,6 @@ package labo2018.razasypelajesonofri.utils.sounds;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import labo2018.razasypelajesonofri.R;
 
 public enum SoundsProvider {

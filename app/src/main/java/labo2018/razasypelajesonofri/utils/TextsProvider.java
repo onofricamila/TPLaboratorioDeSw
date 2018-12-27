@@ -2,7 +2,6 @@ package labo2018.razasypelajesonofri.utils;
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;

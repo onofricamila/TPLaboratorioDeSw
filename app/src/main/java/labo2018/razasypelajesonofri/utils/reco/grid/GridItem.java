@@ -1,18 +1,16 @@
-package labo2018.razasypelajesonofri.utils.recoListView;
+package labo2018.razasypelajesonofri.utils.reco.grid;
 
 import java.util.ArrayList;
 
-public class ListItem {
+public class GridItem{
     int horseImgId;
     String horseName;
     ArrayList<Integer> sounds;
-    String txt;
 
-    public ListItem(int horseImgId, String horseName, ArrayList<Integer> sounds, String txt) {
+    public GridItem(int horseImgId, String horseName, ArrayList<Integer> sounds) {
         this.horseImgId = horseImgId;
         this.horseName = horseName;
         this.sounds = sounds;
-        this.txt = txt;
     }
 
     public int getHorseImgId() {
@@ -23,7 +21,7 @@ public class ListItem {
         return horseName;
     }
 
-    public  ArrayList<Integer> getSounds() {
+    public ArrayList<Integer> getSounds() {
         return sounds;
     }
 }

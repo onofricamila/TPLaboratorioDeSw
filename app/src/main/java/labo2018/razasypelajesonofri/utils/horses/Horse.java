@@ -9,13 +9,6 @@ public class Horse {
     private Integer image;
     private Map<String, Integer[]> soundsMap;
 
-    public Horse(String type, String hairType, Integer image, Map<String, Integer[]> soundsMap) {
-        this.type = type;
-        this.hairType = hairType;
-        this.image = image;
-        this.soundsMap = soundsMap;
-    }
-
     public Horse() {
         this.type = "";
         this.hairType = "";

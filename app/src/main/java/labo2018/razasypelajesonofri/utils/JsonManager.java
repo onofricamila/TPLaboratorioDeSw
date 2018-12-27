@@ -1,7 +1,6 @@
 package labo2018.razasypelajesonofri.utils;
 
 import android.support.v7.app.AppCompatActivity;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

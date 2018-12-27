@@ -18,21 +18,17 @@ import android.view.animation.DecelerateInterpolator;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 import java.util.List;
-
-import labo2018.razasypelajesonofri.utils.CustomGridAdapter;
-import labo2018.razasypelajesonofri.utils.GridItem;
+import labo2018.razasypelajesonofri.utils.reco.grid.CustomGridAdapter;
+import labo2018.razasypelajesonofri.utils.reco.grid.GridItem;
 import labo2018.razasypelajesonofri.utils.TextsProvider;
 import labo2018.razasypelajesonofri.utils.horses.Horse;
 import labo2018.razasypelajesonofri.utils.horses.HorseImgsProvider;
 import labo2018.razasypelajesonofri.utils.horses.HorsesProvider;
-import labo2018.razasypelajesonofri.utils.recoListView.CustomListAdapter;
-import labo2018.razasypelajesonofri.utils.recoListView.ListItem;
+import labo2018.razasypelajesonofri.utils.reco.list.CustomListAdapter;
+import labo2018.razasypelajesonofri.utils.reco.list.ListItem;
 import labo2018.razasypelajesonofri.utils.sounds.SoundsPlayer;
-
-import static android.app.PendingIntent.getActivity;
 
 public class RecoActivity extends AppCompatActivity {
     // Hold a reference to the current animator,

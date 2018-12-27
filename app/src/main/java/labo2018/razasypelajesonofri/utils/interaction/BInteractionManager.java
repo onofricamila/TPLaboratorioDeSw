@@ -5,11 +5,9 @@ import android.support.annotation.RequiresApi;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import labo2018.razasypelajesonofri.GameActivity;
 import labo2018.razasypelajesonofri.R;
 import labo2018.razasypelajesonofri.utils.horses.Horse;

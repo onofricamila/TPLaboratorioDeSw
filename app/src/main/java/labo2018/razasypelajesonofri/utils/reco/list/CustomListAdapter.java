@@ -1,5 +1,4 @@
-
-package labo2018.razasypelajesonofri.utils;
+package labo2018.razasypelajesonofri.utils.reco.list;
 
 import android.app.Activity;
 import android.content.Context;
@@ -8,21 +7,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import java.util.List;
-
 import labo2018.razasypelajesonofri.R;
-import labo2018.razasypelajesonofri.utils.sounds.SoundsProvider;
 
-public class CustomGridAdapter extends ArrayAdapter<GridItem> {
+public class CustomListAdapter extends ArrayAdapter<ListItem> {
     Context context;
     int layoutResourceId;
-    List<GridItem> data;
+    List<ListItem> data;
 
-    public CustomGridAdapter(Context context, int resource, List<GridItem> objects) {
+    public CustomListAdapter(Context context, int resource, List<ListItem> objects) {
         super(context, resource, objects);
 
         this.context = context;
@@ -32,7 +27,7 @@ public class CustomGridAdapter extends ArrayAdapter<GridItem> {
 
     static class DataHolder{
         ImageView horseImageView, soundImgView;
-        TextView horseTextView;
+        TextView horseTextView, horseTxtTextView;
     }
 
     @NonNull
@@ -47,15 +42,17 @@ public class CustomGridAdapter extends ArrayAdapter<GridItem> {
             dataHolder.horseImageView = convertView.findViewById(R.id.horseImageView);
             dataHolder.soundImgView = convertView.findViewById(R.id.soundImgView);
             dataHolder.horseTextView = convertView.findViewById(R.id.horseTextView);
+            dataHolder.horseTxtTextView = convertView.findViewById(R.id.horseTxtTextView);
             convertView.setTag(dataHolder);
         }else{
             dataHolder = (DataHolder) convertView.getTag();
         }
-        GridItem listItem = data.get(position);
-        dataHolder.horseTextView.setText(listItem.horseName);
-        dataHolder.horseImageView.setImageResource(listItem.horseImgId);
-        dataHolder.horseImageView.setTag(listItem.horseImgId);
-        dataHolder.soundImgView.setTag(listItem.sounds);
+        ListItem listItem = data.get(position);
+        dataHolder.horseTextView.setText(listItem.getHorseName());
+        dataHolder.horseTxtTextView.setText(listItem.getTxt());
+        dataHolder.horseImageView.setImageResource(listItem.getHorseImgId());
+        dataHolder.horseImageView.setTag(listItem.getHorseImgId());
+        dataHolder.soundImgView.setTag(listItem.getSounds());
         return convertView;
     }
 }

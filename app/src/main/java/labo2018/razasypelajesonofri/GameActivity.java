@@ -12,9 +12,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import java.util.Random;
-
 import labo2018.razasypelajesonofri.utils.interaction.AInteractionManager;
 import labo2018.razasypelajesonofri.utils.interaction.BInteractionManager;
 import labo2018.razasypelajesonofri.utils.horses.Horse;
