@@ -1,13 +1,16 @@
 package labo2018.razasypelajesonofri.utils.recoListView;
 
-public class ListItem {
-    int horseImgId, soundId;
-    String horseName;
+import java.util.ArrayList;
 
-    public ListItem(int horseImgId, String horseName, int soundId) {
+public class ListItem {
+    int horseImgId;
+    String horseName;
+    ArrayList<Integer> sounds;
+
+    public ListItem(int horseImgId, String horseName,  ArrayList<Integer> sounds) {
         this.horseImgId = horseImgId;
         this.horseName = horseName;
-        this.soundId = soundId;
+        this.sounds = sounds;
     }
 
     public int getHorseImgId() {
@@ -18,7 +21,7 @@ public class ListItem {
         return horseName;
     }
 
-    public int getSoundId() {
-        return soundId;
+    public  ArrayList<Integer> getSounds() {
+        return sounds;
     }
 }

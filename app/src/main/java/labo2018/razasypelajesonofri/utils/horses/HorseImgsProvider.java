@@ -21,7 +21,11 @@ public enum HorseImgsProvider {
     }
 
     public Integer getImgAt(String key){
-        return (Integer) imgsMap.get(key);
+        Integer tmp = (Integer) imgsMap.get(key);
+        if (tmp != null) {
+            return tmp;
+        }
+        return R.drawable.horse_no_image;
     }
 }
 

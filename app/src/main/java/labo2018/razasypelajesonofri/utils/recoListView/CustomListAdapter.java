@@ -53,7 +53,7 @@ public class CustomListAdapter extends ArrayAdapter<ListItem> {
         dataHolder.horseTextView.setText(listItem.horseName);
         dataHolder.horseImageView.setImageResource(listItem.horseImgId);
         dataHolder.horseImageView.setTag(listItem.horseImgId);
-        dataHolder.soundImgView.setTag(listItem.soundId);
+        dataHolder.soundImgView.setTag(listItem.sounds);
         return convertView;
     }
 }

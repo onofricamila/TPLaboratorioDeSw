@@ -20,6 +20,9 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import labo2018.razasypelajesonofri.utils.horses.Horse;
+import labo2018.razasypelajesonofri.utils.horses.HorseImgsProvider;
+import labo2018.razasypelajesonofri.utils.horses.HorsesProvider;
 import labo2018.razasypelajesonofri.utils.recoListView.CustomListAdapter;
 import labo2018.razasypelajesonofri.utils.recoListView.ListItem;
 import labo2018.razasypelajesonofri.utils.sounds.SoundsPlayer;
@@ -45,18 +48,8 @@ public class RecoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reco);
 
-        // fulfill listItems with sample data
-        listItems = new ArrayList<>();
-        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Criollo overo azulejo", SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
-        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Criollo" ,SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
-        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Overo azulejo" ,SoundsProvider.INSTANCE.getFemSoundAt("overo azulejo")));
-
-        listItems.add(new ListItem(R.drawable.horse_criollo__picaso, "Criollo picaso" ,SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
-        listItems.add(new ListItem(R.drawable.horse_criollo__picaso, "Picaso" ,SoundsProvider.INSTANCE.getFemSoundAt("picaso")));
-
-        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Cuarto de mila bayo" ,SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
-        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Cuarto de mila" ,SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
-        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Bayo" ,SoundsProvider.INSTANCE.getFemSoundAt("bayo")));
+        // fulfill listItems
+        fulFillListItems();
 
         // get listView and set custom adapter
         ListView listView = findViewById(R.id.listView);
@@ -65,6 +58,20 @@ public class RecoActivity extends AppCompatActivity {
 
         // Retrieve and cache the system's default "short" animation time.
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+    }
+
+    private void fulFillListItems() {
+        listItems = new ArrayList<>();
+        HorsesProvider horsesProvider = new HorsesProvider(this);
+        List<Horse> horses = horsesProvider.getHorsesList();
+        for (int i = 0; i < horses.size(); i++) {
+            Horse horse = horses.get(i);
+            int img = HorseImgsProvider.INSTANCE.getImgAt(horse.getFullName());
+            ArrayList<Integer> sounds = horse.getFemSounds();
+            listItems.add( new ListItem(
+                    img, horse.getFullName().toUpperCase(), sounds
+            ) );
+        }
     }
 
     public void toHome(View view){
@@ -81,9 +88,7 @@ public class RecoActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void soundIvOnClickListener(View view){
         view.setBackgroundResource(R.drawable.ic_audio_click);
-        Log.d("!!!!!!", "soundIvOnClickListener: " + view.getTag());
-        ArrayList<Integer> sounds = new ArrayList<>();
-        sounds.add((Integer) view.getTag());
+        ArrayList<Integer> sounds = (ArrayList<Integer>) view.getTag();
         SoundsPlayer.wannaPlaySound(sounds, this);
     }
 

@@ -48,14 +48,21 @@ public enum SoundsProvider {
     }
 
     public Integer getSoundAt(String key){
-        return (Integer) soundsMap.get(key);
+        return returnSound( (Integer) soundsMap.get(key) );
     }
 
     public Integer getFemSoundAt(String key){
-        return (Integer) ((Map)soundsMap.get("f")) .get(key);
+        return returnSound(  (Integer)((Map)soundsMap.get("f")).get(key) );
     }
 
     public Integer getMaleSoundAt(String key){
-        return (Integer) ((Map)soundsMap.get("m")) .get(key);
+        return returnSound( (Integer)((Map)soundsMap.get("m")).get(key) );
+    }
+
+    public Integer returnSound(Integer sound){
+        if (sound == null) {
+            return (Integer) soundsMap.get("error");
+        }
+        return sound;
     }
 }

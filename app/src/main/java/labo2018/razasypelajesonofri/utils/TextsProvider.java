@@ -35,7 +35,7 @@ public class TextsProvider {
     public String getTextFor(String key){
         String tmp = (String) textsMap.get(key);
         if (tmp != null) {
-            return (String) textsMap.get(key);
+            return tmp;
         }
         return "---";
     }

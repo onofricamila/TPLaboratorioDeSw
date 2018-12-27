@@ -71,4 +71,9 @@ public class HorsesProvider{
         }
         return false;
     }
+
+    public List<Horse> getHorsesList() {
+        return horsesList;
+    }
+
 }
