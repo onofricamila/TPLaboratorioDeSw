@@ -4,12 +4,15 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
@@ -60,6 +63,16 @@ public class RecoActivity extends AppCompatActivity {
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
     }
 
+    private SharedPreferences getDefaultSharedPrefs(){
+        return PreferenceManager.getDefaultSharedPreferences(this);
+    }
+
+    private Boolean listeningToFemAudio(){
+        Resources res = getResources();
+        Boolean audioSwitchPref = getDefaultSharedPrefs().getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
+        return  audioSwitchPref;
+    }
+
     private void fulFillListItems() {
         listItems = new ArrayList<>();
         HorsesProvider horsesProvider = new HorsesProvider(this);
@@ -67,7 +80,12 @@ public class RecoActivity extends AppCompatActivity {
         for (int i = 0; i < horses.size(); i++) {
             Horse horse = horses.get(i);
             int img = HorseImgsProvider.INSTANCE.getImgAt(horse.getFullName());
-            ArrayList<Integer> sounds = horse.getFemSounds();
+            ArrayList<Integer> sounds;
+            if (listeningToFemAudio()){
+                sounds = horse.getFemSounds();
+            } else {
+                sounds = horse.getMaleSounds();
+            }
             listItems.add( new ListItem(
                     img, horse.getFullName().toUpperCase(), sounds
             ) );
