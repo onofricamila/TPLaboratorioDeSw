@@ -105,10 +105,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         editor.commit();
     }
 
-    public void playRazasYPelajes(){
-        playGame("RP");
-    }
-
     public void playRazasYPelajesJuntos(){
         playGame("RPJ");
     }
@@ -209,11 +205,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void enableRPJ() {
         Log.d("!!!!!!", "enableRPJ");
         enableGame("RPJenabled");
-    }
-
-    public void enableRP() {
-        Log.d("!!!!!!", "enableRP");
-        enableGame("RPenabled");
     }
 
     private void enableGame(String key){
