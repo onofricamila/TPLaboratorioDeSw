@@ -15,19 +15,11 @@ import android.os.Bundle;
 import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import java.util.ArrayList;
-import java.util.List;
-import labo2018.razasypelajesonofri.utils.reco.grid.CustomGridAdapter;
-import labo2018.razasypelajesonofri.utils.reco.grid.GridItem;
-import labo2018.razasypelajesonofri.utils.TextsProvider;
-import labo2018.razasypelajesonofri.utils.horses.Horse;
-import labo2018.razasypelajesonofri.utils.horses.HorseImgsProvider;
-import labo2018.razasypelajesonofri.utils.horses.HorsesProvider;
-import labo2018.razasypelajesonofri.utils.reco.list.CustomListAdapter;
-import labo2018.razasypelajesonofri.utils.reco.list.ListItem;
+import labo2018.razasypelajesonofri.utils.reco.GenericRecoViewManager;
+import labo2018.razasypelajesonofri.utils.reco.grid.GridManager;
+import labo2018.razasypelajesonofri.utils.reco.list.ListManager;
 import labo2018.razasypelajesonofri.utils.sounds.SoundsPlayer;
 
 public class RecoActivity extends AppCompatActivity {
@@ -40,36 +32,25 @@ public class RecoActivity extends AppCompatActivity {
     // very frequently.
     private int mShortAnimationDuration;
 
-    // rows list to fulfill the list view
-    List<ListItem> listItems;
-
-    // items list to fulfill the grid view
-    List<GridItem> gridItems;
+    GenericRecoViewManager viewManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         if (wannaDisplayGrid()){
+            // set grid layout
             setContentView(R.layout.activity_reco_grid);
-            // fulfill gridItems
-            fulfillGridItems();
-
-            GridView gridView = findViewById(R.id.gridView);
-            CustomGridAdapter customGridAdapter = new CustomGridAdapter(this, R.layout.activity_reco_grid_view_item, gridItems);
-            gridView.setAdapter(customGridAdapter);
+            // set grid manager
+            viewManager = new GridManager(this);
         }else{
+            // set list layout
             setContentView(R.layout.activity_reco_list);
-            // fulfill listItems
-            fulfillListItems();
-
-            ListView listView = findViewById(R.id.listView);
-            CustomListAdapter customListAdapter = new CustomListAdapter(this, R.layout.activity_reco_list_view_row, listItems);
-            listView.setAdapter(customListAdapter);
+            // set list manager
+            viewManager = new ListManager(this);
         }
-        // get listView and set custom adapter
-
-
+        // prepareView
+        viewManager.prepareView();
         // Retrieve and cache the system's default "short" animation time.
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
     }
@@ -78,7 +59,7 @@ public class RecoActivity extends AppCompatActivity {
         return PreferenceManager.getDefaultSharedPreferences(this);
     }
 
-    private Boolean listeningToFemAudio(){
+    public Boolean listeningToFemAudio(){
         Resources res = getResources();
         Boolean audioSwitchPref = getDefaultSharedPrefs().getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
         return  audioSwitchPref;
@@ -88,46 +69,6 @@ public class RecoActivity extends AppCompatActivity {
         Resources res = getResources();
         String displaySwitchPref = getDefaultSharedPrefs().getString("visualizacion", res.getString(R.string.pref_default_visualizacion));
         return displaySwitchPref.equals("G");
-    }
-
-    private void fulfillListItems() {
-        listItems = new ArrayList<>();
-        HorsesProvider horsesProvider = new HorsesProvider(this);
-        List<Horse> horses = horsesProvider.getHorsesList();
-        for (int i = 0; i < horses.size(); i++) {
-            Horse horse = horses.get(i);
-            int img = HorseImgsProvider.INSTANCE.getImgAt(horse.getFullName());
-            ArrayList<Integer> sounds;
-            if (listeningToFemAudio()){
-                sounds = horse.getFemSounds();
-            } else {
-                sounds = horse.getMaleSounds();
-            }
-            TextsProvider textsProvider = new TextsProvider(this);
-            String txt = textsProvider.getTextFor(horse.getFullName());
-            listItems.add( new ListItem(
-                    img, horse.getFullName().toUpperCase(), sounds, txt
-            ) );
-        }
-    }
-
-    private void fulfillGridItems() {
-        gridItems = new ArrayList<>();
-        HorsesProvider horsesProvider = new HorsesProvider(this);
-        List<Horse> horses = horsesProvider.getHorsesList();
-        for (int i = 0; i < horses.size(); i++) {
-            Horse horse = horses.get(i);
-            int img = HorseImgsProvider.INSTANCE.getImgAt(horse.getFullName());
-            ArrayList<Integer> sounds;
-            if (listeningToFemAudio()){
-                sounds = horse.getFemSounds();
-            } else {
-                sounds = horse.getMaleSounds();
-            }
-            gridItems.add( new GridItem(
-                    img, horse.getFullName().toUpperCase(), sounds
-            ) );
-        }
     }
 
     public void toHome(View view){
