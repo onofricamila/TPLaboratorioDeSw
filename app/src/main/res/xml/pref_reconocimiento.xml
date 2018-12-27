@@ -10,16 +10,4 @@
         android:positiveButtonText="@null"
         android:title="@string/pref_title_visualizacion" />
 
-    <!-- This preference simply launches an intent when selected. Use this UI sparingly, per
-         design guidelines. -->
-
-    <CheckBoxPreference
-        android:defaultValue="@bool/pref_default_RP"
-        android:key="RP"
-        android:title="@string/pref_title_RP" />
-    <CheckBoxPreference
-        android:defaultValue="@bool/pref_default_RPJ"
-        android:key="RPJ"
-        android:title="@string/pref_title_RPJ" />
-
 </PreferenceScreen>

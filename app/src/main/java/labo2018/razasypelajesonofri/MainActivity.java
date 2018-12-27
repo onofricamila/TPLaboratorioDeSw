@@ -45,13 +45,8 @@ public class MainActivity extends AppCompatActivity {
         Log.d("!!!!INTERACCION-PREF : ", interaccionPref);
 
         String visualizacionPref = sharedPref.getString("visualizacion", res.getString(R.string.pref_default_visualizacion));
-        Log.d("!!!!VISUALIZAC-PREF : ", visualizacionPref);
+        Log.d("!!!!RECO-VISUAL-PREF : ", visualizacionPref);
 
-        Boolean RPPref = sharedPref.getBoolean("RP", res.getBoolean(R.bool.pref_default_RP));
-        Log.d("!!!!RECO-RP-PREF : ", String.valueOf(RPPref));
-
-        Boolean RPJPref = sharedPref.getBoolean("RPJ", res.getBoolean(R.bool.pref_default_RPJ));
-        Log.d("!!!!RECO-RPJ-PREF : ", String.valueOf(RPJPref));
 
     }
 
