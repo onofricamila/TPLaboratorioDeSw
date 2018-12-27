@@ -13,6 +13,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import labo2018.razasypelajesonofri.R;
+import labo2018.razasypelajesonofri.utils.sounds.SoundsProvider;
 
 public class CustomListAdapter extends ArrayAdapter<ListItem> {
     Context context;
@@ -28,7 +29,7 @@ public class CustomListAdapter extends ArrayAdapter<ListItem> {
     }
 
     static class DataHolder{
-        ImageView horseImageView;
+        ImageView horseImageView, soundImgView;
         TextView horseTextView;
     }
 
@@ -42,6 +43,7 @@ public class CustomListAdapter extends ArrayAdapter<ListItem> {
             convertView = layoutInflater.inflate(layoutResourceId, parent, false);
             dataHolder = new DataHolder();
             dataHolder.horseImageView = convertView.findViewById(R.id.horseImageView);
+            dataHolder.soundImgView = convertView.findViewById(R.id.soundImgView);
             dataHolder.horseTextView = convertView.findViewById(R.id.horseTextView);
             convertView.setTag(dataHolder);
         }else{
@@ -51,6 +53,7 @@ public class CustomListAdapter extends ArrayAdapter<ListItem> {
         dataHolder.horseTextView.setText(listItem.horseName);
         dataHolder.horseImageView.setImageResource(listItem.horseImgId);
         dataHolder.horseImageView.setTag(listItem.horseImgId);
+        dataHolder.soundImgView.setTag(listItem.soundId);
         return convertView;
     }
 }

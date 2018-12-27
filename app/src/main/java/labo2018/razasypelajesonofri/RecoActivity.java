@@ -6,6 +6,8 @@ import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.graphics.Point;
 import android.graphics.Rect;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -20,6 +22,8 @@ import java.util.List;
 
 import labo2018.razasypelajesonofri.utils.recoListView.CustomListAdapter;
 import labo2018.razasypelajesonofri.utils.recoListView.ListItem;
+import labo2018.razasypelajesonofri.utils.sounds.SoundsPlayer;
+import labo2018.razasypelajesonofri.utils.sounds.SoundsProvider;
 
 import static android.app.PendingIntent.getActivity;
 
@@ -43,16 +47,16 @@ public class RecoActivity extends AppCompatActivity {
 
         // fulfill listItems with sample data
         listItems = new ArrayList<>();
-        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Criollo overo azulejo" ));
-        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Criollo" ));
-        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Overo azulejo" ));
+        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Criollo overo azulejo", SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
+        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Criollo" ,SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
+        listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Overo azulejo" ,SoundsProvider.INSTANCE.getFemSoundAt("overo azulejo")));
 
-        listItems.add(new ListItem(R.drawable.horse_criollo__picaso, "Criollo picaso" ));
-        listItems.add(new ListItem(R.drawable.horse_criollo__picaso, "Picaso" ));
+        listItems.add(new ListItem(R.drawable.horse_criollo__picaso, "Criollo picaso" ,SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
+        listItems.add(new ListItem(R.drawable.horse_criollo__picaso, "Picaso" ,SoundsProvider.INSTANCE.getFemSoundAt("picaso")));
 
-        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Cuarto de mila bayo" ));
-        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Cuarto de mila" ));
-        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Bayo" ));
+        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Cuarto de mila bayo" ,SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
+        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Cuarto de mila" ,SoundsProvider.INSTANCE.getFemSoundAt("criollo")));
+        listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Bayo" ,SoundsProvider.INSTANCE.getFemSoundAt("bayo")));
 
         // get listView and set custom adapter
         ListView listView = findViewById(R.id.listView);
@@ -69,9 +73,20 @@ public class RecoActivity extends AppCompatActivity {
     }
 
     // horse image view on click listener (calls zoom method)
-    public void ivOnClickListener(View view){
+    public void horseIvOnClickListener(View view){
         zoomImageFromView(view, (Integer) view.getTag());
     }
+
+    // sound image view on click listener
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void soundIvOnClickListener(View view){
+        view.setBackgroundResource(R.drawable.ic_audio_click);
+        Log.d("!!!!!!", "soundIvOnClickListener: " + view.getTag());
+        ArrayList<Integer> sounds = new ArrayList<>();
+        sounds.add((Integer) view.getTag());
+        SoundsPlayer.wannaPlaySound(sounds, this);
+    }
+
 
     // zoom img
     private void zoomImageFromView(final View thumbView, int imageResId) {
