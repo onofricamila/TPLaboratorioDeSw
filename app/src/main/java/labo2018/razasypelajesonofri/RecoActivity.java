@@ -53,7 +53,7 @@ public class RecoActivity extends AppCompatActivity {
         if (wannaDisplayGrid()){
             setContentView(R.layout.activity_reco_grid);
             // fulfill gridItems
-            fulFillGridItems();
+            fulfillGridItems();
 
             GridView gridView = findViewById(R.id.gridView);
             CustomGridAdapter customGridAdapter = new CustomGridAdapter(this, R.layout.activity_reco_grid_view_item, gridItems);
@@ -61,7 +61,7 @@ public class RecoActivity extends AppCompatActivity {
         }else{
             setContentView(R.layout.activity_reco_list);
             // fulfill listItems
-            fulFillListItems();
+            fulfillListItems();
 
             ListView listView = findViewById(R.id.listView);
             CustomListAdapter customListAdapter = new CustomListAdapter(this, R.layout.activity_reco_list_view_row, listItems);
@@ -90,7 +90,7 @@ public class RecoActivity extends AppCompatActivity {
         return displaySwitchPref.equals("G");
     }
 
-    private void fulFillListItems() {
+    private void fulfillListItems() {
         listItems = new ArrayList<>();
         HorsesProvider horsesProvider = new HorsesProvider(this);
         List<Horse> horses = horsesProvider.getHorsesList();
@@ -111,7 +111,7 @@ public class RecoActivity extends AppCompatActivity {
         }
     }
 
-    private void fulFillGridItems() {
+    private void fulfillGridItems() {
         gridItems = new ArrayList<>();
         HorsesProvider horsesProvider = new HorsesProvider(this);
         List<Horse> horses = horsesProvider.getHorsesList();
