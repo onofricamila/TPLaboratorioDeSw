@@ -12,14 +12,13 @@
         android:id="@+id/horseImageView"
         android:layout_width="100dp"
         android:layout_height="75dp"
-
         android:layout_gravity="center"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="20dp"
         android:onClick="horseIvOnClickListener"
-        app:srcCompat="@drawable/horse_criollo__picaso" />
+        />
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="100dp"
@@ -63,15 +62,13 @@
     </android.support.constraint.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/horseTxtTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="30dp"
         android:layout_marginBottom="20dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
         android:textColor="@color/ic_launcher_background"
         android:textSize="12sp"
         android:textStyle="bold" />

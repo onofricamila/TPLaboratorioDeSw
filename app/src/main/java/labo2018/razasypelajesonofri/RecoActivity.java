@@ -23,6 +23,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import labo2018.razasypelajesonofri.utils.TextsProvider;
 import labo2018.razasypelajesonofri.utils.horses.Horse;
 import labo2018.razasypelajesonofri.utils.horses.HorseImgsProvider;
 import labo2018.razasypelajesonofri.utils.horses.HorsesProvider;
@@ -86,8 +87,10 @@ public class RecoActivity extends AppCompatActivity {
             } else {
                 sounds = horse.getMaleSounds();
             }
+            TextsProvider textsProvider = new TextsProvider(this);
+            String txt = textsProvider.getTextFor(horse.getFullName());
             listItems.add( new ListItem(
-                    img, horse.getFullName().toUpperCase(), sounds
+                    img, horse.getFullName().toUpperCase(), sounds, txt
             ) );
         }
     }

@@ -30,7 +30,7 @@ public class CustomListAdapter extends ArrayAdapter<ListItem> {
 
     static class DataHolder{
         ImageView horseImageView, soundImgView;
-        TextView horseTextView;
+        TextView horseTextView, horseTxtTextView;
     }
 
     @NonNull
@@ -45,12 +45,14 @@ public class CustomListAdapter extends ArrayAdapter<ListItem> {
             dataHolder.horseImageView = convertView.findViewById(R.id.horseImageView);
             dataHolder.soundImgView = convertView.findViewById(R.id.soundImgView);
             dataHolder.horseTextView = convertView.findViewById(R.id.horseTextView);
+            dataHolder.horseTxtTextView = convertView.findViewById(R.id.horseTxtTextView);
             convertView.setTag(dataHolder);
         }else{
             dataHolder = (DataHolder) convertView.getTag();
         }
         ListItem listItem = data.get(position);
         dataHolder.horseTextView.setText(listItem.horseName);
+        dataHolder.horseTxtTextView.setText(listItem.txt);
         dataHolder.horseImageView.setImageResource(listItem.horseImgId);
         dataHolder.horseImageView.setTag(listItem.horseImgId);
         dataHolder.soundImgView.setTag(listItem.sounds);
