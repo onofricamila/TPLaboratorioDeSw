@@ -50,6 +50,7 @@ public class CustomListAdapter extends ArrayAdapter<ListItem> {
         ListItem listItem = data.get(position);
         dataHolder.horseTextView.setText(listItem.horseName);
         dataHolder.horseImageView.setImageResource(listItem.horseImgId);
+        dataHolder.horseImageView.setTag(listItem.horseImgId);
         return convertView;
     }
 }

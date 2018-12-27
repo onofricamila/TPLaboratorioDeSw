@@ -33,12 +33,15 @@ public class RecoActivity extends AppCompatActivity {
     // very frequently.
     private int mShortAnimationDuration;
 
+    // rows list to fulfill the list view
     List<ListItem> listItems;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reco);
 
+        // fulfill listItems with sample data
         listItems = new ArrayList<>();
         listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Criollo overo azulejo" ));
         listItems.add(new ListItem(R.drawable.horse_criollo__overo_azulejo, "Criollo" ));
@@ -51,27 +54,13 @@ public class RecoActivity extends AppCompatActivity {
         listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Cuarto de mila" ));
         listItems.add(new ListItem(R.drawable.horse_cuarto_de_milla__bayo, "Bayo" ));
 
+        // get listView and set custom adapter
         ListView listView = findViewById(R.id.listView);
         CustomListAdapter customListAdapter = new CustomListAdapter(this, R.layout.activity_reco_list_view_row, listItems);
         listView.setAdapter(customListAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("!!!!!!!", "onItemClick: " + listItems.get(position).getHorseName()
-                        + listItems.get(position).getHorseImgId());
-
-                zoomImageFromThumb(findViewById(R.id.horseImageView), listItems.get(position).getHorseImgId());
-
-            }
-        });
-
 
         // Retrieve and cache the system's default "short" animation time.
-        mShortAnimationDuration = getResources().getInteger(
-                android.R.integer.config_shortAnimTime);
-
-
-
+        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
     }
 
     public void toHome(View view){
@@ -79,10 +68,13 @@ public class RecoActivity extends AppCompatActivity {
         finish();
     }
 
+    // horse image view on click listener (calls zoom method)
+    public void ivOnClickListener(View view){
+        zoomImageFromView(view, (Integer) view.getTag());
+    }
 
-
-
-    private void zoomImageFromThumb(final View thumbView, int imageResId) {
+    // zoom img
+    private void zoomImageFromView(final View thumbView, int imageResId) {
         // If there's an animation in progress, cancel it
         // immediately and proceed with this one.
         if (mCurrentAnimator != null) {
