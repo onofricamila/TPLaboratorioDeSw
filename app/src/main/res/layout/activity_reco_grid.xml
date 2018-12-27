@@ -63,8 +63,10 @@
                 app:layout_constraintVertical_bias="1.0">
 
 
-                <ListView
-                    android:id="@+id/listView"
+                <!-- GRID -->
+                <GridView
+                    android:id="@+id/gridView"
+                    android:numColumns="3"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="50dp"
@@ -75,10 +77,9 @@
 
         </android.support.constraint.ConstraintLayout>
 
-
-
     </LinearLayout>
 
+    <!-- EXPANDED IMG -->
     <ImageView
         android:id="@+id/expandedImageView"
         android:layout_width="0dp"
