@@ -32,7 +32,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if( playingWithBInteraction() ){
+        // layout
+        prepareLayout();
+        // reset
+        resetRoundsAndAssertions();
+        // let's play!
+        newGame();
+    }
+
+    public void prepareLayout(){
+        if( playingRazasYPelajesJuntos() ){
             setContentView(R.layout.activity_game_interaccion_b);
             interactionManager = new BInteractionManager(this, playingLevel2());
         }else{
@@ -49,10 +58,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         confettiImgView.setBackgroundResource(R.drawable.animation);
         confettiAnimation = (AnimationDrawable) confettiImgView.getBackground();
         confettiAnimation.setOneShot(true);
-        // reset
-        resetRoundsAndAssertions();
-        // let's play!
-        newGame();
     }
 
     public void resetRoundsAndAssertions() {
@@ -181,6 +186,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void newGame() {
+        prepareLayout();
         // new round
         rounds++;
         // reset tags

@@ -120,6 +120,8 @@ public abstract class InteractionManager {
 
     protected void determineWhatToDo() {
         if (this.context.gameWon()){
+            // inform the user
+            this.context.makeToast("¡Ganaste!");
             // reset
             this.context.resetRoundsAndAssertions();
             // if RP
@@ -128,10 +130,10 @@ public abstract class InteractionManager {
                 this.context.enableRPJ();
                 // -> select 'playing RPJ'
                 this.context.playRazasYPelajesJuntos();
-                // confetti
-                this.context.startAnimation();
                 // play again
                 this.context.newGame();
+                // confetti
+                this.context.startAnimation();
             }else{
                 // was playing RPJ -> cup
                 Log.d("!!!!!!GAME-FLOW", "copa ");
