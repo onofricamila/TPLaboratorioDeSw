@@ -25,7 +25,7 @@
     <string name="pref_description_nivel">
         Considera cambian la cantidad de opciones entre las cuales se debe elegir, de 2 a 4.
     </string>
-    <bool name="pref_default_nivel">true</bool>
+    <bool name="pref_default_nivel">false</bool>
     <string name="pref_title_audio">Reproducir audio en voz femenina</string>
     <string name="pref_description_audio">
         Por defecto escucharas una voz masculina
@@ -49,9 +49,5 @@
         <item>L</item>
         <item>G</item>
     </string-array>
-    <string name="pref_title_RP">Razas y Pelajes</string>
-    <bool name="pref_default_RP">true</bool>
-    <string name="pref_title_RPJ">Razas y Pelajes Juntos</string>
-    <bool name="pref_default_RPJ">true</bool>
 
 </resources>
