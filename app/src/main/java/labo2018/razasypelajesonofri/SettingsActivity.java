@@ -237,15 +237,15 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
             CharSequence[] entryValues;
             if (!RPJenabled){
                 entries = new CharSequence[1];
-                entries[0] =  "1) Razas y Pelajes";
+                entries[0] =  "1) Razas y Pelajes: Imagen-Palabra";
 
                 entryValues = new CharSequence[1];
                 entryValues[0] = "RP";
             }
             else{
                 entries = new CharSequence[2];
-                entries[0] =  "1) Razas y Pelajes";
-                entries[1] =  "2) Razas y Pelajes Juntos";
+                entries[0] =  "1) Razas y Pelajes: Imagen-Palabra";
+                entries[1] =  "2) Razas y Pelajes Juntos: Palabra-Imagen";
 
                 entryValues = new CharSequence[2];
                 entryValues[0] = "RP";

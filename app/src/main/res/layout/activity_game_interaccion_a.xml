@@ -87,7 +87,7 @@
 
                     <TextView
                         android:id="@+id/horseTextView1"
-                        android:layout_width="100dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
@@ -134,7 +134,7 @@
 
                     <TextView
                         android:id="@+id/horseTextView2"
-                        android:layout_width="100dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
@@ -182,7 +182,7 @@
 
                     <TextView
                         android:id="@+id/horseTextView3"
-                        android:layout_width="100dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
@@ -229,7 +229,7 @@
 
                     <TextView
                         android:id="@+id/horseTextView4"
-                        android:layout_width="100dp"
+                        android:layout_width="150dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
