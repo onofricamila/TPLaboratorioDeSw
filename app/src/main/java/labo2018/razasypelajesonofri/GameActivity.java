@@ -42,6 +42,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         if( playingRazasYPelajesJuntos() ){
             setContentView(R.layout.activity_game_interaccion_b);
             interactionManager = new BInteractionManager(this, playingLevel2());
+            // confetti
+            ImageView confettiImgView = (ImageView) findViewById(R.id.confettiImageView);
+            confettiImgView.setBackgroundResource(R.drawable.animation);
+            confettiAnimation = (AnimationDrawable) confettiImgView.getBackground();
+            confettiAnimation.setOneShot(true);
         }else{
             setContentView(R.layout.activity_game_interaccion_a);
             interactionManager = new AInteractionManager(this, playingLevel2());
@@ -51,11 +56,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // home btn
         homeImgView = findViewById(R.id.homeImgView);
         homeImgView.setOnClickListener(this);
-        // confetti
-        ImageView confettiImgView = (ImageView) findViewById(R.id.confettiImageView);
-        confettiImgView.setBackgroundResource(R.drawable.animation);
-        confettiAnimation = (AnimationDrawable) confettiImgView.getBackground();
-        confettiAnimation.setOneShot(true);
     }
 
     public void resetRoundsAndAssertions() {
