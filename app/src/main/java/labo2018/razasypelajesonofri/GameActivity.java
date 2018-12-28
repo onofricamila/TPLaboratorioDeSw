@@ -32,8 +32,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // layout
-        prepareLayout();
         // reset
         resetRoundsAndAssertions();
         // let's play!
