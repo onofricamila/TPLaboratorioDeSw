@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         // the first time the method is called
         PreferenceManager.setDefaultValues(this, R.xml.pref_ajustes, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_reconocimiento, false);
-        PreferenceManager.setDefaultValues(this, R.xml.pref_interaccion, false);
         PreferenceManager.setDefaultValues(this, R.xml.pref_minijuego, false);
 
         // get the setting as a SharedPreferences object
@@ -38,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         Boolean audioSwitchPref = sharedPref.getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
         Log.d("!!!!AUDIO-PREF : ", String.valueOf(audioSwitchPref));
-
-        String interaccionPref = sharedPref.getString("interaccion", res.getString(R.string.pref_default_interaccion));
-        Log.d("!!!!INTERACCION-PREF : ", interaccionPref);
 
         String visualizacionPref = sharedPref.getString("visualizacion", res.getString(R.string.pref_default_visualizacion));
         Log.d("!!!!RECO-VISUAL-PREF : ", visualizacionPref);

@@ -78,12 +78,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private Boolean playingWithBInteraction(){
-        Resources res = getResources();
-        String minijuegoPref = getDefaultSharedPrefs().getString("interaccion", res.getString(R.string.pref_default_interaccion));
-        return minijuegoPref.equals("B");
-    }
-
     public Boolean playingRazasYPelajesJuntos(){
         Resources res = getResources();
         String minijuegoPref = getDefaultSharedPrefs().getString("minijuego", res.getString(R.string.pref_default_minijuego));

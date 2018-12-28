@@ -13,11 +13,6 @@
         android:title="@string/pref_header_reconocimiento" />
 
     <header
-        android:fragment="labo2018.razasypelajesonofri.SettingsActivity$InteraccionPreferenceFragment"
-        android:icon="@drawable/ic_interactivity"
-        android:title="@string/pref_header_interaccion" />
-
-    <header
         android:fragment="labo2018.razasypelajesonofri.SettingsActivity$MiniJuegoPreferenceFragment"
         android:icon="@drawable/ic_game"
         android:title="@string/pref_header_minijuego" />

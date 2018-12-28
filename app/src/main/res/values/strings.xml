@@ -32,20 +32,6 @@
     </string>
     <bool name="pref_default_audio">true</bool>
 
-
-    <!-- Example ic_settings for Interaccion -->
-    <string name="pref_header_interaccion">Modo de Interacción</string>
-    <string name="pref_title_interaccion">Interacción?</string>
-    <string-array name="pref_interaccion_titles">
-        <item>Modo A: Imagen-Palabra</item>
-        <item>Modo B: Palabra-Imagen</item>
-    </string-array>
-    <string-array name="pref_interaccion_values">
-        <item>A</item>
-        <item>B</item>
-    </string-array>
-    <string name="pref_default_interaccion">B</string>
-
     <!-- Example ic_settings for Mini Juego -->
     <string name="pref_header_minijuego">Mini Juego</string>
     <string name="pref_title_minijuego">Juego?</string>
