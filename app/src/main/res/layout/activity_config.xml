@@ -120,20 +120,22 @@
                         <RadioButton
                             android:id="@+id/RPRadioBtn"
                             style="@android:style/TextAppearance.DeviceDefault.Medium"
-                            android:layout_width="350dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="8dp"
                             android:layout_weight="1"
+                            android:paddingRight="@dimen/fab_margin"
                             android:text="@string/RPRadBtnTxt"
                             android:textColor="@color/ic_launcher_background" />
 
                         <RadioButton
                             android:id="@+id/RPJRadioBtn"
                             style="@android:style/TextAppearance.DeviceDefault.Medium"
-                            android:layout_width="350dp"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginRight="8dp"
                             android:layout_weight="1"
+                            android:paddingRight="@dimen/fab_margin"
                             android:text="@string/RPJRadBtnTxt"
                             android:textColor="@color/ic_launcher_background" />
 
@@ -177,7 +179,7 @@
                     <Switch
                         android:id="@+id/levelSwitch"
                         style="@android:style/TextAppearance.DeviceDefault.Medium"
-                        android:layout_width="200dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:layout_marginLeft="25dp"
@@ -193,7 +195,7 @@
                     <TextView
                         android:id="@+id/levelSwitchOnTextView"
                         style="@android:style/TextAppearance.DeviceDefault.Medium"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/level2"
                         android:textColor="@color/ic_launcher_background"
@@ -233,7 +235,7 @@
                     <Switch
                         android:id="@+id/audioSwitch"
                         style="@android:style/TextAppearance.DeviceDefault.Medium"
-                        android:layout_width="200dp"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:layout_marginLeft="25dp"
@@ -249,7 +251,7 @@
                     <TextView
                         android:id="@+id/audioSwitchOnTextView"
                         style="@android:style/TextAppearance.DeviceDefault.Medium"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="@string/female_audio"
                         android:textColor="@color/ic_launcher_background"
@@ -261,6 +263,7 @@
                         android:id="@+id/acceptBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginBottom="8dp"
@@ -269,7 +272,8 @@
                         android:text="Aceptar"
                         android:textColor="@color/ic_launcher_background"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/audioSwitch" />
 
                 </android.support.constraint.ConstraintLayout>
             </LinearLayout>
