@@ -39,9 +39,8 @@ public class ConfigActivity extends AppCompatActivity {
         RadioButton radBtn = findViewById(R.id.RPJRadioBtn);
         if (!RPJenabled){
             radBtn.setEnabled(false);
-            radBtn.setTextColor(Color.parseColor("#808080"));
-        }else{
-            radBtn.setTextColor(Color.WHITE);
+            int alpha = 60;
+            radBtn.setTextColor(Color.argb(alpha, 0, 0, 0));
         }
 
         SharedPreferences configPreferences = getSharedPreferences(getString(R.string.config_preferences),Context.MODE_PRIVATE);
