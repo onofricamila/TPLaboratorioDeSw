@@ -3,60 +3,16 @@
     <!-- app name -->
     <string name="app_name">RazasYPelajesOnofri</string>
 
-    <!-- boton Config en navbar -->
-    <string name="action_settings">Configuración</string>
-    <string name="title_activity_settings">Configuración</string>
-
-    <!-- boton Jugar en mainactivity -->
-    <string name="action_jugar">Jugar</string>
-    <string name="title_activity_jugar">Jugar</string>
-
-    <!-- boton Reconocimiento en mainactivity -->
-    <string name="action_reconocimiento">Reconocimiento</string>
-    <string name="title_activity_reconocimiento">Reconocimiento</string>
-
     <!-- strings in game activity layout -->
-    <string name="siguiente_button">Siguiente</string>
     <string name="horse_to_find">Caballo a encontrar</string>
 
-    <!-- Example Ajustes ic_settings -->
-    <string name="pref_header_ajustes">Ajustes</string>
-    <string name="pref_title_nivel">Jugar en nivel 2</string>
-    <string name="pref_description_nivel">
-        Considera cambian la cantidad de opciones entre las cuales se debe elegir, de 2 a 4.
-    </string>
-    <bool name="pref_default_nivel">false</bool>
-    <string name="pref_title_audio">Reproducir audio en voz femenina</string>
-    <string name="pref_description_audio">
-        Por defecto escucharas una voz masculina
-    </string>
-    <bool name="pref_default_audio">true</bool>
-
-    <!-- Example ic_settings for Mini Juego -->
-    <string name="pref_header_minijuego">Mini Juego</string>
-    <string name="pref_title_minijuego">Juego?</string>
-    <string name="pref_default_minijuego">RP</string>
-
-    <!-- Example ic_settings for Reconocimiento -->
-    <string name="pref_header_reconocimiento">Modo de Reconocimiento</string>
-    <string name="pref_title_visualizacion">Opción de visualización</string>
-    <string-array name="pref_visualizacion_titles">
-        <item>Lista</item>
-        <item>Grillas</item>
-    </string-array>
-    <string name="pref_default_visualizacion">G</string>
-    <string-array name="pref_visualizacion_values">
-        <item>L</item>
-        <item>G</item>
-    </string-array>
-
-
-
-
-    <!-- TEST -->
+    <!-- enable games prefs -->
     <string name="RPJenabled_pref_key">RPJenabled</string>
-    <string name="config_preferences">config_preferences</string>
     <string name="enable_games_preferences">enable_games_preferences</string>
+    <bool name="pref_default_RPJenabled">false</bool>
+
+    <!-- config prefs -->
+    <string name="config_preferences">config_preferences</string>
     <string name="listRadBtnTxt">Lista</string>
     <string name="gridRadBtnTxt">Grilla</string>
     <string name="accept">Aceptar</string>
@@ -64,7 +20,6 @@
     <string name="level2">Difícil</string>
     <string name="male_audio">Masculina</string>
     <string name="female_audio">Femenina</string>
-    <string name="cruza">Cruza</string>
     <string name="fem_audio_pref_key">fem_audio</string>
     <string name="level2_pref_key">level2</string>
     <string name="reco_view_mode_pref_key">reco_view_mode</string>
@@ -75,5 +30,7 @@
     <string name="RPJRadBtnTxt">Razas y Pelajes Juntas: Palabra-Img</string>
     <string name="recoTxt">Modo Reconocimiento:</string>
     <string name="minijuegoTxt">Minijuego:</string>
+    <bool name="pref_default_nivel">false</bool>
+    <bool name="pref_default_audio">true</bool>
 
 </resources>
