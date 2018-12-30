@@ -26,8 +26,8 @@
     <string name="minijuego_pref_key">minijuego</string>
     <string name="audioTxt">Audio:</string>
     <string name="levelTxt">Nivel de dificultad:</string>
-    <string name="RPRadBtnTxt">Razas y Pelajes: Img-Palabra</string>
-    <string name="RPJRadBtnTxt">Razas y Pelajes Juntas: Palabra-Img</string>
+    <string name="RPRadBtnTxt">Razas y Pelajes: Imagen - Palabra</string>
+    <string name="RPJRadBtnTxt">Razas y Pelajes Juntas: Palabra - Imagen</string>
     <string name="recoTxt">Modo Reconocimiento:</string>
     <string name="minijuegoTxt">Minijuego:</string>
     <bool name="pref_default_nivel">false</bool>
