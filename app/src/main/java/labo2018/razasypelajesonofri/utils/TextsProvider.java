@@ -25,7 +25,6 @@ public class TextsProvider {
                 String text = JSONobject.getString("text");
                 textsMap.put(forElement, text);
             }
-            Log.d("!!!!!!!!!!", "TextsProvider: " + textsMap);
         } catch (JSONException e) { e.printStackTrace(); }
     }
 

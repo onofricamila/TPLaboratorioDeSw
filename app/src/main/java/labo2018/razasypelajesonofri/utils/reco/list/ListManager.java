@@ -11,13 +11,14 @@ import labo2018.razasypelajesonofri.utils.horses.Horse;
 import labo2018.razasypelajesonofri.utils.reco.GenericRecoViewManager;
 
 public class ListManager extends GenericRecoViewManager {
+    private TextsProvider textsProvider;
     public ListManager(RecoActivity context) {
         super(context);
+        this.textsProvider = new TextsProvider(context);
     }
 
     @Override
     protected void manageList(int img, Horse horse, ArrayList<Integer> sounds) {
-        TextsProvider textsProvider = new TextsProvider(context);
         String txt = textsProvider.getTextFor(horse.getFullName());
         list.add( new ListItem(
                 img, horse.getFullName().toUpperCase(), sounds, txt
