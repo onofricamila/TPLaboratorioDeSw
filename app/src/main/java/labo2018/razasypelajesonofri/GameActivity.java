@@ -159,7 +159,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void logdGameFlow(){
         Log.d("!!!!GAME-FOW", "ROUNDS:"+rounds+" ASSERTIONS:"+assertions);
-
     }
 
     public void makeToast(String string){
@@ -199,14 +198,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void enableRPJ() {
-        Log.d("!!!!GAME-FOW", "enableRPJ");
         enableGame(getString(R.string.RPJenabled_pref_key));
     }
 
     private void enableGame(String key){
-        SharedPreferences.Editor editor =  getEnableGamesSharedPrefs().edit();
-        editor.putBoolean(key, true);
-        editor.apply();
-        editor.commit();
+        Boolean RPJenabled = getEnableGamesSharedPrefs().getBoolean(getString(R.string.RPJenabled_pref_key), false);
+
+        if (!RPJenabled) {
+            Log.d("!!!!GAME-FOW", "enableRPJ");
+            SharedPreferences.Editor editor = getEnableGamesSharedPrefs().edit();
+            editor.putBoolean(key, true);
+            editor.apply();
+            editor.commit();
+        }
     }
 }
