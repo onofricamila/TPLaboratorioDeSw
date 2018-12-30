@@ -17,33 +17,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // set defaults values -> false, tells the preferencemanager to only apply the default values
-        // the first time the method is called
-        PreferenceManager.setDefaultValues(this, R.xml.pref_ajustes, false);
-        PreferenceManager.setDefaultValues(this, R.xml.pref_reconocimiento, false);
-        PreferenceManager.setDefaultValues(this, R.xml.pref_minijuego, false);
-
-        // get the setting as a SharedPreferences object
-        SharedPreferences defaultSharedPreferences =
-                PreferenceManager.getDefaultSharedPreferences(this);
-
-        // testing retrieving prefs values
-        Resources res = getResources();
-
-        String minijuegoPref = defaultSharedPreferences.getString("minijuego", res.getString(R.string.pref_default_minijuego));
-        Log.d("!!!!MINIJUEGO-PREF : ", minijuegoPref);
-
-        Boolean nivelSwitchPref = defaultSharedPreferences.getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
-        Log.d("!!!!NIVEL2-PREF : ", String.valueOf(nivelSwitchPref));
-
-        Boolean audioSwitchPref = defaultSharedPreferences.getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
-        Log.d("!!!!AUDIO-PREF : ", String.valueOf(audioSwitchPref));
-
-        String visualizacionPref = defaultSharedPreferences.getString("visualizacion", res.getString(R.string.pref_default_visualizacion));
-        Log.d("!!!!RECO-VISUAL-PREF : ", visualizacionPref);
-
-
-
         // testing config_preferences
         Log.d("-----------------------", "-----------------------");
 
@@ -87,13 +60,9 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps Settings Button */
     public void toSettings(View view) {
-//        findViewById(R.id.settingsButton).setBackgroundResource(R.drawable.ic_config_click);
-//        Intent intent = new Intent(this, SettingsActivity.class);
-//        startActivity(intent);
           findViewById(R.id.settingsButton).setBackgroundResource(R.drawable.ic_config_click);
           Intent intent = new Intent(this, ConfigActivity.class);
           startActivity(intent);
-
     }
 
     /** Called when the user taps Info Button */
