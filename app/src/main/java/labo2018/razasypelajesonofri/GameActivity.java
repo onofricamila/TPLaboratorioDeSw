@@ -199,7 +199,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void enableRPJ() {
-        Log.d("!!!!!!", "enableRPJ");
+        Log.d("!!!!GAME-FOW", "enableRPJ");
         enableGame(getString(R.string.RPJenabled_pref_key));
     }
 

@@ -136,7 +136,7 @@ public abstract class InteractionManager {
                 this.context.startAnimation();
             }else{
                 // was playing RPJ -> cup
-                Log.d("!!!!!!GAME-FLOW", "copa ");
+                Log.d("!!!!GAME-FOW", "Trophy");
                 this.context.showTrophy();
 
             }
