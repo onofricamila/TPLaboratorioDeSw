@@ -50,4 +50,30 @@
         <item>G</item>
     </string-array>
 
+
+
+
+    <!-- TEST -->
+    <string name="RPJenabled_pref_key">RPJenabled</string>
+    <string name="config_preferences">config_preferences</string>
+    <string name="enable_games_preferences">enable_games_preferences</string>
+    <string name="listRadBtnTxt">Lista</string>
+    <string name="gridRadBtnTxt">Grilla</string>
+    <string name="accept">Aceptar</string>
+    <string name="level1">Fácil</string>
+    <string name="level2">Difícil</string>
+    <string name="male_audio">Masculina</string>
+    <string name="female_audio">Femenina</string>
+    <string name="cruza">Cruza</string>
+    <string name="fem_audio_pref_key">fem_audio</string>
+    <string name="level2_pref_key">level2</string>
+    <string name="reco_view_mode_pref_key">reco_view_mode</string>
+    <string name="minijuego_pref_key">minijuego</string>
+    <string name="audioTxt">Audio:</string>
+    <string name="levelTxt">Nivel de dificultad:</string>
+    <string name="RPRadBtnTxt">Razas y Pelajes: Img-Palabra</string>
+    <string name="RPJRadBtnTxt">Razas y Pelajes Juntas: Palabra-Img</string>
+    <string name="recoTxt">Modo Reconocimiento:</string>
+    <string name="minijuegoTxt">Minijuego:</string>
+
 </resources>

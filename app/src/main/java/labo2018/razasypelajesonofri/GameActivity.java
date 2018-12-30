@@ -6,7 +6,6 @@ import android.content.res.Resources;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.preference.PreferenceManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -79,35 +78,34 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public Boolean playingRazasYPelajesJuntos(){
-        Resources res = getResources();
-        String minijuegoPref = getDefaultSharedPrefs().getString("minijuego", res.getString(R.string.pref_default_minijuego));
-        return minijuegoPref.equals("RPJ");
+        Integer minijuegoPref = getConfigSharedPrefs().getInt(getString(R.string.minijuego_pref_key), R.id.RPRadioBtn);
+        return minijuegoPref == R.id.RPJRadioBtn;
     }
 
-    private Boolean listeningToFemAudio(){
+    public Boolean listeningToFemAudio(){
         Resources res = getResources();
-        Boolean audioSwitchPref = getDefaultSharedPrefs().getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
-        return  audioSwitchPref;
+        Boolean femAudioSwitchPref = getConfigSharedPrefs().getBoolean(getString(R.string.fem_audio_pref_key), res.getBoolean(R.bool.pref_default_audio));
+        return  femAudioSwitchPref;
     }
 
     private Boolean playingLevel2(){
         Resources res = getResources();
-        Boolean nivelSwitchPref = getDefaultSharedPrefs().getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
-        return  nivelSwitchPref;
+        Boolean level2SwitchPref = getConfigSharedPrefs().getBoolean(getString(R.string.level2_pref_key), res.getBoolean(R.bool.pref_default_nivel));
+        return  level2SwitchPref;
     }
 
-    private void playGame(String gameString){
-        SharedPreferences.Editor editor = getDefaultSharedPrefs().edit();
-        editor.putString("minijuego", gameString);
+    private void playGame(Integer game){
+        SharedPreferences.Editor editor = getConfigSharedPrefs().edit();
+        editor.putInt(getString(R.string.minijuego_pref_key), game);
         editor.commit();
     }
 
     public void playRazasYPelajesJuntos(){
-        playGame("RPJ");
+        playGame(R.id.RPJRadioBtn);
     }
 
-    private SharedPreferences getDefaultSharedPrefs(){
-        return PreferenceManager.getDefaultSharedPreferences(this);
+    private SharedPreferences getConfigSharedPrefs(){
+        return getSharedPreferences(getString(R.string.config_preferences),Context.MODE_PRIVATE);
     }
 
     private String randomRazaOPelaje() {
@@ -196,18 +194,19 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         interactionManager.putAnswerInGame();
     }
 
-    private SharedPreferences getEnablingGamesSharedPrefs(){
-        return getSharedPreferences("EnablingGames", Context.MODE_PRIVATE);
+    private SharedPreferences getEnableGamesSharedPrefs(){
+        return getSharedPreferences(String.valueOf(R.string.enable_games_preferences), Context.MODE_PRIVATE);
     }
 
     public void enableRPJ() {
         Log.d("!!!!!!", "enableRPJ");
-        enableGame("RPJenabled");
+        enableGame(getString(R.string.RPJenabled_pref_key));
     }
 
     private void enableGame(String key){
-        SharedPreferences.Editor editor =  getEnablingGamesSharedPrefs().edit();
+        SharedPreferences.Editor editor =  getEnableGamesSharedPrefs().edit();
         editor.putBoolean(key, true);
+        editor.apply();
         editor.commit();
     }
 }

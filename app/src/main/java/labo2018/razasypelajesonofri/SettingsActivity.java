@@ -229,7 +229,7 @@ public class SettingsActivity extends AppCompatPreferenceActivity {
         private void setListPreferenceData() {
             ListPreference lp = (ListPreference) findPreference("minijuego");
 
-            SharedPreferences sharedPref = getActivity().getSharedPreferences("EnablingGames",Context.MODE_PRIVATE);
+            SharedPreferences sharedPref = getActivity().getSharedPreferences(String.valueOf(R.string.enable_games_preferences),Context.MODE_PRIVATE);
 
             Boolean RPJenabled = sharedPref.getBoolean("RPJenabled", false);
 

@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Point;
@@ -12,7 +13,6 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.preference.PreferenceManager;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
@@ -55,20 +55,19 @@ public class RecoActivity extends AppCompatActivity {
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
     }
 
-    private SharedPreferences getDefaultSharedPrefs(){
-        return PreferenceManager.getDefaultSharedPreferences(this);
+    private SharedPreferences getConfigSharedPrefs(){
+        return getSharedPreferences(getString(R.string.config_preferences),Context.MODE_PRIVATE);
     }
 
     public Boolean listeningToFemAudio(){
         Resources res = getResources();
-        Boolean audioSwitchPref = getDefaultSharedPrefs().getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
-        return  audioSwitchPref;
+        Boolean femAudioSwitchPref = getConfigSharedPrefs().getBoolean(getString(R.string.fem_audio_pref_key), res.getBoolean(R.bool.pref_default_audio));
+        return  femAudioSwitchPref;
     }
 
     private Boolean wannaDisplayGrid(){
-        Resources res = getResources();
-        String displaySwitchPref = getDefaultSharedPrefs().getString("visualizacion", res.getString(R.string.pref_default_visualizacion));
-        return displaySwitchPref.equals("G");
+        Integer displaySwitchPref = getConfigSharedPrefs().getInt(getString(R.string.reco_view_mode_pref_key), R.id.listRadioBtn);
+        return displaySwitchPref == R.id.gridRadioBtn;
     }
 
     public void toHome(View view){

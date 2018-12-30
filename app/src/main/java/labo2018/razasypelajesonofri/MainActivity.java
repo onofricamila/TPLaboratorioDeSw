@@ -1,5 +1,6 @@
 package labo2018.razasypelajesonofri;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,25 +24,51 @@ public class MainActivity extends AppCompatActivity {
         PreferenceManager.setDefaultValues(this, R.xml.pref_minijuego, false);
 
         // get the setting as a SharedPreferences object
-        SharedPreferences sharedPref =
+        SharedPreferences defaultSharedPreferences =
                 PreferenceManager.getDefaultSharedPreferences(this);
 
         // testing retrieving prefs values
         Resources res = getResources();
 
-        String minijuegoPref = sharedPref.getString("minijuego", res.getString(R.string.pref_default_minijuego));
+        String minijuegoPref = defaultSharedPreferences.getString("minijuego", res.getString(R.string.pref_default_minijuego));
         Log.d("!!!!MINIJUEGO-PREF : ", minijuegoPref);
 
-        Boolean nivelSwitchPref = sharedPref.getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
+        Boolean nivelSwitchPref = defaultSharedPreferences.getBoolean("nivel_switch", res.getBoolean(R.bool.pref_default_nivel));
         Log.d("!!!!NIVEL2-PREF : ", String.valueOf(nivelSwitchPref));
 
-        Boolean audioSwitchPref = sharedPref.getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
+        Boolean audioSwitchPref = defaultSharedPreferences.getBoolean("audio_switch", res.getBoolean(R.bool.pref_default_audio));
         Log.d("!!!!AUDIO-PREF : ", String.valueOf(audioSwitchPref));
 
-        String visualizacionPref = sharedPref.getString("visualizacion", res.getString(R.string.pref_default_visualizacion));
+        String visualizacionPref = defaultSharedPreferences.getString("visualizacion", res.getString(R.string.pref_default_visualizacion));
         Log.d("!!!!RECO-VISUAL-PREF : ", visualizacionPref);
 
 
+
+        // testing config_preferences
+        Log.d("-----------------------", "-----------------------");
+
+        SharedPreferences configPreferences = getSharedPreferences(getString(R.string.config_preferences),Context.MODE_PRIVATE);
+
+        Boolean playinLevel2 = configPreferences.getBoolean(getString(R.string.level2_pref_key), false);
+        Log.d("!!!!NIVEL2-PREF : ", String.valueOf(playinLevel2));
+
+        Boolean femAudio = configPreferences.getBoolean(getString(R.string.fem_audio_pref_key), false);
+        Log.d("!!!!FEM-AUDIO-PREF : ", String.valueOf(femAudio));
+
+        Integer game = configPreferences.getInt(getString(R.string.minijuego_pref_key), R.id.RPRadioBtn);
+        Log.d("!!!!RPJ? : ", String.valueOf(game == R.id.RPJRadioBtn));
+
+        Integer viewMode = configPreferences.getInt(getString(R.string.reco_view_mode_pref_key), R.id.listRadioBtn);
+        Log.d("!!!!grid? : ", String.valueOf(viewMode == R.id.gridRadioBtn));
+
+
+        // testing enable_games_preferences
+        Log.d("-----------------------", "-----------------------");
+        SharedPreferences enableGamesPreferences = getSharedPreferences(String.valueOf(R.string.enable_games_preferences),Context.MODE_PRIVATE);
+
+        Boolean RPJenabled = enableGamesPreferences.getBoolean(String.valueOf(R.string.RPJenabled_pref_key), false);
+
+        Log.d("!!!!!!!!!!MAIN-ACT", "RPJenabled: " + RPJenabled);
     }
 
     /** Called when the user taps Play Button */
@@ -60,9 +87,13 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps Settings Button */
     public void toSettings(View view) {
-        findViewById(R.id.settingsButton).setBackgroundResource(R.drawable.ic_config_click);
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
+//        findViewById(R.id.settingsButton).setBackgroundResource(R.drawable.ic_config_click);
+//        Intent intent = new Intent(this, SettingsActivity.class);
+//        startActivity(intent);
+          findViewById(R.id.settingsButton).setBackgroundResource(R.drawable.ic_config_click);
+          Intent intent = new Intent(this, ConfigActivity.class);
+          startActivity(intent);
+
     }
 
     /** Called when the user taps Info Button */
