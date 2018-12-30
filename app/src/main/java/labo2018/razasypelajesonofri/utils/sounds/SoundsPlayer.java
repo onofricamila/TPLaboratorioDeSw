@@ -28,6 +28,7 @@ public class SoundsPlayer {
     // COMO CUANDO NECESITAS REPRODUCIR AMBOS UNO DESPUES DEL OTRO EN EL JUEGO DE RyP JUNTOS!!
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private static void playSoundChain(List sounds, Context context){
+        releaseMediaPlayers();
         mediaPlayers = new MediaPlayer[sounds.size()];
         // create MP array with respective sounds
         for (int i = 0; i < mediaPlayers.length; i++) {
@@ -41,6 +42,14 @@ public class SoundsPlayer {
         }
         // start playing ic_sound chain/single ic_sound
         mediaPlayers[0].start();
+    }
+
+    private static void releaseMediaPlayers() {
+        if (mediaPlayers != null) {
+            for (int i = 0; i < mediaPlayers.length; i++) {
+                mediaPlayers[i].release();
+            }
+        }
     }
 
 }
