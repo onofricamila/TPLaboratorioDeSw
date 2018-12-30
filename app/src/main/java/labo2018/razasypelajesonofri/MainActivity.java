@@ -43,6 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        initLayout();
+    }
+
+    private void initLayout() {
+        findViewById(R.id.reconocimientoButton).setBackgroundResource(R.drawable.ic_reconocimiento_regular);
+        findViewById(R.id.playButton).setBackgroundResource(R.drawable.ic_jugar_regular);
+        findViewById(R.id.infoButton).setBackgroundResource(R.drawable.ic_info_regular);
+        findViewById(R.id.settingsButton).setBackgroundResource(R.drawable.ic_config_regular);
+    }
+
     /** Called when the user taps Play Button */
     public void play(View view) {
         findViewById(R.id.playButton).setBackgroundResource(R.drawable.ic_jugar_click);
