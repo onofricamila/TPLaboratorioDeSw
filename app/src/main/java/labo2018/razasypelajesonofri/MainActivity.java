@@ -18,30 +18,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // testing config_preferences
-        Log.d("-----------------------", "-----------------------");
-
+        Log.d("-----------------------", "Config Preferences -----------------------");
         SharedPreferences configPreferences = getSharedPreferences(getString(R.string.config_preferences),Context.MODE_PRIVATE);
 
         Boolean playinLevel2 = configPreferences.getBoolean(getString(R.string.level2_pref_key), false);
-        Log.d("!!!!NIVEL2-PREF : ", String.valueOf(playinLevel2));
+        Log.d("!!!!NIVEL2? ", String.valueOf(playinLevel2));
 
         Boolean femAudio = configPreferences.getBoolean(getString(R.string.fem_audio_pref_key), false);
-        Log.d("!!!!FEM-AUDIO-PREF : ", String.valueOf(femAudio));
+        Log.d("!!!!FEM-AUDIO? ", String.valueOf(femAudio));
 
         Integer game = configPreferences.getInt(getString(R.string.minijuego_pref_key), R.id.RPRadioBtn);
-        Log.d("!!!!RPJ? : ", String.valueOf(game == R.id.RPJRadioBtn));
+        Log.d("!!!!RPJ? ", String.valueOf(game == R.id.RPJRadioBtn));
 
         Integer viewMode = configPreferences.getInt(getString(R.string.reco_view_mode_pref_key), R.id.listRadioBtn);
-        Log.d("!!!!grid? : ", String.valueOf(viewMode == R.id.gridRadioBtn));
+        Log.d("!!!!GRID? ", String.valueOf(viewMode == R.id.gridRadioBtn));
 
 
         // testing enable_games_preferences
-        Log.d("-----------------------", "-----------------------");
+        Log.d("-----------------------", "Enable Games Preferences -----------------------");
         SharedPreferences enableGamesPreferences = getSharedPreferences(String.valueOf(R.string.enable_games_preferences),Context.MODE_PRIVATE);
 
-        Boolean RPJenabled = enableGamesPreferences.getBoolean(String.valueOf(R.string.RPJenabled_pref_key), false);
+        Boolean RPJenabled = enableGamesPreferences.getBoolean(getString(R.string.RPJenabled_pref_key), false);
+        Log.d("!!!!RPJenabled? ", String.valueOf(RPJenabled));
 
-        Log.d("!!!!!!!!!!MAIN-ACT", "RPJenabled: " + RPJenabled);
     }
 
     /** Called when the user taps Play Button */
