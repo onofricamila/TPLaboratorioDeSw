@@ -8,7 +8,7 @@
 
     <!-- CONTAINER -->
     <LinearLayout
-        android:id="@+id/linearLayout2"
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -35,7 +35,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/recoTitleTextView"
                         style="@android:style/TextAppearance.DeviceDefault.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -56,8 +56,8 @@
                         android:layout_marginBottom="30dp"
                         android:orientation="horizontal"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView12"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12">
+                        app:layout_constraintStart_toStartOf="@+id/recoTitleTextView"
+                        app:layout_constraintTop_toBottomOf="@+id/recoTitleTextView">
 
                         <RadioButton
                             android:id="@+id/listRadioBtn"
@@ -94,7 +94,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/minijuegoTitleTextView"
                         style="@android:style/TextAppearance.DeviceDefault.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -114,8 +114,8 @@
                         android:layout_marginTop="30dp"
                         android:layout_marginBottom="30dp"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/textView14"
-                        app:layout_constraintTop_toBottomOf="@+id/textView14">
+                        app:layout_constraintStart_toStartOf="@+id/minijuegoTitleTextView"
+                        app:layout_constraintTop_toBottomOf="@+id/minijuegoTitleTextView">
 
                         <RadioButton
                             android:id="@+id/RPRadioBtn"
@@ -161,7 +161,7 @@
                    >
 
                     <TextView
-                        android:id="@+id/textView13"
+                        android:id="@+id/levelTitleTextView"
                         style="@android:style/TextAppearance.DeviceDefault.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -188,10 +188,10 @@
                         android:textColor="@color/ic_launcher_background"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+                        app:layout_constraintTop_toBottomOf="@+id/levelTitleTextView" />
 
                     <TextView
-                        android:id="@+id/textView7"
+                        android:id="@+id/levelSwitchOnTextView"
                         style="@android:style/TextAppearance.DeviceDefault.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -217,7 +217,7 @@
                     android:layout_height="match_parent">
 
                     <TextView
-                        android:id="@+id/textView15"
+                        android:id="@+id/audioTitleTextView"
                         style="@android:style/TextAppearance.DeviceDefault.Large"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -244,10 +244,10 @@
                         android:textColor="@color/ic_launcher_background"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+                        app:layout_constraintTop_toBottomOf="@+id/audioTitleTextView" />
 
                     <TextView
-                        android:id="@+id/textView9"
+                        android:id="@+id/audioSwitchOnTextView"
                         style="@android:style/TextAppearance.DeviceDefault.Medium"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -258,7 +258,7 @@
                         app:layout_constraintStart_toEndOf="@+id/audioSwitch" />
 
                     <Button
-                        android:id="@+id/button5"
+                        android:id="@+id/acceptBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
