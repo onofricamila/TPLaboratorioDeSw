@@ -18,13 +18,11 @@ public class TextsProvider {
         this.textsMap = new HashMap();
         String json = JsonManager.INSTANCE.getJSONFromRaw(R.raw.texts, this.context);
         try {
-            JSONArray horsesJSON = new JSONArray(json);
-            for (int i = 0; i < horsesJSON.length(); i++) {
-                JSONObject JSONobject = horsesJSON.getJSONObject(i);
+            JSONArray textsFromJSON = new JSONArray(json);
+            for (int i = 0; i < textsFromJSON.length()-1; i++) {
+                JSONObject JSONobject = textsFromJSON.getJSONObject(i);
                 String forElement = JSONobject.getString("for");
                 String text = JSONobject.getString("text");
-                Log.d("!!!!!", "for" + forElement);
-                Log.d("!!!!!", "text" + text);
                 textsMap.put(forElement, text);
             }
             Log.d("!!!!!!!!!!", "TextsProvider: " + textsMap);
