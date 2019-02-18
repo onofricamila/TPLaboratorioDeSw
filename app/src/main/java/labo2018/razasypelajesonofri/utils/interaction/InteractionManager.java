@@ -132,6 +132,8 @@ public abstract class InteractionManager {
                 this.context.enableRPJ();
                 // ask to retry game or play next
                 this.context.showNextLayout();
+                // TODO confetti
+                this.context.startAnimation();
             }else{
                 // was playing RPJ -> cup
                 Log.d("!!!!GAME-FLOW", "trophy");
