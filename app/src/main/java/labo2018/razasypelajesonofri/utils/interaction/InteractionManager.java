@@ -136,7 +136,7 @@ public abstract class InteractionManager {
                 // ask to go home or retry game
                 this.context.showRetryLayout();
                 // was playing RPJ -> trophy
-                this.context.startTrophyAnimation2();
+                this.context.startTrophyAnimation3();
             }
         }else if (this.context.isImpossibleToWin()){
             // inform user

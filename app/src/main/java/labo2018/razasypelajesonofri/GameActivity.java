@@ -66,14 +66,13 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         confettiAnimation.setOneShot(true);
         confettiAnimation.start();
     }
-
-
-    public void startTrophyAnimation2() {
+    
+    private void startAnimation(int imgViewId, int base, int top, String baseName) {
         final AnimationDrawable anim;
-        ImageView img = findViewById(R.id.trophyImageView);
+        ImageView img = findViewById(imgViewId);
         anim = new AnimationDrawable();
-        for (int i = 10; i <= 80; i += 4) {
-            String name = "copa_rotando00" + i;
+        for (int i = base; i <= top; i += 4) {
+            String name = baseName + i;
             anim.addFrame(getResources().getDrawable(getResources().getIdentifier(name, "drawable", getPackageName())), 250);
             System.gc();
         }
@@ -94,6 +93,9 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         img.post(run);
     }
 
+    public void startTrophyAnimation3() {
+        startAnimation(R.id.trophyImageView, 10, 80, "copa_rotando00");
+    }
 
     public void toHome(View view){
         Log.d("!!!!GAME-FLOW", "to home");
