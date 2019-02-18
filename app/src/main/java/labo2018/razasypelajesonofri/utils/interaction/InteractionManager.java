@@ -126,13 +126,11 @@ public abstract class InteractionManager {
             this.context.resetRoundsAndAssertions();
             // if RP
             if(!this.context.playingRazasYPelajesJuntos()){
-                // TODO confetti
-               // this.context.startAnimation();
                 // enable RPJ in settings
                 this.context.enableRPJ();
                 // ask to retry game or play next
                 this.context.showNextLayout();
-                // TODO confetti
+                // confetti
                 this.context.startAnimation();
             }else{
                 // was playing RPJ -> cup
