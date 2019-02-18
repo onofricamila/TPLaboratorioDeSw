@@ -150,11 +150,11 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public Boolean gameWon(){
-        return assertions>=3;
+        return assertions>=3 && rounds==5;
     }
 
     public Boolean isImpossibleToWin(){
-        return (rounds - assertions)>=3;
+        return assertions<3 && rounds==5;
     }
 
     public void logdGameFlow(){
