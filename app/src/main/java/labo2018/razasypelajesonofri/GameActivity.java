@@ -66,6 +66,16 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         confettiAnimation.start();
     }
 
+    public void toHome(View view){
+        finish();
+    }
+
+    public void retry(View view){
+        Log.d("RETRYYYY", "retry: ");
+        // play again
+        newGame();
+    }
+
     @Override
     public void onClick(View view) {
         if(view == homeImgView){
@@ -172,6 +182,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         // home btn
         homeImgView = findViewById(R.id.homeImgView);
         homeImgView.setOnClickListener(this);
+    }
+
+    public void showRetryLayout() {
+        setContentView(R.layout.activity_game_lost);
     }
 
     public void newGame() {

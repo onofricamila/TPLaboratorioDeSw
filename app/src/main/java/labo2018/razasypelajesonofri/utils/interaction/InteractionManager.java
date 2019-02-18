@@ -146,7 +146,7 @@ public abstract class InteractionManager {
             // reset
             this.context.resetRoundsAndAssertions();
             // play again
-            this.context.newGame();
+            this.context.showRetryLayout();
         }else {
             // player has chances to win -> play again
             this.context.newGame();
