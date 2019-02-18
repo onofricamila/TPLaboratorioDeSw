@@ -25,7 +25,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView homeImgView;
     private InteractionManager interactionManager;
     private HorsesProvider horsesProvider;
-    private AnimationDrawable confettiAnimation;
+    private AnimationDrawable confettiAnimation, trophyAnimation;
     private int rounds, assertions;
 
     @Override
@@ -58,7 +58,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         assertions = 0;
     }
 
-    public void startAnimation(){
+    public void startConfettiAnimation(){
         // confetti
         ImageView confettiImgView = (ImageView) findViewById(R.id.confettiImageView);
         confettiImgView.setBackgroundResource(R.drawable.animation);
@@ -66,6 +66,34 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         confettiAnimation.setOneShot(true);
         confettiAnimation.start();
     }
+
+
+    public void startTrophyAnimation2() {
+        final AnimationDrawable anim;
+        ImageView img = findViewById(R.id.trophyImageView);
+        anim = new AnimationDrawable();
+        for (int i = 10; i <= 80; i += 4) {
+            String name = "copa_rotando00" + i;
+            anim.addFrame(getResources().getDrawable(getResources().getIdentifier(name, "drawable", getPackageName())), 250);
+            System.gc();
+        }
+
+        // last img completly transparent
+        anim.addFrame(getResources().getDrawable(getResources().getIdentifier("animation_01", "drawable", getPackageName())), 250);
+        System.gc();
+
+        anim.setOneShot(true);
+        img.setImageDrawable(anim);
+        Runnable run = new Runnable() {
+            @Override
+            public void run() {
+                anim.start();
+            }
+        };
+
+        img.post(run);
+    }
+
 
     public void toHome(View view){
         Log.d("!!!!GAME-FLOW", "to home");

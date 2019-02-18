@@ -131,11 +131,12 @@ public abstract class InteractionManager {
                 // ask to retry game or play next
                 this.context.showNextLayout();
                 // confetti
-                this.context.startAnimation();
+                this.context.startConfettiAnimation();
             }else{
-                // was playing RPJ -> cup
-                Log.d("!!!!GAME-FLOW", "trophy");
-                this.context.showTrophy();
+                // ask to go home or retry game
+                this.context.showRetryLayout();
+                // was playing RPJ -> trophy
+                this.context.startTrophyAnimation2();
             }
         }else if (this.context.isImpossibleToWin()){
             // inform user
