@@ -126,26 +126,23 @@ public abstract class InteractionManager {
             this.context.resetRoundsAndAssertions();
             // if RP
             if(!this.context.playingRazasYPelajesJuntos()){
+                // TODO confetti
+               // this.context.startAnimation();
                 // enable RPJ in settings
                 this.context.enableRPJ();
-                // -> select 'playing RPJ'
-                this.context.playRazasYPelajesJuntos();
-                // play again
-                this.context.newGame();
-                // confetti
-                this.context.startAnimation();
+                // ask to retry game or play next
+                this.context.showNextLayout();
             }else{
                 // was playing RPJ -> cup
                 Log.d("!!!!GAME-FOW", "Trophy");
                 this.context.showTrophy();
-
             }
         }else if (this.context.isImpossibleToWin()){
             // inform user
-            this.context.makeToast("Reintenta el minijuego");
+            this.context.makeToast("Obtuviste menos de 3 respuestas correctas en 5 intentos.");
             // reset
             this.context.resetRoundsAndAssertions();
-            // play again
+            // ask to go home or retry game
             this.context.showRetryLayout();
         }else {
             // player has chances to win -> play again

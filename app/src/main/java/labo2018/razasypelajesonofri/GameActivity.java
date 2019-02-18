@@ -76,6 +76,15 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         newGame();
     }
 
+    public void next(View view){
+        Log.d("NEXTTTT", "next: ");
+        // -> select 'playing RPJ'
+        playRazasYPelajesJuntos();
+        // play again
+        newGame();
+    }
+
+
     @Override
     public void onClick(View view) {
         if(view == homeImgView){
@@ -186,6 +195,10 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void showRetryLayout() {
         setContentView(R.layout.activity_game_lost);
+    }
+
+    public void showNextLayout() {
+        setContentView(R.layout.activity_game_next);
     }
 
     public void newGame() {
