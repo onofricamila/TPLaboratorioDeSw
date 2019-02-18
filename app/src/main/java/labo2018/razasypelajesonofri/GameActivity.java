@@ -67,17 +67,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void toHome(View view){
+        Log.d("!!!!GAME-FLOW", "to home");
         finish();
     }
 
     public void retry(View view){
-        Log.d("RETRYYYY", "retry: ");
+        Log.d("!!!!GAME-FLOW", "retry");
         // play again
         newGame();
     }
 
     public void next(View view){
-        Log.d("NEXTTTT", "next: ");
+        Log.d("!!!!GAME-FLOW", "next");
         // -> select 'playing RPJ'
         playRazasYPelajesJuntos();
         // play again
@@ -177,7 +178,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void logdGameFlow(){
-        Log.d("!!!!GAME-FOW", "ROUNDS:"+rounds+" ASSERTIONS:"+assertions);
+        Log.d("!!!!GAME-FLOW", "ROUNDS:"+rounds+" ASSERTIONS:"+assertions);
     }
 
     public void makeToast(String string){
@@ -194,7 +195,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void showRetryLayout() {
-        setContentView(R.layout.activity_game_lost);
+        setContentView(R.layout.activity_game_retry);
     }
 
     public void showNextLayout() {
@@ -232,7 +233,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Boolean RPJenabled = getEnableGamesSharedPrefs().getBoolean(getString(R.string.RPJenabled_pref_key), false);
 
         if (!RPJenabled) {
-            Log.d("!!!!GAME-FOW", "enableRPJ");
+            Log.d("!!!!GAME-FLOW", "enableRPJ");
             SharedPreferences.Editor editor = getEnableGamesSharedPrefs().edit();
             editor.putBoolean(key, true);
             editor.apply();

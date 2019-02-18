@@ -134,7 +134,7 @@ public abstract class InteractionManager {
                 this.context.showNextLayout();
             }else{
                 // was playing RPJ -> cup
-                Log.d("!!!!GAME-FOW", "Trophy");
+                Log.d("!!!!GAME-FLOW", "trophy");
                 this.context.showTrophy();
             }
         }else if (this.context.isImpossibleToWin()){
