@@ -77,11 +77,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
             System.gc();
         }
 
-        // last img completly transparent
-        anim.addFrame(getResources().getDrawable(getResources().getIdentifier("animation_01", "drawable", getPackageName())), 250);
-        System.gc();
-
-        anim.setOneShot(true);
         img.setImageDrawable(anim);
         Runnable run = new Runnable() {
             @Override
@@ -93,7 +88,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         img.post(run);
     }
 
-    public void startTrophyAnimation3() {
+    public void startTrophyAnimation() {
         startAnimation(R.id.trophyImageView, 10, 80, "copa_rotando00");
     }
 

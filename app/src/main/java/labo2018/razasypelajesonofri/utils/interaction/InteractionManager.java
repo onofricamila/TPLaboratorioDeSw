@@ -3,7 +3,6 @@ package labo2018.razasypelajesonofri.utils.interaction;
 
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import java.util.ArrayList;
@@ -133,10 +132,8 @@ public abstract class InteractionManager {
                 // confetti
                 this.context.startConfettiAnimation();
             }else{
-                // ask to go home or retry game
-                this.context.showRetryLayout();
-                // was playing RPJ -> trophy
-                this.context.startTrophyAnimation3();
+                this.context.showTrophy();
+                this.context.startTrophyAnimation();
             }
         }else if (this.context.isImpossibleToWin()){
             // inform user
