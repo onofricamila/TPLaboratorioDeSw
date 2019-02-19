@@ -33,15 +33,18 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         // reset
         resetRoundsAndAssertions();
+        // layout according to the chosen interaction mode
+        prepareLayout();
         // let's play!
         newGame();
     }
 
+
+
     public void prepareLayout(){
-        if( playingRazasYPelajesJuntos() ){
+        if( playingWithBInteraction() ){
             setContentView(R.layout.activity_game_interaccion_b);
             interactionManager = new BInteractionManager(this, playingLevel2());
-
         }else{
             setContentView(R.layout.activity_game_interaccion_a);
             interactionManager = new AInteractionManager(this, playingLevel2());
@@ -99,6 +102,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
 
     public void retry(View view){
         Log.d("!!!!GAME-FLOW", "retry");
+        prepareLayout();
         // play again
         newGame();
     }
@@ -107,6 +111,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         Log.d("!!!!GAME-FLOW", "next");
         // -> select 'playing RPJ'
         playRazasYPelajesJuntos();
+        prepareLayout();
         // play again
         newGame();
     }
@@ -126,6 +131,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public Boolean playingRazasYPelajesJuntos(){
         Integer minijuegoPref = getConfigSharedPrefs().getInt(getString(R.string.minijuego_pref_key), R.id.RPRadioBtn);
         return minijuegoPref == R.id.RPJRadioBtn;
+    }
+
+    private Boolean playingWithBInteraction(){
+        Integer interactionPref = getConfigSharedPrefs().getInt(getString(R.string.interaction_pref_key), R.id.InteracARadBtn);
+        Log.d("!!!!!!!!!!!!INTERACTION", "playingWithBInteraction? " + String.valueOf(interactionPref == R.id.InteracBRadBtn));
+        return interactionPref == R.id.InteracBRadBtn;
     }
 
     public Boolean listeningToFemAudio(){
@@ -229,7 +240,6 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void newGame() {
-        prepareLayout();
         // new round
         rounds++;
         // reset tags
