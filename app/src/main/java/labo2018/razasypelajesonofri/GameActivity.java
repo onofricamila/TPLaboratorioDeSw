@@ -64,7 +64,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     public void startConfettiAnimation(){
         // confetti
         ImageView confettiImgView = (ImageView) findViewById(R.id.confettiImageView);
-        confettiImgView.setBackgroundResource(R.drawable.animation);
+        confettiImgView.setBackgroundResource(R.drawable.anim_confetti);
         confettiAnimation = (AnimationDrawable) confettiImgView.getBackground();
         confettiAnimation.setOneShot(true);
         confettiAnimation.start();

@@ -27,7 +27,7 @@ public class RecoActivity extends AppCompatActivity {
     // so that it can be canceled mid-way.
     private Animator mCurrentAnimator;
 
-    // The system "short" animation time duration, in milliseconds. This
+    // The system "short" anim_confetti time duration, in milliseconds. This
     // duration is ideal for subtle animations or animations that occur
     // very frequently.
     private int mShortAnimationDuration;
@@ -51,7 +51,7 @@ public class RecoActivity extends AppCompatActivity {
         }
         // prepareView
         viewManager.prepareView();
-        // Retrieve and cache the system's default "short" animation time.
+        // Retrieve and cache the system's default "short" anim_confetti time.
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
     }
 
@@ -91,7 +91,7 @@ public class RecoActivity extends AppCompatActivity {
 
     // zoom img
     private void zoomImageFromView(final View thumbView, int imageResId) {
-        // If there's an animation in progress, cancel it
+        // If there's an anim_confetti in progress, cancel it
         // immediately and proceed with this one.
         if (mCurrentAnimator != null) {
             mCurrentAnimator.cancel();
@@ -111,7 +111,7 @@ public class RecoActivity extends AppCompatActivity {
         // The start bounds are the global visible rectangle of the thumbnail,
         // and the final bounds are the global visible rectangle of the container
         // view. Also set the container view's offset as the origin for the
-        // bounds, since that's the origin for the positioning animation
+        // bounds, since that's the origin for the positioning anim_confetti
         // properties (X, Y).
         thumbView.getGlobalVisibleRect(startBounds);
         findViewById(R.id.container)
@@ -121,7 +121,7 @@ public class RecoActivity extends AppCompatActivity {
 
         // Adjust the start bounds to be the same aspect ratio as the final
         // bounds using the "center crop" technique. This prevents undesirable
-        // stretching during the animation. Also calculate the start scaling
+        // stretching during the anim_confetti. Also calculate the start scaling
         // factor (the end scaling factor is always 1.0).
         float startScale;
         if ((float) finalBounds.width() / finalBounds.height()
@@ -141,7 +141,7 @@ public class RecoActivity extends AppCompatActivity {
             startBounds.bottom += deltaHeight;
         }
 
-        // Hide the thumbnail and show the zoomed-in view. When the animation
+        // Hide the thumbnail and show the zoomed-in view. When the anim_confetti
         // begins, it will position the zoomed-in view in the place of the
         // thumbnail.
         thumbView.setAlpha(0f);
@@ -153,7 +153,7 @@ public class RecoActivity extends AppCompatActivity {
         expandedImageView.setPivotX(0f);
         expandedImageView.setPivotY(0f);
 
-        // Construct and run the parallel animation of the four translation and
+        // Construct and run the parallel anim_confetti of the four translation and
         // scale properties (X, Y, SCALE_X, and SCALE_Y).
         AnimatorSet set = new AnimatorSet();
         set
