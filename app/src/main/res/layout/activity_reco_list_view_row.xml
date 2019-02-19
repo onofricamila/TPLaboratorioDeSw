@@ -12,9 +12,9 @@
         android:id="@+id/horseImageView"
         android:layout_width="100dp"
         android:layout_height="75dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="15dp"
         android:layout_marginBottom="20dp"
         android:onClick="horseIvOnClickListener"
         />
@@ -22,9 +22,9 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="15dp"
         android:layout_marginBottom="20dp">
 
         <TextView
@@ -38,7 +38,7 @@
             android:gravity="center"
             android:text="jrehgklssgk"
             android:textColor="@color/ic_launcher_background"
-            android:textSize="18sp"
+            android:textSize="15sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -64,12 +64,12 @@
         android:id="@+id/horseTxtTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="15dp"
         android:layout_marginBottom="20dp"
         android:textColor="@color/ic_launcher_background"
-        android:textSize="15sp"
+        android:textSize="13sp"
         android:textStyle="bold" />
 
 
