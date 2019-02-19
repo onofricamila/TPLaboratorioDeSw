@@ -24,10 +24,13 @@
     <string name="level2_pref_key">level2</string>
     <string name="reco_view_mode_pref_key">reco_view_mode</string>
     <string name="minijuego_pref_key">minijuego</string>
+    <string name="interaction_pref_key">interaction</string>
     <string name="audioTxt">Audio:</string>
     <string name="levelTxt">Nivel de dificultad:</string>
-    <string name="RPRadBtnTxt">Razas y Pelajes: Imagen - Palabra</string>
-    <string name="RPJRadBtnTxt">Razas y Pelajes Juntas: Palabra - Imagen</string>
+    <string name="RPRadBtnTxt">Razas y Pelajes</string>
+    <string name="RPJRadBtnTxt">Razas y Pelajes Juntas</string>
+    <string name="InteracARadBtnTxt">Img - Palabra</string>
+    <string name="InteracBRadBtnTxt">Palabra - Img</string>
     <string name="recoTxt">Modo Reconocimiento:</string>
     <string name="minijuegoTxt">Minijuego:</string>
     <bool name="pref_default_nivel">false</bool>

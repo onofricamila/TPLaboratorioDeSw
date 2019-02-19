@@ -112,8 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="30dp"
-                        android:layout_marginBottom="30dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:orientation="horizontal"
                         app:layout_constraintStart_toStartOf="@+id/minijuegoTitleTextView"
                         app:layout_constraintTop_toBottomOf="@+id/minijuegoTitleTextView">
 
@@ -137,6 +136,41 @@
                             android:layout_weight="1"
                             android:paddingRight="@dimen/fab_margin"
                             android:text="@string/RPJRadBtnTxt"
+                            android:textColor="@color/ic_launcher_background" />
+
+                    </RadioGroup>
+
+                    <RadioGroup
+                        android:id="@+id/interactionRadioGroup"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="30dp"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="@+id/minijuegoTitleTextView"
+                        app:layout_constraintTop_toBottomOf="@+id/minijuegoRadioGroup">
+
+                        <RadioButton
+                            android:id="@+id/InteracARadBtn"
+                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:paddingRight="@dimen/fab_margin"
+                            android:text="@string/InteracARadBtnTxt"
+                            android:textColor="@color/ic_launcher_background" />
+
+                        <RadioButton
+                            android:id="@+id/InteracBRadBtn"
+                            style="@android:style/TextAppearance.DeviceDefault.Medium"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="8dp"
+                            android:layout_weight="1"
+                            android:paddingRight="@dimen/fab_margin"
+                            android:text="@string/InteracBRadBtnTxt"
                             android:textColor="@color/ic_launcher_background" />
 
                     </RadioGroup>

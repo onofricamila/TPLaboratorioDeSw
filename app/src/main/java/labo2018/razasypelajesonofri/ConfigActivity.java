@@ -14,7 +14,7 @@ import android.widget.Switch;
 public class ConfigActivity extends AppCompatActivity {
     Switch levelSwitch;
     Switch audioSwitch;
-    RadioGroup minijuegoRadioGroup;
+    RadioGroup minijuegoRadioGroup, interactionRadioGroup;
     RadioGroup recoViewModeRadioGroup;
 
     @Override
@@ -30,8 +30,10 @@ public class ConfigActivity extends AppCompatActivity {
         levelSwitch = findViewById(R.id.levelSwitch);
         audioSwitch = findViewById(R.id.audioSwitch);
         minijuegoRadioGroup = findViewById(R.id.minijuegoRadioGroup);
+        interactionRadioGroup = findViewById(R.id.interactionRadioGroup);
         recoViewModeRadioGroup = findViewById(R.id.recoViewModeRadioGroup);
 
+        // determine games to show according to locked/unlocked games
         SharedPreferences enableGamesPreferences = getSharedPreferences(String.valueOf(R.string.enable_games_preferences),Context.MODE_PRIVATE);
 
         Boolean RPJenabled = enableGamesPreferences.getBoolean(getString(R.string.RPJenabled_pref_key), false);
@@ -43,6 +45,7 @@ public class ConfigActivity extends AppCompatActivity {
             radBtn.setTextColor(Color.argb(alpha, 0, 0, 0));
         }
 
+        // set all values
         SharedPreferences configPreferences = getSharedPreferences(getString(R.string.config_preferences),Context.MODE_PRIVATE);
         levelSwitch.setChecked(configPreferences
                 .getBoolean(getString(R.string.level2_pref_key), false));
@@ -50,6 +53,8 @@ public class ConfigActivity extends AppCompatActivity {
                 .getBoolean(getString(R.string.fem_audio_pref_key), false));
         minijuegoRadioGroup.check(configPreferences
                 .getInt(getString(R.string.minijuego_pref_key), R.id.RPRadioBtn));
+        interactionRadioGroup.check(configPreferences
+                .getInt(getString(R.string.interaction_pref_key), R.id.InteracARadBtn));
         recoViewModeRadioGroup.check(configPreferences
                 .getInt(getString(R.string.reco_view_mode_pref_key), R.id.listRadioBtn));
     }
@@ -60,6 +65,7 @@ public class ConfigActivity extends AppCompatActivity {
         editor.putBoolean(getString(R.string.fem_audio_pref_key), audioSwitch.isChecked());
         editor.putBoolean(getString(R.string.level2_pref_key), levelSwitch.isChecked());
         editor.putInt(getString(R.string.minijuego_pref_key), minijuegoRadioGroup.getCheckedRadioButtonId());
+        editor.putInt(getString(R.string.interaction_pref_key), interactionRadioGroup.getCheckedRadioButtonId());
         editor.putInt(getString(R.string.reco_view_mode_pref_key), recoViewModeRadioGroup.getCheckedRadioButtonId());
         editor.apply();
         finish();
