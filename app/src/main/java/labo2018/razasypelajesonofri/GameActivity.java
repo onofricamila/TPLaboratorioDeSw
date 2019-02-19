@@ -74,12 +74,12 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         final AnimationDrawable anim;
         ImageView img = findViewById(imgViewId);
         anim = new AnimationDrawable();
-        for (int i = base; i <= top; i += 4) {
+        for (int i = base; i <= top; i += 1) {
             String name = baseName + i;
             anim.addFrame(getResources().getDrawable(getResources().getIdentifier(name, "drawable", getPackageName())), 250);
             System.gc();
         }
-
+        anim.setOneShot(false);
         img.setImageDrawable(anim);
         Runnable run = new Runnable() {
             @Override
@@ -92,7 +92,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void startTrophyAnimation() {
-        startAnimation(R.id.trophyImageView, 10, 80, "copa_rotando00");
+        startAnimation(R.id.trophyImageView, 1, 8, "rsz_copa_rotando");
     }
 
     public void toHome(View view){
