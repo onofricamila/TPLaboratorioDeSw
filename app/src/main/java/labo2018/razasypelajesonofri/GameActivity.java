@@ -219,7 +219,7 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void makeToast(String string){
-        Toast toast = Toast.makeText(this, string, Toast.LENGTH_SHORT);
+        Toast toast = Toast.makeText(this, string, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 40);
         toast.show();
     }
